@@ -12,14 +12,14 @@ async function fetchLogin(data) {
     return fetch('https://datatest.angelddcs.workers.dev/users', {
         method: 'POST',
         headers: {
-            "Access-Control-Allow-Origin": "*",
+            /*"Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
             "Access-Control-Max-Age": "86400",
-            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Headers": "Content-Type",*/
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    }).then(data => data.json()).catch(err => {})
+    }).then(data => data.json())
 }
 
 export function InfoProvider({ children }) {
