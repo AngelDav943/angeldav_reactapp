@@ -4,7 +4,7 @@ a {
     text-decoration: none;
 }
 
-input, button, a.button, a.submit {
+input, button {
     font-size: 1rem;
     padding: 0.75em 0.8rem;
     
@@ -21,35 +21,84 @@ input:focus::placeholder {
     color: var(--outline);
 }
 
-input[type="submit"], a.submit  {
+input[type="submit"] {
     background-color: var(--blue);
     color: white;
     cursor: pointer;
     outline: none;
 }
 
-input[type="button"], button, a.button {
+input[type="button"], button {
     outline: none;
     border: none;
     background-color: transparent;
     color: var(--blue)
 }
 
-input[type="button"]:hover, button:hover, a.button:hover {
+input[type="button"]:hover, button:hover {
     color: var(--darkblue);
     cursor: pointer;
     background-color: var(--transparent-blue);
 }
 
-input:not([type="submit"], [type="button"]):focus {
-    outline: solid 2px var(--blue);
-    transition: 0.1s outline;
+input:autofill {
+    background: rgb(232, 240, 254);
 }
 
-input[type="button"]:active, button:active, a.button:active {
+input:not([type="submit"], [type="button"]):focus {
+    outline: solid 2px var(--blue);
+    transition: 0.1s outline-color;
+}
+
+label {
+    display: contents;
+}
+
+label input::placeholder {
+    color: transparent !important;
+}
+
+label:has(input)::before {
+    content: attr(placeholder);
+    display: block;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    
+    padding: 0px 5px;
+    margin-left: calc(0.8em - 5px);
+    margin-top: -1rem;
+
+    width: fit-content;
+    height: 1rem;
+    
+    position: relative;
+    top: 0.4rem;
+    font-size: 0.9rem;
+
+    cursor: text;
+    transition: top .1s, font-size .1s;
+}
+
+label:has(input:placeholder-shown)::before {
+    top: 1.55rem;
+    font-size: 1rem;
+}
+
+label:has(input:autofill)::before {
+    background: linear-gradient(white 55%, rgb(232, 240, 254) 55%);
+}
+
+label:has(input:focus)::before {
+    color: var(--blue);
+    top: 0.4rem;
+    font-size: 0.9rem;
+}
+
+input[type="button"]:active, button:active {
     outline: 2px solid var(--blue);
 }
 
-input[type="submit"]:active, a.submit:active {
+input[type="submit"]:active {
     background-color: var(--darkblue);
 }

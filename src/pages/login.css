@@ -1,0 +1,63 @@
+main.login {
+    border: solid 1px var(--outline);
+    border-radius: 10px;
+
+    background-color: white;
+    color: black;
+
+    margin: 3rem auto;
+    padding: 30px;
+    max-height: 400px;
+    min-height: auto;
+    height: 100%;
+
+    max-width: 300px;
+    width: calc(100% - 60px);
+
+    display: flex;
+    flex-direction: column;
+}
+
+main.login form {
+    display: contents;
+}
+
+main.login p.title {
+    margin-bottom: 0;
+}
+
+main.login img[alt="Logo"] {
+    max-width: 150px;
+    width: 100%;
+}
+
+main.login .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: calc(400px + 60px)) {
+    main.login {
+        background-color: transparent;
+        border-radius: 0;
+        border: none;
+    }
+
+    main.login .row {
+        justify-content: space-around;
+    }
+
+    main.login .row input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-height: 461px) {
+    main.login {
+        border-radius: 0;
+        border-top: none;
+        border-bottom: none;
+        height: calc(100% - 60px);
+    }
+}
