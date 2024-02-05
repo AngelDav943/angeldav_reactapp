@@ -5,7 +5,7 @@ main.login {
     background-color: white;
     color: black;
 
-    margin: 3rem auto;
+    margin: 5rem auto;
     padding: 30px;
     max-height: 400px;
     min-height: auto;
@@ -35,6 +35,22 @@ main.login .row {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+main.login span.error {
+    display: inline-block;
+    color: red;
+    padding: 0.5em 1em;
+    outline: 1px solid red;
+    border-radius: 0.5em;
+    
+    margin-bottom: 2rem;
+    
+    max-width: 270px;
+    width: calc(100% - 2em);
+
+    position: absolute;
+    top: 5rem;
 }
 
 @media screen and (max-width: calc(400px + 60px)) {

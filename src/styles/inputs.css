@@ -80,6 +80,14 @@ label:has(input)::before {
     transition: top .1s, font-size .1s;
 }
 
+input[error="true"] {
+    outline-color: red;
+}
+
+label:has(input[error="true"])::before {
+    color: red;
+}
+
 label:has(input:placeholder-shown)::before {
     top: 1.55rem;
     font-size: 1rem;

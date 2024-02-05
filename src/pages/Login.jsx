@@ -4,7 +4,7 @@ import { useInfo } from "../context/useInfo"
 import { useState } from 'react';
 
 export default function () {
-    const { info, login } = useInfo();
+    const { info, login, getData } = useInfo();
 
     const [username, setUser] = useState();
     const [password, setPass] = useState();
@@ -13,23 +13,24 @@ export default function () {
 
     const handleSubmit = async e => {
         e.preventDefault();
-
         const loginData = await login(username, password);
+        if (loginData == undefined) return
 
-        console.log(loginData)
+        if (loginData["error"]) setError(loginData.error);
 
-        //if (loginData.token) setToken(loginData);
+        if (loginData["success"] == true) getData()
     }
 
     return <main className="login">
         <h2>Log in</h2>
+        {error && <span className="error">{error}</span>}
         <form onSubmit={handleSubmit}>
             <label placeholder="Username">
-                <input type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
+                <input error={String(error != null)} type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
             </label>
             <br />
             <label placeholder="Password">
-                <input type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
+                <input error={String(error != null)} type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
             </label>
             <br />
             <br />

@@ -1,8 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Login from "../pages/Login";
 
 const infoContext = createContext()
+infoContext["forcelogin"] = false
 
-export const useInfo = () => {
+export const useInfo = (forcelogin) => {
+    infoContext["forcelogin"] = forcelogin || false
     return useContext(infoContext)
 }
 
@@ -20,45 +23,63 @@ async function fetchLogin(data) {
         },
         body: JSON.stringify(data)
     })
-    
+
     var response = fetchedData.json().catch(err => {
-        return {msg:String(err)}
+        return { msg: String(err) }
     })
 
     return response
 }
 
 export function InfoProvider({ children }) {
-    const [info, setInfo] = useState({})
+    const [loaded, setLoaded] = useState(false)
+    const [info, setInfo] = useState(null)
 
-    /*useEffect(() => {
-        console.log("testtt")
-    }, [])*/
+    const getData = async () => {
+        const savedData = localStorage.getItem("uid")
+        if (savedData == null) return false;
 
-    const login = async (username, password) =>  {
+        var loginParameters = null
+        try {
+            loginParameters = JSON.parse(savedData)
+        } catch (error) {
+            return false;
+        }
+
+        const userData = await fetchLogin(loginParameters);
+        if (userData["userID"]) {
+            setInfo(userData)
+            setLoaded(true)
+        } else {
+            setLoaded(true)
+            return false;
+        }
+        
+        return userData
+    }
+
+    useEffect(() => {
+        if (info == null) getData()
+    }, [])
+
+    const login = async (username, password) => {
         const loginData = await fetchLogin({
             "username": username,
             "password": password,
         });
-        /*var newData = info || {}
-        newData.name = newName
+        
+        if (loginData["userID"] == null) return {
+            "error": loginData["msg"]
+        }
 
-        setInfo(newData)
-        localStorage.setItem("info", JSON.stringify(info))*/
-        return loginData
+        localStorage.setItem("uid", JSON.stringify({ "username": loginData.username, "token": loginData.userID }))
+        return {"success": true}
     }
 
-    const count = () => {
-        /*var count = parseInt(info?.count || 0)
-        var newData = info || {}
-        newData.count = count + 1
-
-        setInfo(newData)
-        localStorage.setItem("info", JSON.stringify(info))*/
-    }
+    const forceLogin = () => <Login/>
 
     return (
-        <infoContext.Provider value={{ info, login: login }}>
+        <infoContext.Provider value={{ loaded, info, login, forceLogin, getData }}>
             {children}
         </infoContext.Provider>
     )
