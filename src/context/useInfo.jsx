@@ -37,12 +37,16 @@ export function InfoProvider({ children }) {
 
     const getData = async () => {
         const savedData = localStorage.getItem("uid")
-        if (savedData == null) return false;
+        if (savedData == null) {
+            setLoaded(true)
+            return false;
+        }
 
         var loginParameters = null
         try {
             loginParameters = JSON.parse(savedData)
         } catch (error) {
+            setLoaded(true)
             return false;
         }
 
