@@ -13,11 +13,11 @@ export default function () {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        
-        const loginData = await login(username,password);
+
+        const loginData = await login(username, password);
 
         console.log(loginData)
-        
+
         //if (loginData.token) setToken(loginData);
     }
 
@@ -25,11 +25,11 @@ export default function () {
         <h2>Log in</h2>
         <form onSubmit={handleSubmit}>
             <label placeholder="Username">
-                <input type="text" id="username" placeholder="Username" />
+                <input type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
             </label>
             <br />
             <label placeholder="Password">
-                <input type="password" id="password" placeholder="Password" />
+                <input type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
             </label>
             <br />
             <br />

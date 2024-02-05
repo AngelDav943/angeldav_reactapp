@@ -9,17 +9,23 @@ export const useInfo = () => {
 const savedToken = JSON.parse(localStorage.getItem("token"))
 
 async function fetchLogin(data) {
-    return fetch('https://datatest.angelddcs.workers.dev/users', {
+    var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users', {
         method: 'POST',
         headers: {
-            /*"Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
             "Access-Control-Max-Age": "86400",
-            "Access-Control-Allow-Headers": "Content-Type",*/
+            "Access-Control-Allow-Headers": "Content-Type",
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    }).then(data => data.json())
+    })
+    
+    var response = fetchedData.json().catch(err => {
+        return {msg:String(err)}
+    })
+
+    return response
 }
 
 export function InfoProvider({ children }) {
@@ -31,7 +37,7 @@ export function InfoProvider({ children }) {
 
     const login = async (username, password) =>  {
         const loginData = await fetchLogin({
-            "account": username,
+            "username": username,
             "password": password,
         });
         /*var newData = info || {}
