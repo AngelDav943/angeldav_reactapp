@@ -46,17 +46,17 @@ main.login .row {
 main.login span.error {
     display: inline-block;
     color: red;
-    padding: 0.5em 1em;
+    padding: 0.5em 30px;
     outline: 1px solid red;
     border-radius: 0.5em;
-    
     margin-bottom: 2rem;
-    
-    max-width: 270px;
-    width: calc(100% - 2em);
 
+    max-width: 240px;
     position: absolute;
+
     top: 5rem;
+    margin-left: auto;
+    width: calc(90% - 90px);
 }
 
 main.login .row input {
@@ -106,9 +106,10 @@ main.login .row input {
         justify-content: space-around;
     }
 
-    main.login .row input {
+    main.login .row input, main.login .row a.button {
         width: 100%;
     }
+
 }
 
 @media screen and (max-height: 461px) {

@@ -6,7 +6,7 @@ export default function () {
             <img src="/images/drawn_computer.png" alt="computer" />
         </section>
 
-        <section className='item' style={{height:"200px"}}>
+        <section className='item'>
             <img src="/images/turret_drawing.png" alt="turret sideways" />
             <img src="/images/turret_drawing_front.png" alt="turret front" />
         </section>

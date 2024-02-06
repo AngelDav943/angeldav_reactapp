@@ -4,13 +4,17 @@ a {
     text-decoration: none;
 }
 
-input, button, a.submit {
+input, button, a.submit, a.button {
     font-size: 1rem;
     padding: 0.75em 0.8rem;
     
     border: none;
     outline: solid 1px var(--outline);
     border-radius: 0.25rem;
+}
+
+a.button {
+    text-align: center;
 }
 
 input::placeholder {
@@ -28,14 +32,14 @@ input[type="submit"], a.submit {
     outline: none;
 }
 
-input[type="button"], button {
+input[type="button"], button, a.button {
     outline: none;
     border: none;
     background-color: transparent;
     color: var(--blue)
 }
 
-input[type="button"]:hover, button:hover {
+input[type="button"]:hover, button:hover, a.button:hover {
     color: var(--darkblue);
     cursor: pointer;
     background-color: var(--transparent-blue);
@@ -103,7 +107,7 @@ label:has(input:focus)::before {
     font-size: 0.9rem;
 }
 
-input[type="button"]:active, button:active {
+input[type="button"]:active, button:active, a.button:active {
     outline: 2px solid var(--blue);
 }
 
