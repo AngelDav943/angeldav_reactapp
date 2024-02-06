@@ -45,7 +45,6 @@ header .monitor:hover {
     background: url(/images/monitor/monitor_green.png);
 }
 
-
 @media screen and (max-width: 401px) {
     header {
         justify-content: center;

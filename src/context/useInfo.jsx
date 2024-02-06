@@ -76,7 +76,7 @@ export function InfoProvider({ children }) {
             "error": loginData["msg"]
         }
 
-        localStorage.setItem("uid", JSON.stringify({ "username": loginData.username, "token": loginData.userID }))
+        localStorage.setItem("uid", JSON.stringify({ "token": loginData.userID }))
         return {"success": true}
     }
 

@@ -4,7 +4,7 @@ a {
     text-decoration: none;
 }
 
-input, button {
+input, button, a.submit {
     font-size: 1rem;
     padding: 0.75em 0.8rem;
     
@@ -21,7 +21,7 @@ input:focus::placeholder {
     color: var(--outline);
 }
 
-input[type="submit"] {
+input[type="submit"], a.submit {
     background-color: var(--blue);
     color: white;
     cursor: pointer;

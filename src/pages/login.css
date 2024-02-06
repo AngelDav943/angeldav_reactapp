@@ -1,9 +1,15 @@
+body:has(main.login) {
+    
+    background-color: #086fb0;
+    background: url("/images/blueprint_tiles.png");
+    background-size: 2rem;
+}
+
 main.login {
     border: solid 1px var(--outline);
     border-radius: 10px;
-
+    
     background-color: white;
-    color: black;
 
     margin: 5rem auto;
     padding: 30px;
@@ -53,11 +59,47 @@ main.login span.error {
     top: 5rem;
 }
 
+main.login .row input {
+    transition: color 0.2s, background-color 0.2s;
+}
+
 @media screen and (max-width: calc(400px + 60px)) {
     main.login {
+        --inputbackground: #0b8fcf;
+        color: white;
         background-color: transparent;
         border-radius: 0;
         border: none;
+    }
+
+    main.login .row {
+        --blue: #61ccff;
+    }
+    
+    
+    main.login label input {
+        background: var(--inputbackground);
+        color: white;
+    }
+    
+    main.login label:has(input)::before {
+        background: linear-gradient(#086fb0 60%, var(--inputbackground) 60%);
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    
+    label:has(input:placeholder-shown)::before {
+        background: var(--inputbackground) !important;
+    }
+    
+    label:has(input:autofill)::before {
+        color: rgba(0, 0, 0, 0.5) !important;
+        background: linear-gradient(#086fb0 60%, rgb(232, 240, 254) 60%) !important;
+    }
+    
+    main.login label:has(input:focus)::before {
+        color: white;
+        background: linear-gradient(#086fb0 60%, var(--inputbackground) 60%);
     }
 
     main.login .row {
