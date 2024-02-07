@@ -2,14 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Login from "../pages/Login";
 
 const infoContext = createContext()
-infoContext["forcelogin"] = false
 
 export const useInfo = (forcelogin) => {
-    infoContext["forcelogin"] = forcelogin || false
     return useContext(infoContext)
 }
-
-const savedToken = JSON.parse(localStorage.getItem("token"))
 
 async function fetchLogin(data) {
     var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users', {
@@ -36,21 +32,13 @@ export function InfoProvider({ children }) {
     const [info, setInfo] = useState(null)
 
     const getData = async () => {
-        const savedData = localStorage.getItem("uid")
-        if (savedData == null) {
+        const savedToken = localStorage.getItem("uid")
+        if (savedToken == null) {
             setLoaded(true)
             return false;
         }
 
-        var loginParameters = null
-        try {
-            loginParameters = JSON.parse(savedData)
-        } catch (error) {
-            setLoaded(true)
-            return false;
-        }
-
-        const userData = await fetchLogin(loginParameters);
+        const userData = await fetchLogin({"token":savedToken});
         if (userData["userID"]) {
             setInfo(userData)
             setLoaded(true)
@@ -76,14 +64,20 @@ export function InfoProvider({ children }) {
             "error": loginData["msg"]
         }
 
-        localStorage.setItem("uid", JSON.stringify({ "token": loginData.userID }))
+        localStorage.setItem("uid", loginData.userID)
         return {"success": true}
+    }
+
+    const logout = () => {
+        localStorage.setItem("uid", undefined)
+        setInfo(null);
+        //getData();
     }
 
     const forceLogin = () => <Login/>
 
     return (
-        <infoContext.Provider value={{ loaded, info, login, forceLogin, getData }}>
+        <infoContext.Provider value={{ loaded, info, login, logout, forceLogin, getData}}>
             {children}
         </infoContext.Provider>
     )

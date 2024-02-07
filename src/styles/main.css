@@ -10,6 +10,7 @@
 body {
     color: var(--textblack);
     margin: 0;
+    overflow-wrap: anywhere;
 }
 
 #root {
@@ -61,10 +62,4 @@ section video, section img {
 article.info p {
     margin: 0;
     font-size: 1.5rem;
-}
-
-@media screen and (max-width: 401px) {
-    article.info input {
-        width: 100%;
-    }
 }
