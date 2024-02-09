@@ -1,17 +1,25 @@
 .invite {
+    margin: 0 1rem;
     margin-top: 0.5rem;
     padding-left: 1rem;
-    gap: 0.5rem;
-    background-color: white;
-    color: var(--textblack);
+    background-color: rgba(0, 0, 0, 0.075);
+    color: var(--onBackground);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-left: solid 6px rgba(0, 0, 0, 0.075);
 }
 
-main.invites .title {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    font-size: 2rem;
+.invite .uses {
+    min-width: 3rem;
+    text-align: end;
+}
+
+.invite.enabled {
+    border-color:greenyellow;
+}
+
+.invite button {
+    height: 100%;
+    border-radius: 0;
 }

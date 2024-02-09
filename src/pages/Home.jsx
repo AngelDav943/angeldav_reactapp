@@ -1,7 +1,7 @@
 import './home.css'
 
 export default function () {
-    return <main className="home">
+    return <main className="home basic">
         <section className="item reverse">
             <img src="/images/city_pencil.png" alt="city" />
             <article className="info" style={{ maxWidth: "400px" }}>

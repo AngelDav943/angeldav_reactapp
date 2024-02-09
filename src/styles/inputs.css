@@ -1,5 +1,5 @@
 a {
-    color: var(--blue);
+    color: var(--primary);
     cursor: pointer;
     text-decoration: none;
 }
@@ -11,6 +11,8 @@ input, button, a.submit, a.button {
     border: none;
     outline: solid 1px var(--outline);
     border-radius: 0.25rem;
+    background-color: var(--background);
+    color: var(--onBackground);
 }
 
 a.button {
@@ -26,7 +28,7 @@ input:focus::placeholder {
 }
 
 input[type="submit"], a.submit {
-    background-color: var(--blue);
+    background-color: var(--primary);
     color: white;
     cursor: pointer;
     outline: none;
@@ -36,13 +38,13 @@ input[type="button"], button, a.button {
     outline: none;
     border: none;
     background-color: transparent;
-    color: var(--blue)
+    color: var(--primary)
 }
 
 input[type="button"]:hover, button:hover, a.button:hover {
-    color: var(--darkblue);
+    color: var(--dark-primary);
     cursor: pointer;
-    background-color: var(--transparent-blue);
+    background-color: var(--transparent-primary);
 }
 
 input:autofill {
@@ -50,7 +52,7 @@ input:autofill {
 }
 
 input:not([type="submit"], [type="button"]):focus {
-    outline: solid 2px var(--blue);
+    outline: solid 2px var(--primary);
     transition: 0.1s outline-color;
 }
 
@@ -65,8 +67,9 @@ label input::placeholder {
 label:has(input)::before {
     content: attr(placeholder);
     display: block;
-    background-color: white;
-    color: rgba(0, 0, 0, 0.5);
+    background-color: var(--background);
+    opacity: 0.9;
+    color: var(--onBackground);
     z-index: 1;
     
     padding: 0px 5px;
@@ -102,15 +105,16 @@ label:has(input:autofill)::before {
 }
 
 label:has(input:focus)::before {
-    color: var(--blue);
+    opacity: 1;
+    color: var(--primary);
     top: 0.4rem;
     font-size: 0.9rem;
 }
 
 input[type="button"]:active, button:active, a.button:active {
-    outline: 2px solid var(--blue);
+    outline: 2px solid var(--primary);
 }
 
 input[type="submit"]:active {
-    background-color: var(--darkblue);
+    background-color: var(--dark-primary);
 }

@@ -1,7 +1,7 @@
 import './test.css'
 
 export default function () {
-    return <main className="test">
+    return <main className="test basic">
         <section className='item'>
             <img src="/images/drawn_computer.png" alt="computer" />
         </section>

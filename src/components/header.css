@@ -1,6 +1,6 @@
 header {
     width: calc(100% - 2em);
-    background-color: white;
+    background-color: var(--background);
     border-bottom: 1px solid var(--outline);
     height: 3rem;
 
@@ -50,7 +50,31 @@ header .monitor:hover {
         justify-content: center;
     }
 
+    header.open {
+        position: fixed;
+        height: 100dvh;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    header.open div.left {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 4rem);
+    }
+
     header div.left {
         display: none;
+    }
+
+    header nav {
+        margin: 0;
+        width: 100%;
+    }
+
+    header a {
+        padding: 0.5rem 1rem;
+        display: block;
+        width: 100%;
     }
 }

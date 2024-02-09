@@ -4,3 +4,63 @@ main.dashboard {
     background-size: 2rem;
     color: white;
 }
+
+main.dashboard section.dash {
+    display: flex;
+    flex-direction: row;
+    
+    width: 100%;
+    max-width: 800px;
+    height: calc(100dvh - 4rem - 1px);
+    
+    margin: auto;
+
+    background-color: var(--background);
+}
+
+main.dashboard aside {
+    width: 100%;
+    max-width: 150px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    text-align: right;
+}
+
+main.dashboard section.dash aside input {
+    text-align: start;
+    width: 100%;
+    display: block;
+    border-radius: 0;
+}
+
+main.dashboard section.dash section.page {
+    width: 100%;
+    color: var(--onBackground);
+}
+
+main.dashboard button.sidebar {
+    display: none;
+}
+
+@media screen and (max-width: 501px) {
+
+    main.dashboard button.sidebar {
+        display: block;
+    }
+
+    main.dashboard aside {
+        background-color: var(--background);
+        position: absolute;
+        height: calc(100% - 4rem - 1px);
+        max-width: none;
+        z-index: 2;
+        display: none;
+    }
+
+    main.dashboard aside.open {
+        display: flex;
+    }
+}
