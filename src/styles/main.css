@@ -11,6 +11,7 @@
 body.dark {
     --background: #2a2a2d;
     --onBackground: #f5fafd;
+    --outline: #ffffff2d;
 }
 
 body {

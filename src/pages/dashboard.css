@@ -18,6 +18,8 @@ main.dashboard section.dash {
 }
 
 main.dashboard aside {
+    position: inherit;
+
     width: 100%;
     max-width: 150px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -38,6 +40,7 @@ main.dashboard section.dash aside input {
 main.dashboard section.dash section.page {
     width: 100%;
     color: var(--onBackground);
+    overflow-y: auto;
 }
 
 main.dashboard button.sidebar {

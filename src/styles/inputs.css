@@ -4,7 +4,12 @@ a {
     text-decoration: none;
 }
 
-input, button, a.submit, a.button {
+textarea {
+    min-height: 1.2rem;
+}
+
+input, textarea, button, a.submit, a.button {
+    display: block;
     font-size: 1rem;
     padding: 0.75em 0.8rem;
     
@@ -19,11 +24,11 @@ a.button {
     text-align: center;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     transition: 0.2s color;
 }
 
-input:focus::placeholder {
+input:focus::placeholder, textarea:focus::placeholder {
     color: var(--outline);
 }
 
@@ -57,14 +62,23 @@ input:not([type="submit"], [type="button"]):focus {
 }
 
 label {
+    display: block;
+}
+
+label[placeholder] {
     display: contents;
 }
 
-label input::placeholder {
+label[placeholder]:has(textarea) {
+    margin-top: 1rem;
+    display: block;
+}
+
+label[placeholder] input::placeholder, label[placeholder] textarea::placeholder {
     color: transparent !important;
 }
 
-label:has(input)::before {
+label[placeholder]:has(input, textarea)::before {
     content: attr(placeholder);
     display: block;
     background-color: var(--background);
@@ -91,20 +105,20 @@ input[error="true"] {
     outline-color: red;
 }
 
-label:has(input[error="true"])::before {
+label[placeholder]:has(input[error="true"], textarea[error="true"])::before {
     color: red;
 }
 
-label:has(input:placeholder-shown)::before {
+label[placeholder]:has(input:placeholder-shown, textarea:placeholder-shown)::before {
     top: 1.55rem;
     font-size: 1rem;
 }
 
-label:has(input:autofill)::before {
+label[placeholder]:has(input:autofill)::before {
     background: linear-gradient(white 55%, rgb(232, 240, 254) 55%);
 }
 
-label:has(input:focus)::before {
+label[placeholder]:has(input:focus, textarea:focus)::before {
     opacity: 1;
     color: var(--primary);
     top: 0.4rem;

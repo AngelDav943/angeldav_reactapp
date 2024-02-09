@@ -15,7 +15,7 @@ main.home section.blueprint img {
     height: 100%;
 }
 
-@media screen and (max-width: 401px) {
+@media screen and (max-width: 451px) {
     main.home article.info input {
         width: 100%;
     }
