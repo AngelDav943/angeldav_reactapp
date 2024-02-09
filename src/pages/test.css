@@ -1,6 +1,5 @@
 main.test {
-    background-color: #086fb0;
-    background: url("/images/blueprint_tiles.png");
+    background: #086fb0 url("/images/blueprint_tiles.png");
     background-size: 2rem;
     color: white;
 }

@@ -21,7 +21,7 @@ export default function () {
     async function fetchInvites() {
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
             method: 'GET',
-            headers: { "token": info?.userID },
+            headers: { "token": info?.token },
         })
 
         var response = await fetchedData.json().catch(err => {
@@ -34,17 +34,17 @@ export default function () {
     async function createInvite() {
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
             method: 'POST',
-            headers: { ...corsHeaders, "token": info?.userID },
+            headers: { ...corsHeaders, "token": info?.token },
         })
         fetchInvites()
     }
 
     async function removeInvite(inviteID) {
-        console.log("inv id:", inviteID, "info:", info?.userID)
+        console.log("inv id:", inviteID, "info:", info?.token)
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', ...corsHeaders },
-            body: JSON.stringify({ "id": inviteID, "token": info?.userID })
+            body: JSON.stringify({ "id": inviteID, "token": info?.token })
         })
 
         var response = await fetchedData.json().catch(err => {
@@ -62,8 +62,10 @@ export default function () {
             <span>Invites</span>
             <input type="submit" value="Create" onClick={createInvite} />
         </div>
-        {invites && invites.map((item, index) => (
+        {invites != null ? invites.map((item, index) => (
             <InviteTile key={index} info={item} onClick={removeInvite} />
-        ))}
+        )) : <center>
+            <img src="loading_monitor.gif" alt="loading gif" height={64} />
+        </center>}
     </article>
 }

@@ -39,7 +39,7 @@ export function InfoProvider({ children }) {
         }
 
         const userData = await fetchLogin({"token":savedToken});
-        if (userData["userID"]) {
+        if (userData["token"]) {
             setInfo(userData)
             setLoaded(true)
         } else {
@@ -60,11 +60,11 @@ export function InfoProvider({ children }) {
             "password": password,
         });
         
-        if (loginData["userID"] == null) return {
+        if (loginData["token"] == null) return {
             "error": loginData["msg"]
         }
 
-        localStorage.setItem("uid", loginData.userID)
+        localStorage.setItem("uid", loginData.token)
         return {"success": true}
     }
 

@@ -42,7 +42,7 @@ export default function () {
         }
         
         if (response["user"] != undefined) {
-            localStorage.setItem("uid", response.user.userID)
+            localStorage.setItem("uid", response.user.token)
             if (response["success"] == true) {
                 await getData();
                 navigate("/dashboard")

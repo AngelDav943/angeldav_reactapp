@@ -4,7 +4,7 @@ main.home section.gray {
 
 main.home section.blueprint{
     color: white;
-    background: url("/images/blueprint_tiles.png");
+    background: #086fb0 url("/images/blueprint_tiles.png");
     background-size: 2rem;
     padding: 25px 5%;
 }

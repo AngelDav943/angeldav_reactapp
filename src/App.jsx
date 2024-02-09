@@ -17,8 +17,8 @@ function App() {
       <Route path='/signin' element={<SigningIn/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
     </Routes>
-  ) : <center>
-    <p>Loading...</p>
+  ) : <center className='loading'>
+    <img src="loading_monitor.gif" alt="loading gif" height={100}/>
   </center>
 }
 
