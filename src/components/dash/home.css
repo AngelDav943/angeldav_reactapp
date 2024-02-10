@@ -2,7 +2,7 @@ article.dashhome {
     padding: 1rem;
 }
 
-article.dashhome input, article.dashhome textarea {
+article.dashhome input:not([type="checkbox"]), article.dashhome textarea {
     width: calc(100% - 2rem);
 }
 

@@ -46,12 +46,13 @@ export function InfoProvider({ children }) {
             setLoaded(true)
             return false;
         }
-        
+
         return userData
     }
 
     useEffect(() => {
         if (info == null) getData()
+        if (localStorage.getItem("dark") == "true" && document.body.classList.contains("dark") == false) document.body.classList.add("dark")
     }, [])
 
     const login = async (username, password) => {
@@ -59,7 +60,7 @@ export function InfoProvider({ children }) {
             "username": username,
             "password": password,
         });
-        
+
         if (loginData["token"] == null) return {
             "error": loginData["msg"]
         }
@@ -71,7 +72,6 @@ export function InfoProvider({ children }) {
     const logout = () => {
         localStorage.setItem("uid", undefined)
         setInfo(null);
-        //getData();
     }
 
     const forceLogin = () => <Login/>

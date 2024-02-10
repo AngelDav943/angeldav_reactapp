@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import { useInfo } from './context/useInfo'
 import SigningIn from './pages/SigningIn'
+import Admin from './pages/AdminPage'
 
 function App() {
   const {loaded} = useInfo();
@@ -16,9 +17,10 @@ function App() {
       <Route path='/test' element={<Test/>} />
       <Route path='/signin' element={<SigningIn/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
+      <Route path='/dashboard/admin' element={<Admin/>} />
     </Routes>
   ) : <center className='loading'>
-    <img src="loading_monitor.gif" alt="loading gif" height={100}/>
+    <img src="/loading_monitor.gif" alt="loading gif" height={100}/>
   </center>
 }
 

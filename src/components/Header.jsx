@@ -12,6 +12,8 @@ export default function () {
         return <Link className={className} to={target} onClick={() => { setHeaderOpen(false) }}>{children}</Link>
     }
 
+    const prefix = String(info?.profile).includes(".png") ? "/" : ""
+
     return (
         <header className={headerOpen ? "open" : ""}>
             <img src="/favicon.ico" alt="logo" onClick={() => { setHeaderOpen(!headerOpen) }} />
@@ -24,7 +26,7 @@ export default function () {
                     <NavLink className="submit" to={"/dashboard"}>Login</NavLink>
                 ) : (
                     <NavLink className="profile" to={"/dashboard"}>
-                        <img src={info?.profile} alt="profile" />
+                        <img src={prefix + info?.profile} alt="profile" />
                         <span>{info?.username}</span>
                     </NavLink>
                 )}

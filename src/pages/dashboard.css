@@ -7,11 +7,11 @@ main.dashboard {
 main.dashboard section.dash {
     display: flex;
     flex-direction: row;
-    
+
     width: 100%;
     max-width: 800px;
     height: calc(100dvh - 4rem - 1px);
-    
+
     margin: auto;
 
     background-color: var(--background);
@@ -58,8 +58,18 @@ main.dashboard button.sidebar {
         position: absolute;
         height: calc(100% - 4rem - 1px);
         max-width: none;
-        z-index: 2;
+        z-index: 1;
         display: none;
+    }
+
+    main.dashboard aside input {
+        font-size: 1.4rem;
+        border-bottom: 1px solid var(--outline);
+    }
+
+    main.dashboard aside input[type="submit"] {
+        position: fixed;
+        bottom: 0;
     }
 
     main.dashboard aside.open {
