@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import { useInfo } from './context/useInfo'
 import SigningIn from './pages/SigningIn'
 import Admin from './pages/AdminPage'
+import Accounts from './pages/Accounts'
 
 function App() {
   const {loaded} = useInfo();
@@ -16,6 +17,7 @@ function App() {
       <Route path='/' element={<Home/>} />
       <Route path='/test' element={<Test/>} />
       <Route path='/signin' element={<SigningIn/>} />
+      <Route path='/users' element={<Accounts/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/dashboard/admin' element={<Admin/>} />
     </Routes>

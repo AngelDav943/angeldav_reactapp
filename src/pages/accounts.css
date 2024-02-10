@@ -1,0 +1,15 @@
+article.users {
+    max-width: 600px;
+    margin: auto;
+}
+
+article.users .user {
+    margin: 1rem;
+    display: flex;
+    gap: 1rem;
+    outline: 1px solid var(--outline);
+}
+
+article.users .user .info span {
+    display: block;
+}

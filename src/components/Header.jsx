@@ -5,11 +5,12 @@ import { Link } from "react-router-dom"
 
 
 export default function () {
-    const { info } = useInfo();
+    const { info, getData } = useInfo();
 
     const [headerOpen, setHeaderOpen] = useState(false)
     function NavLink({ children, to: target, className }) {
-        return <Link className={className} to={target} onClick={() => { setHeaderOpen(false) }}>{children}</Link>
+        
+        return <Link className={className} to={target} onClick={() => { setHeaderOpen(false); getData(); }}>{children}</Link>
     }
 
     const prefix = String(info?.profile).includes(".png") ? "/" : ""
@@ -20,6 +21,7 @@ export default function () {
             <div className="left">
                 <nav>
                     <NavLink to={"/"}>Home</NavLink>
+                    <NavLink to={"/users"}>Users</NavLink>
                     <NavLink to={"/test"}>Test</NavLink>
                 </nav>
                 {info == null ? (
