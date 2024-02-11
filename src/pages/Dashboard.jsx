@@ -8,16 +8,21 @@ import InviteTile from "../components/InviteTile";
 
 import Dash_home from "../components/dash/home";
 import Dash_invites from "../components/dash/invites";
+import AdminPage from "../components/dash/AdminPage";
+import Avatarcreator from "../components/dash/avatarcreator";
 
 export default function () {
     const { loaded, info, forceLogin, logout } = useInfo();
     if (info == null) return forceLogin();
 
     const [currentPage, setPage] = useState("Home")
-    const pages = {
+    var pages = {
         "Home": <Dash_home />,
-        "Invites": <Dash_invites />
+        "Invites": <Dash_invites />,
+        "Avatar creator": <Avatarcreator />
     }
+
+    if (info.permissions["admin"] != 0) pages["Admin"] = <AdminPage />
 
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -35,7 +40,7 @@ export default function () {
                 <input type="submit" value="Log out" onClick={logout} />
             </aside>
             <section className="page">
-                <button className="sidebar" onClick={() => { setSidebarOpen(!sidebarOpen)}}>
+                <button className="sidebar" onClick={() => { setSidebarOpen(!sidebarOpen) }}>
                     Open sidebar
                 </button>
                 {pages[currentPage]}

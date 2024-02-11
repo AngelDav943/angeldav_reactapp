@@ -1,0 +1,32 @@
+article.avatarcreator {
+    display: flex;
+}
+
+article.avatarcreator #preview {
+    background-color: black;
+    width: 100%;
+    height: auto;
+    max-width: 128px;
+    max-height: 128px;
+}
+
+article.avatarcreator .hats {
+    width: calc(100% - 2px);
+}
+
+article.avatarcreator .hats .item {
+    border: 1px solid var(--outline);
+    display: flex;
+    align-items: center;
+    height: 3rem;
+}
+
+article.avatarcreator .hats .item.selected {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+
+article.avatarcreator .hats .item img {
+    height: 100%;
+}

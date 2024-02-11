@@ -13,10 +13,7 @@ export default function () {
     const uploadProfile = async () => {
         const files = document.getElementById("uploadImage").files;
         if (files == null || files[0] == null) return;
-
-        //if (files[0].type != "image/png" && files[0].type != "image/jpeg") return
-        //console.log(files[0].type)
-
+        
         var reader = new FileReader();
         var result = ""
         reader.onload = function (e) {

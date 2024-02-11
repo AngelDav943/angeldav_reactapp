@@ -1,13 +1,13 @@
 
 import { Link } from "react-router-dom"
-import { useInfo } from "../context/useInfo"
+import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './admin.css'
-import InviteTile from "../components/InviteTile";
+import InviteTile from "../InviteTile";
 
-import Dash_home from "../components/dash/home";
-import Dash_invites from "../components/dash/invites";
+import Dash_home from "./home";
+import Dash_invites from "./invites";
 
 export default function () {
     const { loaded, info, forceLogin, getData } = useInfo();
