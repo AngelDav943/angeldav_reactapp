@@ -37,8 +37,7 @@ export default function () {
         canvas.height = String(height);
 
         var context = canvas.getContext("2d");
-
-        console.log(zoomVal)
+        
         function loadImage(imageURL) {
             return new Promise(resolve => {
                 const newImage = new Image();
@@ -103,9 +102,6 @@ export default function () {
         })
 
         if (response["msg"] == "Given values are too long") return setError("The given image is too large")
-
-        console.log(response)
-
         getData();
     }
 
