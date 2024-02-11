@@ -34,7 +34,7 @@ export default function () {
                         Close sidebar
                     </button>
                     {Object.keys(pages).map(page => (
-                        <input type="button" key={page} onClick={() => { setPage(page); setSidebarOpen(false) }} value={page} />
+                        <input className={currentPage == page ? "selected" : ""} type="button" key={page} onClick={() => { setPage(page); setSidebarOpen(false) }} value={page} />
                     ))}
                 </div>
                 <input type="submit" value="Log out" onClick={logout} />

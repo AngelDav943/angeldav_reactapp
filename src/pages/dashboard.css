@@ -10,11 +10,16 @@ main.dashboard section.dash {
 
     width: 100%;
     max-width: 800px;
-    height: calc(100dvh - 4rem - 1px);
+    height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
 
     margin: auto;
 
     background-color: var(--background);
+}
+
+main.dashboard aside input.selected {
+    background-color: var(--primary);
+    color: var(--onBackground);
 }
 
 main.dashboard aside {
@@ -56,7 +61,7 @@ main.dashboard button.sidebar {
     main.dashboard aside {
         background-color: var(--background);
         position: absolute;
-        height: calc(100% - 4rem - 1px);
+        height: calc(100% - var(--headerSize) - var(--headerPadding) - 1px);
         max-width: none;
         z-index: 1;
         display: none;

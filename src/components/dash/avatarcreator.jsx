@@ -37,7 +37,7 @@ export default function () {
         canvas.height = String(height);
 
         var context = canvas.getContext("2d");
-        
+
         function loadImage(imageURL) {
             return new Promise(resolve => {
                 const newImage = new Image();
@@ -78,8 +78,6 @@ export default function () {
 
         const dataURL = canvas.toDataURL("image/jpeg")
         setAvatar(dataURL)
-        console.log("avatar image size:", dataURL.length)
-
     }
 
     useEffect(() => { getHatData(); }, [])
@@ -101,6 +99,7 @@ export default function () {
             return { msg: String(err) }
         })
 
+        console.log("avatar image size:", dataURL.length)
         if (response["msg"] == "Given values are too long") return setError("The given image is too large")
         getData();
     }
@@ -132,7 +131,7 @@ export default function () {
             <img id="preview" src={avatarImage} />
             <input type="submit" value="Save" onClick={() => saveData()} />
             <span>Zoom</span>
-            <input type="range" name="" id="" min={10} max={100} value={zoomVal*10} onChange={(e) => setZoom(e.target.value/10)} />
+            <input type="range" name="" id="" min={10} max={100} value={zoomVal * 10} onChange={(e) => setZoom(e.target.value / 10)} />
             <br />
             <span>Offset</span>
             <input type="range" name="" id="" min={1 - 64} max={64} value={offset[0]} onChange={(e) => setOffset([e.target.value, offset[1]])} />

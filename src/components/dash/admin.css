@@ -1,23 +1,71 @@
-article.admin {}
-
-article.admin .table {
-    font-family: arial, sans-serif;
-    width: max-content;
+article.admin {
+    padding-left: 1rem;
 }
 
-article.admin .table article {
+article.admin .users {
+    padding: 1rem;
+    margin-left: -1rem;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+article.admin .users .items {
+    display: flex;
+    gap: 0.5rem;
+}
+
+article.admin .users, article.admin .users .items {
+    transform:rotateX(180deg);
+    -moz-transform:rotateX(180deg); /* Mozilla */
+    -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+    -ms-transform:rotateX(180deg); /* IE 9+ */
+    -o-transform:rotateX(180deg); /* Opera */
+}
+
+article.admin .users .user {
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: var(--transparent-primary);
+    color: var(--onBackground);
+    display: flex;
+    height: 2.5rem;
+    gap: 0.5rem;
+    overflow-wrap: normal;
+}
+
+article.admin .users .user.selected {
+    background-color: var(--primary);
+    color: white;
+}
+
+article.admin .users .user .info span {
+    padding-right: 0.5rem;
+}
+
+article.admin .users .user img {
+    height: 100%;
+}
+
+article.admin .permissions {
+    display: flex;
+    font-family: arial, sans-serif;
+}
+
+article.admin .permissions article {
     display: flex;
     justify-content: space-between;
 }
 
-article.admin .table span {
+article.admin .permissions span {
     width: max-content;
     display: inline-block;
-    border: 1px solid #dddddd;
+    /* border: 1px solid #dddddd; */
     text-align: left;
     padding: 8px;
 }
 
-article.admin .table article:nth-child(even) {
-    background-color: #dddddd;
+article.admin .permissions article:nth-child(even) {
+    background-color: #80808080;
 }
