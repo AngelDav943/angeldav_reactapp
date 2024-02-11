@@ -31,6 +31,8 @@ export function InfoProvider({ children }) {
     const [loaded, setLoaded] = useState(false)
     const [info, setInfo] = useState(null)
 
+    const [error, setErrorMessage] = useState(null)
+
     const getData = async () => {
         const savedToken = localStorage.getItem("uid")
         if (savedToken == null) {
@@ -55,6 +57,12 @@ export function InfoProvider({ children }) {
         if (localStorage.getItem("dark") == "true" && document.body.classList.contains("dark") == false) document.body.classList.add("dark")
     }, [])
 
+    useEffect(() => {
+        if (error != null) setTimeout(() => {
+            setErrorMessage(null)
+        }, 4100)
+    }, [[error]]) 
+
     const login = async (username, password) => {
         const loginData = await fetchLogin({
             "username": username,
@@ -74,11 +82,17 @@ export function InfoProvider({ children }) {
         setInfo(null);
     }
 
+    const setError = (msg) => {
+        const message = String(msg);
+        if (error == null) setErrorMessage(message)
+    }
+
     const forceLogin = () => <Login/>
 
     return (
-        <infoContext.Provider value={{ loaded, info, login, logout, forceLogin, getData}}>
+        <infoContext.Provider value={{ loaded, info, login, logout, forceLogin, getData, setError}}>
             {children}
+            {error && <span className="error">{error}</span>}
         </infoContext.Provider>
     )
 }

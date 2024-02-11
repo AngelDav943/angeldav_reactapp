@@ -41,20 +41,6 @@ main.login .row {
     flex-wrap: wrap;
 }
 
-main.login span.error {
-    display: inline-block;
-    background-color: red;
-    background: linear-gradient(rgb(255, 0, 0), rgb(224, 45, 0));
-    color: white;
-    padding: 0.5rem 30px;
-    
-    position: fixed;
-
-    bottom: 0;
-    left: 0;
-    width: calc(100% - 60px);
-}
-
 main.login .row input {
     transition: color 0.2s, background-color 0.2s;
 }

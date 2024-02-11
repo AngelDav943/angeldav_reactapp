@@ -13,7 +13,8 @@ export default function () {
         return <Link className={className} to={target} onClick={() => { setHeaderOpen(false); getData(); }}>{children}</Link>
     }
 
-    const prefix = String(info?.profile).includes(".png") ? "/" : ""
+    var prefix = ""
+    if (info != null) prefix = String(info?.profile).includes(".png") ? "/" : ""
 
     return (
         <header className={headerOpen ? "open" : ""}>

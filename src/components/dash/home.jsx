@@ -4,7 +4,7 @@ import { useInfo } from "../../context/useInfo";
 import './home.css'
 
 export default function () {
-    const { info, getData } = useInfo();
+    const { info, getData, setError } = useInfo();
 
     const [profileImage, setProfile] = useState(info?.profile);
     const [profileStatus, setStatus] = useState(info?.status || "");
@@ -13,7 +13,7 @@ export default function () {
     const uploadProfile = async () => {
         const files = document.getElementById("uploadImage").files;
         if (files == null || files[0] == null) return;
-        
+
         var reader = new FileReader();
         var result = ""
         reader.onload = function (e) {
@@ -63,6 +63,8 @@ export default function () {
         var response = await fetchedData.json().catch(err => {
             return { msg: String(err) }
         })
+
+        if (response["msg"] == "Given values are too long") return setError("The given image is too large")
 
         getData();
     }

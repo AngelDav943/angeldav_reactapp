@@ -1,17 +1,28 @@
 article.avatarcreator {
     display: flex;
+    justify-content: space-between;
+}
+
+article.avatarcreator .preview {
+    display: flex;
+    flex-direction: column;
+    min-width: 128px;
+}
+
+article.avatarcreator center {
+    width: 100%;
 }
 
 article.avatarcreator #preview {
     background-color: black;
     width: 100%;
     height: auto;
-    max-width: 128px;
-    max-height: 128px;
+    max-height: 256px;
+    object-fit: contain;
 }
 
 article.avatarcreator .hats {
-    width: calc(100% - 2px);
+    width: calc(100% - 128px);
 }
 
 article.avatarcreator .hats .item {
@@ -29,4 +40,18 @@ article.avatarcreator .hats .item.selected {
 
 article.avatarcreator .hats .item img {
     height: 100%;
+}
+
+@media screen and (max-width: 501px) {
+    article.avatarcreator {
+        flex-direction: column;
+    }
+
+    article.avatarcreator .preview {
+        width: 100%;
+    }
+
+    article.avatarcreator .hats {
+        width: 100%;
+    }
 }
