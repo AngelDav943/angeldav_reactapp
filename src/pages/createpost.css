@@ -26,3 +26,22 @@ article.createpost .editor input[type="submit"] {
 article.createpost textarea {
     resize: vertical;
 }
+
+article.createpost p[contenteditable="true"] {
+    min-width: calc(100% - 100px - 2.6rem) !important;
+    padding: 0.75em 0.8rem;
+
+    border: none;
+    outline: solid 1px var(--outline);
+    border-radius: 0.25rem;
+    background-color: var(--background);
+    color: var(--onBackground);
+}
+
+article.createpost p[contenteditable="true"]:focus {
+    outline-color: var(--primary);
+}
+
+article.createpost p[contenteditable="true"] p {
+    margin: 0;    
+}

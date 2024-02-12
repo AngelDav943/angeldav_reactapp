@@ -4,28 +4,7 @@ import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './manageposts.css'
-
-function timeFromTimestamp(timestamp, hidetime) {
-    if (isNaN(parseInt(timestamp))) return "";
-
-    const date = new Date(parseInt(timestamp));
-    var time = {
-        "day": date.getDate(),
-        "month": date.getMonth() + 1,
-        "year": date.getFullYear(),
-        "hours": date.getHours(),
-        "minutes": date.getMinutes()
-    }
-
-    for (var t in time) {
-        if (time[t] < 10) time[t] = `0${time[t]}`
-    }
-
-    var timeStampCon = time.day + '/' + time.month + '/' + time.year;
-    if (hidetime != true) timeStampCon += " " + time.hours + ':' + time.minutes
-
-    return timeStampCon;
-}
+import MinimalPost from "../MinimalPost";
 
 export default function () {
     const { info, forceLogin, setError, setModal } = useInfo();
@@ -91,21 +70,7 @@ export default function () {
         {posts ? <>
             <div className="posts">
                 {posts && posts.map((post, index) => (
-                    <article key={index} className="post minimal">
-                        <span className='date'>
-                            {timeFromTimestamp(post.timestamp)}
-                            <button onClick={() => openPostDeletionModal(index)}>Remove</button>
-                        </span>
-                        <section className="body">
-                            <section className="user">
-                                <img src={post.user.profile} alt="profile" />
-                            </section>
-                            <p>
-                                <span>@{post.user.username}</span>
-                                <span className='title'>{post.title}</span>
-                            </p>
-                        </section>
-                    </article>
+                    <MinimalPost key={index} post={post} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
                 ))}
             </div>
         </> : <center>

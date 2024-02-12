@@ -46,7 +46,7 @@ input[type="button"], button, a.button {
     color: var(--primary)
 }
 
-input[type="button"]:hover, button:hover, a.button:hover {
+input[type="button"]:not(:disabled):hover, button:not(:disabled):hover, a.button:not(:disabled):hover {
     color: var(--dark-primary);
     cursor: pointer;
     background-color: var(--transparent-primary);
@@ -125,10 +125,10 @@ label[placeholder]:has(input:focus, textarea:focus)::before {
     font-size: 0.9rem;
 }
 
-input[type="button"]:active, button:active, a.button:active {
+input[type="button"]:not(:disabled):active, button:not(:disabled):active, a.button:not(:disabled):active {
     outline: 2px solid var(--primary);
 }
 
-input[type="submit"]:active {
+input[type="submit"]:not(:disabled):active {
     background-color: var(--dark-primary);
 }

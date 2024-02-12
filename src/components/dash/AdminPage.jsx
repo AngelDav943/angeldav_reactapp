@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import './admin.css'
 import InviteTile from "../InviteTile";
 import Post from "../post";
+import MinimalPost from "../MinimalPost";
 
 function timeFromTimestamp(timestamp, hidetime) {
     if (isNaN(parseInt(timestamp))) return "";
@@ -229,21 +230,7 @@ export default function () {
             <h3>Posts</h3>
             <div className="posts">
                 {posts && posts.map((post, index) => (
-                    <article key={index} className="post minimal">
-                        <span className='date'>
-                            {timeFromTimestamp(post.timestamp)}
-                            <button onClick={() => openPostDeletionModal(index)}>Remove</button>
-                        </span>
-                        <section className="body">
-                            <section className="user">
-                                <img src={post.user.profile} alt="profile" />
-                            </section>
-                            <p>
-                                <span>@{post.user.username}</span>
-                                <span className='title'>{post.title}</span>
-                            </p>
-                        </section>
-                    </article>
+                    <MinimalPost post={post} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
                     //<Post key={index} post={post}  /> //clickText={item.enabled == 0 ? "Enable" : "Disable"} onClick={toggleInvite}
                 ))}
             </div>

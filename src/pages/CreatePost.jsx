@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import './createpost.css'
 import Post from "../components/post";
 
+import utils from "../utils";
+
 export default function () {
     const { info, forceLogin, setError, setModal } = useInfo();
     const navigate = useNavigate();
@@ -50,18 +52,28 @@ export default function () {
 
     return <article className="createpost">
         <div className="editor">
-            <Post post={{ "title": title, "body": body, "user": info, "timestamp": Date.now() }} />
-
+            {/* <Post post={{ "title": title, "body": body, "user": info, "timestamp": Date.now() }} /> */}
             <form onSubmit={handleSubmit}>
+                <br />
+                <br />
                 <label placeholder="Title">
-                    <input type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
+                    <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
                 </label>
-                <br />
-                <label>
-                    Body
-                    <textarea name="" id="" cols="30" onChange={(e) => { setBody(e.target.value) }} />
-                </label>
-                <br />
+                <article className="post">
+                    <span className='top'>
+                        <span className='username'>@{info?.username}</span>
+                        {utils.timeFromTimestamp(Date.now())}
+                    </span>
+                    <section className="body">
+                        <section className="user">
+                            <img src={info?.profile} alt="profile" />
+                            <div className="info">
+                                <span className='title'>{title}</span>
+                            </div>
+                        </section>
+                        <p contentEditable={true} onInput={(e) => { setBody(e.target.innerText) }}></p>
+                    </section>
+                </article>
                 <br />
                 <div className="row">
                     <input type="submit" value="Submit" />
