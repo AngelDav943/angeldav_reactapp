@@ -1,10 +1,33 @@
 
-import { Link } from "react-router-dom"
+import { Link, json } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './admin.css'
 import InviteTile from "../InviteTile";
+import Post from "../post";
+
+function timeFromTimestamp(timestamp, hidetime) {
+    if (isNaN(parseInt(timestamp))) return "";
+
+    const date = new Date(parseInt(timestamp));
+    var time = {
+        "day": date.getDate(),
+        "month": date.getMonth() + 1,
+        "year": date.getFullYear(),
+        "hours": date.getHours(),
+        "minutes": date.getMinutes()
+    }
+
+    for (var t in time) {
+        if (time[t] < 10) time[t] = `0${time[t]}`
+    }
+
+    var timeStampCon = time.day + '/' + time.month + '/' + time.year;
+    if (hidetime != true) timeStampCon += " " + time.hours + ':' + time.minutes
+
+    return timeStampCon;
+}
 
 export default function () {
     const { info, forceLogin, setError, setModal } = useInfo();
@@ -20,6 +43,7 @@ export default function () {
     const [users, setUsers] = useState([]);
 
     const [dataLoaded, setLoadingData] = useState(false);
+    const [posts, setPosts] = useState(null);
     const [permissions, setPermissions] = useState(null);
     const [invites, setInvites] = useState(null);
 
@@ -36,31 +60,40 @@ export default function () {
     async function fetchData() {
         setLoadingData(false)
 
-        const fetchedPerms = await fetch('https://datatest.angelddcs.workers.dev/permissions', {
-            headers: { "token": info?.token, "id": currentUserID },
-        })
-
-        const fetchedInvites = await fetch('https://datatest.angelddcs.workers.dev/invites', {
-            headers: { "token": info?.token, "all": "true", "id": currentUserID },
-        })
-
-        var perms = null
-        var invites = null
-        try {
-            perms = await fetchedPerms.json()
-            invites = await fetchedInvites.json()
-        } catch (error) {
-            perms = { msg: String(error)}
-            invites = { msg: String(error)}
+        const fetched = {
+            "perms": await fetch('https://datatest.angelddcs.workers.dev/permissions', {
+                headers: { "token": info?.token, "id": currentUserID },
+            }),
+            "invites": await fetch('https://datatest.angelddcs.workers.dev/invites', {
+                headers: { "token": info?.token, "all": "true", "id": currentUserID },
+            }),
+            "posts": await fetch('https://datatest.angelddcs.workers.dev/posts', {
+                headers: { "token": info?.token, "id": currentUserID },
+            })
         }
 
-        console.log("resp:", perms)
+        var jsonDATA = {}
+        try {
+            const keys = Object.keys(fetched)
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i]
+                const element = fetched[key];
+                jsonDATA[key] = await element.json();
+            }
+        } catch (error) {
+            jsonDATA = { msg: String(error) }
+        }
 
-        if (perms["msg"]) return setError(perms["msg"])
-        if (invites["msg"]) return setError(invites["msg"])
+        if (jsonDATA["msg"]) return setError(jsonDATA["msg"])
+        for (const key in jsonDATA) {
+            const element = jsonDATA[key];
+            if (element["msg"]) return setError(element["msg"])
+        }
 
-        setInvites(invites);
-        setPermissions(perms);
+        console.log(jsonDATA)
+        setPosts(jsonDATA["posts"]);
+        setInvites(jsonDATA["invites"]);
+        setPermissions(jsonDATA["perms"]);
 
         setLoadingData(true)
     }
@@ -92,7 +125,7 @@ export default function () {
         }
         bodyJSON[String(permission)] = newstatus
         console.log(bodyJSON)
-        
+
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/permissions', {
             method: 'PATCH',
             headers: { "token": info?.token, "Content-Type": "application/json" },
@@ -103,12 +136,31 @@ export default function () {
             return { msg: String(err) }
         })
 
+        setModal(null);
         if (response["msg"]) return setError(response["msg"])
         fetchData();
-        setModal(null);
     }
 
-    const openModal = function(permission) {
+    async function removePost(postID) {
+
+        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
+            method: 'DELETE',
+            headers: { "token": info?.token, "Content-Type": "application/json" },
+            body: JSON.stringify({id: postID})
+        })
+
+        var response = await fetchedData.json().catch(err => {
+            return { msg: String(err) }
+        })
+
+        console.log("response:", response)
+
+        setModal(null);
+        if (response["msg"]) return setError(response["msg"]);
+        fetchData();
+    }
+
+    const openPermissionModal = function (permission) {
         const selectedUser = users.find(item => {
             return item.id == currentUserID
         })
@@ -118,8 +170,20 @@ export default function () {
         setModal(<>
             <p>Are you sure you want to change {selectedUser.username}'s permission of '{permission}' to {newstatus}?</p>
             <div className="buttons">
-                <input type="button" value="Cancel" onClick={() => setModal(null)}/>
-                <input type="submit" value="Confirm" onClick={() => togglePermission(currentUserID, permission)}/>
+                <input type="button" value="Cancel" onClick={() => setModal(null)} />
+                <input type="submit" value="Confirm" onClick={() => togglePermission(currentUserID, permission)} />
+            </div>
+        </>)
+    }
+
+    const openPostDeletionModal = function (postIndex) {
+        const post = posts[postIndex]
+
+        setModal(<>
+            <p>Are you sure you want to delete {post.user.username}'s post with the title of '{post.title}'?</p>
+            <div className="buttons">
+                <input type="button" value="Cancel" onClick={() => setModal(null)} />
+                <input type="submit" value="Confirm" onClick={() => removePost(post.id)} />
             </div>
         </>)
     }
@@ -153,7 +217,7 @@ export default function () {
             <h3>Permissions</h3>
             <div className="permissions">
                 {permissions && Object.keys(permissions).map(key => {
-                    if (key != "userID") return <article key={key} onClick={() => openModal(key)}>
+                    if (key != "userID") return <article key={key} onClick={() => openPermissionModal(key)}>
                         <span>{key}</span>
                         <span>{permissions[key]}</span>
                     </article>
@@ -165,7 +229,27 @@ export default function () {
                     <InviteTile key={index} info={item} clickText={item.enabled == 0 ? "Enable" : "Disable"} onClick={toggleInvite} />
                 ))}
             </div>
-
+            <h3>Posts</h3>
+            <div className="posts">
+                {posts && posts.map((post, index) => (
+                    <article key={index} className="post minimal">
+                        <span className='date'>
+                            {timeFromTimestamp(post.timestamp)}
+                            <button onClick={() => openPostDeletionModal(index)}>Remove</button>
+                        </span>
+                        <section className="body">
+                            <section className="user">
+                                <img src={post.user.profile} alt="profile" />
+                            </section>
+                            <p>
+                                <span>@{post.user.username}</span>
+                                <span className='title'>{post.title}</span>
+                            </p>
+                        </section>
+                    </article>
+                    //<Post key={index} post={post}  /> //clickText={item.enabled == 0 ? "Enable" : "Disable"} onClick={toggleInvite}
+                ))}
+            </div>
         </> : <center>
             <img src="/loading_monitor.gif" alt="loading gif" height={100} />
         </center>

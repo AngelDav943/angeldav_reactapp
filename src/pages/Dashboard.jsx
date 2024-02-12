@@ -9,6 +9,7 @@ import Dash_home from "../components/dash/home";
 import Dash_invites from "../components/dash/invites";
 import AdminPage from "../components/dash/AdminPage";
 import Avatarcreator from "../components/dash/avatarcreator";
+import Manageposts from "../components/dash/manageposts";
 
 export default function () {
     const { info, forceLogin, logout, setModal } = useInfo();
@@ -18,7 +19,9 @@ export default function () {
     var pages = {
         "Home": <Dash_home />,
         "Invites": <Dash_invites />,
-        "Avatar creator": <Avatarcreator />
+        "Avatar creator": <Avatarcreator />,
+
+        "Posts": <Manageposts />
     }
 
     if (info.permissions["admin"] != 0) pages["Admin"] = <AdminPage />

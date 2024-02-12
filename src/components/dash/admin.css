@@ -58,6 +58,11 @@ article.admin .permissions {
     font-family: arial, sans-serif;
 }
 
+article.admin .posts {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 article.admin .permissions article {
     display: flex;
     justify-content: space-between;

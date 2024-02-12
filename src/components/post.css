@@ -35,7 +35,8 @@ article.post section.body > p span {
 }
 
 article.post span.date {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     width: calc(100% - 1rem);
     background-color: var(--primary);
     color: white;
@@ -43,7 +44,49 @@ article.post span.date {
     padding: 0.2rem 0.5rem;
 }
 
+article.post span.date button {
+    font-size: 0.9em;
+    opacity: 0.5;
+    padding: 0.2rem 0.5rem;
+    background-color: transparent;
+    color: var(--background);
+    border-radius: 0;
+    margin: -0.1rem -0.25rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+article.post span.date button:hover {
+    opacity: 1;
+    background-color: var(--onBackground);
+}
+
 article.post .info span {
     width: 100%;
     display: block;
+}
+
+/* minimal version */
+article.post.minimal {
+
+}
+
+article.post.minimal span.date {
+    width: calc(100% - 0.4rem + 1px);
+    font-size: 0.9rem;
+    padding: 0.1rem 0.2rem;
+}
+
+article.post.minimal section.user img {
+    border-bottom-right-radius: 0;
+}
+
+article.post.minimal section.user {
+    height: 100%;
+    width: auto;
+    max-height: 50px;
+    max-width: 50px;
+}
+
+article.post.minimal section.body > p {
+    margin: 0;
 }

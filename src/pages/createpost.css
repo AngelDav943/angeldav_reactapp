@@ -23,6 +23,6 @@ article.createpost .editor input[type="submit"] {
     width: 100%;
 } 
 
-article.dashhome textarea {
+article.createpost textarea {
     resize: vertical;
 }

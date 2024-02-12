@@ -5,10 +5,10 @@ article.users {
 
     /* background: #8c8c8c url("/images/floor_tiles.png"); */
     background-size: 10rem;
-    image-rendering: pixelated;
 }
 
 article.users::before {
+    image-rendering: pixelated;
     top: 0;
     content: "";
     background: url("/images/floor_tiles.png");
