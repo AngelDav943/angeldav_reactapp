@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Login from "../pages/Login";
 
+import '../styles/modals.css'
+
 const infoContext = createContext()
 
-export const useInfo = (forcelogin) => {
+export const useInfo = () => {
     return useContext(infoContext)
 }
 
@@ -32,6 +34,7 @@ export function InfoProvider({ children }) {
     const [info, setInfo] = useState(null)
 
     const [error, setErrorMessage] = useState(null)
+    const [modal, setModal] = useState(null)
 
     const getData = async () => {
         const savedToken = localStorage.getItem("uid")
@@ -40,7 +43,7 @@ export function InfoProvider({ children }) {
             return false;
         }
 
-        const userData = await fetchLogin({"token":savedToken});
+        const userData = await fetchLogin({ "token": savedToken });
         if (userData["token"]) {
             setInfo(userData)
             setLoaded(true)
@@ -61,7 +64,7 @@ export function InfoProvider({ children }) {
         if (error != null) setTimeout(() => {
             setErrorMessage(null)
         }, 4100)
-    }, [[error]]) 
+    }, [[error]])
 
     const login = async (username, password) => {
         const loginData = await fetchLogin({
@@ -74,7 +77,7 @@ export function InfoProvider({ children }) {
         }
 
         localStorage.setItem("uid", loginData.token)
-        return {"success": true}
+        return { "success": true }
     }
 
     const logout = () => {
@@ -87,12 +90,18 @@ export function InfoProvider({ children }) {
         if (error == null) setErrorMessage(message)
     }
 
-    const forceLogin = () => <Login/>
+    const forceLogin = () => <Login />
 
     return (
-        <infoContext.Provider value={{ loaded, info, login, logout, forceLogin, getData, setError}}>
+        <infoContext.Provider value={{ loaded, info, login, logout, forceLogin, getData, setError, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
+            {modal && <div className="modalcontainer">
+                <div className="modal">
+                    <button className="close" onClick={() => setModal(null)}>X</button>
+                    {modal}
+                </div>
+            </div>}
         </infoContext.Provider>
     )
 }

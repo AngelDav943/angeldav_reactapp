@@ -8,9 +8,15 @@ export default function () {
     const { info, getData } = useInfo();
 
     const [headerOpen, setHeaderOpen] = useState(false)
+
+    function navClick() {
+        setHeaderOpen(false); 
+        if (getData != null) getData();
+    }
+
     function NavLink({ children, to: target, className }) {
         
-        return <Link className={className} to={target} onClick={() => { setHeaderOpen(false); getData(); }}>{children}</Link>
+        return <Link className={className} to={target} onClick={() => navClick}>{children}</Link>
     }
 
     var prefix = ""

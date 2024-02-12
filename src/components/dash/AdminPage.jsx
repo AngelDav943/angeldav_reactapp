@@ -6,11 +6,8 @@ import { useEffect, useState } from 'react';
 import './admin.css'
 import InviteTile from "../InviteTile";
 
-import Dash_home from "./home";
-import Dash_invites from "./invites";
-
 export default function () {
-    const { loaded, info, forceLogin, getData, setError } = useInfo();
+    const { info, forceLogin, setError, setModal } = useInfo();
     if (info == null) return forceLogin();
 
     if (info?.permissions.admin == 0) return <center className="loading">
@@ -27,18 +24,13 @@ export default function () {
     const [invites, setInvites] = useState(null);
 
     async function fetchUsers() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users', {
-            method: 'GET'
-        })
+        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users');
 
         var response = await fetchedData.json().catch(err => {
             return { msg: String(err) }
         })
 
-        if (response["msg"] == undefined) {
-            //setLoaded(true)
-            setUsers(response)
-        }
+        if (response["msg"] == undefined) setUsers(response)
     }
 
     async function fetchData() {
@@ -52,21 +44,24 @@ export default function () {
             headers: { "token": info?.token, "all": "true", "id": currentUserID },
         })
 
-        var perms = await fetchedPerms.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        var invites = await fetchedInvites.json().catch(err => {
-            return { msg: String(err) }
-        })
+        var perms = null
+        var invites = null
+        try {
+            perms = await fetchedPerms.json()
+            invites = await fetchedInvites.json()
+        } catch (error) {
+            perms = { msg: String(error)}
+            invites = { msg: String(error)}
+        }
 
         console.log("resp:", perms)
 
         if (perms["msg"]) return setError(perms["msg"])
         if (invites["msg"]) return setError(invites["msg"])
 
-        setInvites(invites)
-        setPermissions(perms)
+        setInvites(invites);
+        setPermissions(perms);
+
         setLoadingData(true)
     }
 
@@ -86,8 +81,47 @@ export default function () {
             return { msg: String(err) }
         })
 
+        if (response["msg"]) return setError(response["msg"]);
+        fetchData();
+    }
+
+    async function togglePermission(userID, permission) {
+        const newstatus = permissions[permission] == 0 ? 1 : 0
+        var bodyJSON = {
+            "targetID": userID
+        }
+        bodyJSON[String(permission)] = newstatus
+        console.log(bodyJSON)
+        
+        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/permissions', {
+            method: 'PATCH',
+            headers: { "token": info?.token, "Content-Type": "application/json" },
+            body: JSON.stringify(bodyJSON)
+        })
+
+        var response = await fetchedData.json().catch(err => {
+            return { msg: String(err) }
+        })
+
         if (response["msg"]) return setError(response["msg"])
         fetchData();
+        setModal(null);
+    }
+
+    const openModal = function(permission) {
+        const selectedUser = users.find(item => {
+            return item.id == currentUserID
+        })
+
+        const newstatus = permissions[permission] == 0 ? 1 : 0
+
+        setModal(<>
+            <p>Are you sure you want to change {selectedUser.username}'s permission of '{permission}' to {newstatus}?</p>
+            <div className="buttons">
+                <input type="button" value="Cancel" onClick={() => setModal(null)}/>
+                <input type="submit" value="Confirm" onClick={() => togglePermission(currentUserID, permission)}/>
+            </div>
+        </>)
     }
 
     useEffect(() => {
@@ -99,6 +133,7 @@ export default function () {
     }, [currentUserID])
 
     return <article className="admin">
+
         <div className="users">
             <div className="items">
                 {users.map((user, index) => (
@@ -118,7 +153,7 @@ export default function () {
             <h3>Permissions</h3>
             <div className="permissions">
                 {permissions && Object.keys(permissions).map(key => {
-                    if (key != "userID") return <article key={key}>
+                    if (key != "userID") return <article key={key} onClick={() => openModal(key)}>
                         <span>{key}</span>
                         <span>{permissions[key]}</span>
                     </article>

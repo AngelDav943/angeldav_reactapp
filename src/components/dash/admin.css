@@ -14,12 +14,17 @@ article.admin .users .items {
     gap: 0.5rem;
 }
 
-article.admin .users, article.admin .users .items {
-    transform:rotateX(180deg);
-    -moz-transform:rotateX(180deg); /* Mozilla */
-    -webkit-transform:rotateX(180deg); /* Safari and Chrome */
-    -ms-transform:rotateX(180deg); /* IE 9+ */
-    -o-transform:rotateX(180deg); /* Opera */
+article.admin .users,
+article.admin .users .items {
+    transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    /* Mozilla */
+    -webkit-transform: rotateX(180deg);
+    /* Safari and Chrome */
+    -ms-transform: rotateX(180deg);
+    /* IE 9+ */
+    -o-transform: rotateX(180deg);
+    /* Opera */
 }
 
 article.admin .users .user {

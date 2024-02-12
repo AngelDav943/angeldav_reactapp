@@ -1,0 +1,69 @@
+#root > .modalcontainer .modal {
+    z-index: 3;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    text-align: center;
+
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+
+    width: calc(100% - 4rem);
+    /* height: calc(100% - 2rem); */
+    max-width: 250px;
+    min-height: 200px;
+
+    background-color: var(--background);
+    border-radius: 0.4rem;
+    padding: 1rem 2rem;
+}
+
+#root > .modalcontainer .modal button.close {
+    text-align: left;
+    padding: 0;
+}
+
+#root > .modalcontainer .modal button.close:hover {
+    background-color: transparent;
+}
+
+#root > .modalcontainer .modal div.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#root > .modalcontainer {
+    z-index: 2;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    pointer-events: inherit;
+
+    background-color: #00000080;
+    transition: opacity .6s;
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    animation: modalAppear .3s ease-in-out;
+}
+
+@keyframes modalAppear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
