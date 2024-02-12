@@ -1,0 +1,12 @@
+article.posts {
+    margin-top: -1rem;
+    padding-top: 1rem;
+    height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
+}
+
+article.posts .items {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}

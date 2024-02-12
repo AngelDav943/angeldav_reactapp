@@ -4,9 +4,10 @@ import { useInfo } from "../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './posts.css'
+import Post from "../components/post";
 
 export default function () {
-    const { loaded, /*info,*/ forceLogin, getData } = useInfo();
+    const { info } = useInfo();
 
     const [usersLoaded, setLoaded] = useState(false);
     const [users, setUsers] = useState([]);
@@ -29,14 +30,9 @@ export default function () {
     return usersLoaded ? <article className="posts">
         <div className="items">
             {users.map((post, index) => (
-                <div key={index} className="post">
-                    <img src={post.user.profile} alt="profile" height={64} />
-                    <div className="info">
-                        <span>{post.title}</span>
-                        <span>"{post.body}"</span>
-                    </div>
-                </div>
+                <Post key={index} post={post} />
             ))}
+            {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
         </div>
     </article> : <center className='loading'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />

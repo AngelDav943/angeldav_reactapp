@@ -1,0 +1,28 @@
+article.createpost {
+    background: #086fb0 url("/images/blueprint_tiles.png");
+    background-size: 2rem;
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
+    margin-top: -1rem;
+}
+
+article.createpost .editor {
+    margin-top: -1rem;
+    padding: 1rem 1rem;
+
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1rem - 1px);
+    background: var(--background);
+    max-width: 600px;
+    margin: auto;
+}
+
+article.createpost .editor textarea, article.createpost .editor input {
+    width: calc(100% - 2rem);
+    width: calc(100% - 2rem);
+}
+article.createpost .editor input[type="submit"] {
+    width: 100%;
+} 
+
+article.dashhome textarea {
+    resize: vertical;
+}

@@ -8,6 +8,7 @@ import { useInfo } from './context/useInfo'
 import SigningIn from './pages/SigningIn'
 import Accounts from './pages/Accounts'
 import Posts from './pages/Posts'
+import CreatePost from './pages/CreatePost'
 
 function App() {
   const {loaded} = useInfo();
@@ -19,6 +20,7 @@ function App() {
       <Route path='/signin' element={<SigningIn/>} />
       <Route path='/users' element={<Accounts/>} />
       <Route path='/posts' element={<Posts/>} />
+      <Route path='/posts/create' element={<CreatePost/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
     </Routes>
   ) : <center className='loading'>

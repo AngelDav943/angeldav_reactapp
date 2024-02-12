@@ -1,0 +1,49 @@
+article.post {
+    background: var(--background);
+    margin: 1rem;
+    outline: 1px solid var(--outline);
+}
+
+article.post section.body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+article.post section.user {
+    width: 100%;
+    max-width: 100px;
+}
+
+article.post section.user img {
+    width: 100%;
+    border-bottom-right-radius: 1rem;
+}
+
+article.post section.user .info .username {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+article.post section.body > p {
+    min-width: calc(100% - 100px - 1rem);
+}
+
+article.post section.body > p span {
+    min-height: 1rem;
+    display: block;
+}
+
+article.post span.date {
+    display: block;
+    width: calc(100% - 1rem);
+    background-color: var(--primary);
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+}
+
+article.post .info span {
+    width: 100%;
+    display: block;
+}
