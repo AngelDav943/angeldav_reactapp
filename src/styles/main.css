@@ -79,6 +79,7 @@ main.basic article.info p {
 
 center.loading {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: calc(100dvh - var(--headerSize) - 1px);

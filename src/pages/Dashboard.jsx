@@ -20,11 +20,10 @@ export default function () {
         "Home": <Dash_home />,
         "Invites": <Dash_invites />,
         "Avatar creator": <Avatarcreator />,
-
-        "Posts": <Manageposts />
     }
 
-    if (info.permissions["admin"] != 0) pages["Admin"] = <AdminPage />
+    if (info?.permissions["post"] != 0) pages["Manage posts"] = <Manageposts />
+    if (info?.permissions["admin"] != 0) pages["Admin"] = <AdminPage />
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
