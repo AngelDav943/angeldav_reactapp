@@ -16,7 +16,7 @@ function App() {
   return loaded ? (
     <Routes>
       <Route path='/' element={<Home/>} />
-      <Route path='/test' element={<Test/>} />
+      {/* <Route path='/test' element={<Test/>} /> */}
       <Route path='/signin' element={<SigningIn/>} />
       <Route path='/users' element={<Accounts/>} />
       <Route path='/posts' element={<Posts/>} />

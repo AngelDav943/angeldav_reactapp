@@ -89,12 +89,11 @@ export default function () {
             const element = jsonDATA[key];
             if (element["msg"]) return setError(element["msg"])
         }
-
-        console.log(jsonDATA)
+    
         setPosts(jsonDATA["posts"]);
         setInvites(jsonDATA["invites"]);
         setPermissions(jsonDATA["perms"]);
-
+        
         setLoadingData(true)
     }
 
@@ -153,8 +152,6 @@ export default function () {
             return { msg: String(err) }
         })
 
-        console.log("response:", response)
-
         setModal(null);
         if (response["msg"]) return setError(response["msg"]);
         fetchData();
@@ -201,7 +198,7 @@ export default function () {
         <div className="users">
             <div className="items">
                 {users.map((user, index) => (
-                    <div key={index} className={"user " + (currentUserID == user.id ? "selected" : "")} onClick={() => setViewingUser(user.id)}>
+                    <div key={index} className={"user " + (currentUserID == user.id ? "selected" : "")} onClick={() => {setLoadingData(false); setViewingUser(user.id)}}>
                         <img src={user.profile} alt="profile" height={64} />
                         <div className="info">
                             <span>{user.id}</span>
@@ -212,7 +209,7 @@ export default function () {
             </div>
         </div>
 
-        {dataLoaded ? <>
+        {dataLoaded && permissions["userID"] == currentUserID ? <>
 
             <h3>Permissions</h3>
             <div className="permissions">

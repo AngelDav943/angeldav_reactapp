@@ -15,8 +15,7 @@ export default function () {
     }
 
     function NavLink({ children, to: target, className }) {
-        
-        return <Link className={className} to={target} onClick={() => navClick}>{children}</Link>
+        return <Link className={className} to={target} onClick={() => navClick()}>{children}</Link>
     }
 
     var prefix = ""
@@ -30,7 +29,7 @@ export default function () {
                     <NavLink to={"/"}>Home</NavLink>
                     <NavLink to={"/users"}>Users</NavLink>
                     <NavLink to={"/posts"}>Posts</NavLink>
-                    <NavLink to={"/test"}>Test</NavLink>
+                    {/* <NavLink to={"/test"}>Test</NavLink> */}
                 </nav>
                 {info == null ? (
                     <NavLink className="submit" to={"/dashboard"}>Login</NavLink>

@@ -61,8 +61,6 @@ export default function () {
             return { msg: String(err) }
         })
 
-        console.log("response:", response)
-
         setModal(null);
         if (response["msg"]) return setError(response["msg"]);
         fetchPosts();
