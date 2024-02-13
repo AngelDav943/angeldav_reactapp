@@ -13,8 +13,14 @@ export default function () {
     const [postLoaded, setLoaded] = useState(false);
     const [post, setPost] = useState([]);
 
-    /*async function fetchUsers() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts');
+    //*
+    async function fetchPost() {
+        const postID = parseInt(params["postID"])
+        console.log("id:", postID)
+
+        if (isNaN(postID)) return
+
+        var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev/posts?id=${postID}`);
 
         var response = await fetchedData.json().catch(err => {
             return { msg: String(err) }
@@ -22,22 +28,26 @@ export default function () {
 
         if (response["msg"] == undefined) {
             setLoaded(true)
-            setUsers(response)
+            setPost(response)
         }
     }
 
-    useEffect(() => { fetchUsers() }, [])*/
-    console.log(params)
+    useEffect(() => { fetchPost() }, [])
+    // console.log(params)
+    //*/
 
     return postLoaded ? <article className="posts">
-        <div className="items">
-            {post.map((post, index) => (
-                <Post key={index} post={post} />
-            ))}
-            {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
+        <div className="items reverse">
+            <Post post={post} />
+            <div className="comments">
+                <div className="inputs">
+                    <input type="text" placeholder="Comment" />
+                    <input type="submit" placeholder="Comment" />
+                </div>
+            </div>
         </div>
     </article> : <center className='loading'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-        <span>/postDetails Under construction</span>
+        <span>Loading post details..</span>
     </center>
 }

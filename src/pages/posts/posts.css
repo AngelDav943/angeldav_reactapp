@@ -1,7 +1,7 @@
 article.posts {
     margin-top: -1rem;
     padding-top: 1rem;
-    height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
 }
 
 article.posts::before {
@@ -28,4 +28,33 @@ article.posts .items {
     margin: auto;
     display: flex;
     flex-direction: column-reverse;
+}
+
+article.posts .items a.post {
+    color: var(--onBackground);
+}
+
+article.posts .items.reverse {
+    flex-direction: column;
+}
+
+article.posts .comments {
+    padding: 0 1rem;
+}
+
+article.posts .comments .inputs {
+    display: flex;
+}
+
+article.posts .comments input[type="text"] {
+    width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: none;
+}
+
+article.posts .comments .inputs input[type="submit"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 20%;
 }

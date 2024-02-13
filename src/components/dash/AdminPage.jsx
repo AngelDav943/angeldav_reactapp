@@ -230,8 +230,7 @@ export default function () {
             <h3>Posts</h3>
             <div className="posts">
                 {posts && posts.map((post, index) => (
-                    <MinimalPost post={post} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
-                    //<Post key={index} post={post}  /> //clickText={item.enabled == 0 ? "Enable" : "Disable"} onClick={toggleInvite}
+                    <MinimalPost key={index} post={post} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
                 ))}
             </div>
         </> : <center>

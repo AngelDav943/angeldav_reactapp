@@ -34,7 +34,7 @@ export default function () {
     async function createInvite() {
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
             method: 'POST',
-            headers: { ...corsHeaders, "token": info?.token },
+            headers: { "token": info?.token },
         })
         fetchInvites()
     }
