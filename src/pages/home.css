@@ -14,6 +14,18 @@ main.home section.blueprint{
     padding: 25px 5%;
 }
 
+main.home .row {
+    display: flex;   
+}
+
+main.home section.right {
+    text-align: right;
+}
+
+main.home section.right .row {
+    justify-content: right;
+}
+
 main.home section.blueprint img {
     width: auto;
     max-height: 300px;

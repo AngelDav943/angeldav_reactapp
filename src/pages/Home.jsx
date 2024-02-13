@@ -6,25 +6,25 @@ export default function () {
             <img src="/images/city_pencil.png" alt="city" />
             <article className="info" style={{ maxWidth: "400px" }}>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error pariatur nemo, et illum ipsam dolorum
-                    iusto quis non quos, eaque quod necessitatibus ratione quo.
+                    Welcome to this website, made by AngelDav943. <br />
+                    I know lua, javascript, C#, some python, a bit of dart and some 3D modelling.
                 </p>
             </article>
         </section>
 
-        <section className="item">
+        <section className="item right">
             <video poster="" preload='true' autoPlay muted playsInline loop>
                 <source src="/videos/cone.mp4" type="video/mp4" />
             </video>
             <article className="info">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error pariatur nemo, et illum ipsam dolorum
-                    iusto quis non quos, at voluptatum quaerat laborum tenetur minus?
+                    I quite like creating projects to test around stuff, will be slowly 
+                    adding more features to this website as time goes on.
                 </p>
                 <br />
                 <div className="row">
-                    <input type="button" value="Something" />
-                    <input type="submit" value="Something" />
+                    <input type="button" value="Log in" />
+                    <a className="submit" href='/signin' >Create account</a>
                 </div>
             </article>
         </section>
