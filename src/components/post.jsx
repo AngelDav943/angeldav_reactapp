@@ -9,6 +9,7 @@ import { useInfo } from '../context/useInfo';
 export default function ({ post }) {
     const { info, setError} = useInfo();
     const [likes, setLikes] = useState(post.likes);
+    const comments = isNaN(post.comments) ? post.comments.length : post.comments
 
     async function likePost() {
         if (info == null) return
@@ -36,6 +37,7 @@ export default function ({ post }) {
                 <img src={post.user.profile} alt="profile" />
                 <div className="info">
                     <input disabled={info == null} type='button' className='likes' value={likes +" radiation"} onClick={() => likePost()}/>
+                    <span>{comments} comment{Math.abs(comments) > 1 || comments == 0 ? "s" : ""}</span>
                 </div>
             </section>
             <p>{String(post.body).split("\n").map((item, index) => (

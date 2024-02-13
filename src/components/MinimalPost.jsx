@@ -2,6 +2,8 @@ import './post.css'
 import utils from '../utils'
 
 export default function ({ post, extrabutton }) {
+    const comments = isNaN(post.comments) ? post.comments.length : post.comments
+
     return <article className="post minimal">
         <span className='top'>
             <div>
@@ -14,9 +16,12 @@ export default function ({ post, extrabutton }) {
             <section className="user">
                 <img src={post.user.profile} alt="profile" />
             </section>
-            <p>{String(post.body).split("\n").map((item, index) => (
-                <span key={index}>{item}</span>
-            ))}</p>
+            <p>
+                {String(post.body).split("\n").map((item, index) => (
+                    <span key={index}>{item}</span>
+                ))}
+                <span>{comments} comment{Math.abs(comments) > 1 || comments == 0 ? "s" : ""}</span>
+            </p>
         </section>
     </article>
 }
