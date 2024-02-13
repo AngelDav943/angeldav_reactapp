@@ -36,7 +36,6 @@ export default function ({ post }) {
                 <img src={post.user.profile} alt="profile" />
                 <div className="info">
                     <input disabled={info == null} type='button' className='likes' value={likes +" radiation"} onClick={() => likePost()}/>
-                    <span className='title'>{post.title}</span>
                 </div>
             </section>
             <p>{String(post.body).split("\n").map((item, index) => (

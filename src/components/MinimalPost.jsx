@@ -14,9 +14,9 @@ export default function ({ post, extrabutton }) {
             <section className="user">
                 <img src={post.user.profile} alt="profile" />
             </section>
-            <p>
-                <span className='title'>{post.title}</span>
-            </p>
+            <p>{String(post.body).split("\n").map((item, index) => (
+                <span key={index}>{item}</span>
+            ))}</p>
         </section>
     </article>
 }

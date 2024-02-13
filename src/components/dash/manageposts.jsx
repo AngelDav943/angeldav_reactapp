@@ -18,8 +18,8 @@ export default function () {
     const [posts, setPosts] = useState(null);
 
     async function fetchPosts() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
-            headers: { "token": info?.token, "id": info?.id },
+        var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev/posts?fromID=${info?.id}`, {
+            headers: { "token": info?.token },
         });
 
         var response = await fetchedData.json().catch(err => {

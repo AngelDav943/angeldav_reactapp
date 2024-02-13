@@ -26,10 +26,7 @@ export default function () {
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
             method: 'POST',
             headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify({
-                "title": title,
-                "body": body
-            })
+            body: JSON.stringify({ "body": body })
         })
 
         var response = await fetchedData.json().catch(err => {
@@ -44,10 +41,6 @@ export default function () {
         <div className="editor">
             <form onSubmit={handleSubmit}>
                 <br />
-                <br />
-                <label placeholder="Title">
-                    <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
-                </label>
                 <article className="post">
                     <span className='top'>
                         <span className='username'>@{info?.username}</span>
