@@ -44,10 +44,6 @@ article.post span.top {
     padding: 0.2rem 0.5rem;
 }
 
-article.post span.top * {
-    /* display: inline-block; */
-}
-
 article.post span div {
     display: flex;
 }
@@ -77,10 +73,6 @@ article.post .info span {
 }
 
 /* minimal version */
-article.post.minimal {
-
-}
-
 article.post.minimal span.top {
     width: calc(100% - 0.4rem + 1px);
     font-size: 0.9rem;
