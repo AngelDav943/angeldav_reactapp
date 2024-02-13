@@ -62,6 +62,35 @@ header .monitor:hover {
     background: url(/images/monitor/monitor_green.png);
 }
 
+header section.popup {
+    position: fixed;
+    right: 0;
+    top: calc(var(--headerSize) + var(--headerPadding));
+    width: 10rem;
+    background: linear-gradient(var(--primary), var(--dark-primary));
+    text-align: right;
+}
+
+header section.popup a {
+    color: white;
+    display: block;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+header section.popup a.logoff {
+    background-color: rgb(230, 40, 20);
+}
+
+header section.popup a.logoff:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+header section.popup a:hover {
+    background-color: var(--background);
+    color: var(--onBackground);
+}
+
 @media screen and (max-width: 501px) {
     :root {
         --headerSize: 3.5rem;
@@ -82,6 +111,24 @@ header .monitor:hover {
         height: calc(100dvh - 1rem);
         flex-direction: column;
         justify-content: flex-start;
+    }
+
+    header section.popup {
+        display: none;
+        top: auto;
+        bottom: 5.1rem;
+        width: auto;
+        left: 0;
+        right: 0;
+        text-align: left;
+    }
+
+    header.open section.popup {
+        display: block;
+    }
+
+    header section.popup a {
+        width: calc(100% - 1rem);
     }
 
     header.open div.left {

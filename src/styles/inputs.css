@@ -20,7 +20,7 @@ input:not([type="checkbox"], [type="range"]), textarea, button, a.submit, a.butt
     color: var(--onBackground);
 }
 
-a.button {
+a.button, a.submit {
     text-align: center;
 }
 

@@ -1,0 +1,80 @@
+main.profiledetails {
+    
+}
+
+main.profiledetails::before {
+    image-rendering: pixelated;
+    top: 0;
+    content: "";
+    background: url("/images/floor_tiles.png");
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    z-index: -1;
+    background-size: 10rem;
+    opacity: 0.5;
+    -webkit-mask-image: -webkit-gradient(linear, top, bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+    mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+main.profiledetails article.central {
+    background: var(--background);
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* align-content: flex-start; */
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
+}
+
+main.profiledetails article.central section {
+    width: 100%;
+}
+
+main.profiledetails section.userdata {
+    background: linear-gradient(var(--primary), var(--dark-primary));
+    color: white;
+    padding: 2rem;
+    flex-basis: 250px;
+    flex-grow: 1;
+}
+main.profiledetails section.posts {
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    flex-basis: 400px;
+    flex-grow: 1;
+}
+
+
+main.profiledetails section.userdata .top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+main.profiledetails section.userdata .top .username {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+main.profiledetails section.userdata img {
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+}
+
+
+
+main.profiledetails section.posts h2 {
+    text-align: right;
+    margin-right: 1rem;
+}
+
+main.profiledetails a.post {
+    color: var(--onBackground);
+}

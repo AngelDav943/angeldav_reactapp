@@ -1,5 +1,11 @@
 main.home {
-    background: white;
+    /* background: white; */
+    /* color: #1d1f20; */
+}
+
+main.home section.white {
+    margin-top: 1rem;
+    background-color: white;
     color: #1d1f20;
 }
 
@@ -15,7 +21,8 @@ main.home section.blueprint{
 }
 
 main.home .row {
-    display: flex;   
+    display: flex;  
+    flex-wrap: wrap; 
 }
 
 main.home section.right {
@@ -33,7 +40,11 @@ main.home section.blueprint img {
 }
 
 @media screen and (max-width: 501px) {
-    main.home article.info input {
+    main.home section.right {
+        text-align: left;
+    }
+
+    main.home article.info input, main.home article.info a {
         width: 100%;
     }
 }

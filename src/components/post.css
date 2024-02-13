@@ -20,13 +20,16 @@ article.post section.user img {
     border-bottom-right-radius: 1rem;
 }
 
-article.post section.user .info .username {
-    opacity: 0.7;
-    font-size: 0.9rem;
+article.post section.user .info span {
+    padding-left: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 
 article.post section.body > p {
-    min-width: calc(100% - 100px - 1rem);
+    flex-basis: 300px;
+    flex-grow: 1;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
 }
 
 article.post section.body > p span {

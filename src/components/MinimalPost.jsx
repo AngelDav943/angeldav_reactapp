@@ -2,7 +2,7 @@ import './post.css'
 import utils from '../utils'
 
 export default function ({ post, extrabutton }) {
-    const comments = isNaN(post.comments) ? post.comments.length : post.comments
+    const comments = post.comments != null ? (isNaN(post.comments) ? post.comments.length : post.comments) : -1
 
     return <article className="post minimal">
         <span className='top'>
@@ -20,7 +20,7 @@ export default function ({ post, extrabutton }) {
                 {String(post.body).split("\n").map((item, index) => (
                     <span key={index}>{item}</span>
                 ))}
-                <span>{comments} comment{Math.abs(comments) > 1 || comments == 0 ? "s" : ""}</span>
+                {comments != -1 && <span>{comments} comment{Math.abs(comments) > 1 || comments == 0 ? "s" : ""}</span>}
             </p>
         </section>
     </article>

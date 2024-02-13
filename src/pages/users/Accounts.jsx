@@ -29,13 +29,15 @@ export default function () {
     return usersLoaded ? <article className="users">
         <div className="items">
             {users.map((user, index) => (
-                <div key={index} className="user">
-                    <img src={user.profile} alt="profile" height={64} />
-                    <div className="info">
-                        <span>{user.username}</span>
-                        <span>"{user.status}"</span>
+                <a key={index} href={`/users/${user.id}`}>
+                    <div key={index} className="user">
+                        <img src={user.profile} alt="profile" height={64} />
+                        <div className="info">
+                            <span>{user.username}</span>
+                            <span>"{user.status}"</span>
+                        </div>
                     </div>
-                </div>
+                </a>
             ))}
         </div>
     </article> : <center className='loading'>

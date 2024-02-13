@@ -9,6 +9,7 @@ import Accounts from './pages/users/Accounts'
 import Posts from './pages/posts/Posts'
 import CreatePost from './pages/posts/CreatePost'
 import PostDetails from './pages/posts/postDetails'
+import ProfileDetails from './pages/users/ProfileDetails'
 
 function App() {
   const { loaded } = useInfo();
@@ -20,7 +21,7 @@ function App() {
       <Route path='/signin' element={<SigningIn />} />
       <Route path='/users'>
         <Route index element={<Accounts />} />
-        <Route path=':userID' element={<p>Post not found..</p>} />
+        <Route path=':ID' element={<ProfileDetails />} />
       </Route>
 
       <Route path='/posts'>

@@ -11,25 +11,26 @@ export default function () {
                 </p>
             </article>
         </section>
-
-        <section className="item right">
+        <br />
+        <section className="item right white">
             <video poster="" preload='true' autoPlay muted playsInline loop>
                 <source src="/videos/cone.mp4" type="video/mp4" />
             </video>
             <article className="info">
                 <p>
-                    I quite like creating projects to test around stuff, will be slowly 
+                    I quite like making projects and test around with stuff, will be slowly
                     adding more features to this website as time goes on.
                 </p>
                 <br />
                 <div className="row">
-                    <input type="button" value="Log in" />
-                    <a className="submit" href='/signin' >Create account</a>
+                    <a href="/login" className='button'>Log in</a>
+                    <a href='/signin' className="submit" >Create account</a>
                 </div>
+                <br />
             </article>
         </section>
 
-        <section className="blueprint outlined">
+        <section className="blueprint">
             <div className="row">
                 <img src="/images/turret_drawing.png" alt="turret sideways" />
                 <img src="/images/turret_drawing_front.png" alt="turret front" />

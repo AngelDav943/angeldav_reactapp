@@ -5,9 +5,10 @@ import { Link } from "react-router-dom"
 
 
 export default function () {
-    const { info, getData } = useInfo();
+    const { info, getData, logout } = useInfo();
 
     const [headerOpen, setHeaderOpen] = useState(false)
+    const [popup, setPopupOpen] = useState(false)
 
     function navClick() {
         setHeaderOpen(false); 
@@ -34,12 +35,17 @@ export default function () {
                 {info == null ? (
                     <NavLink className="submit" to={"/dashboard"}>Login</NavLink>
                 ) : (
-                    <NavLink className="profile" to={"/dashboard"}>
+                    <a className="profile" onClick={() => setPopupOpen(!popup)}>
                         <img src={prefix + info?.profile} alt="profile" />
                         <span>{info?.username}</span>
-                    </NavLink>
+                    </a>
                 )}
             </div>
+            {(info && popup) && <section className="popup">
+                <a href={`/users/${info?.id}`}>My profile</a>
+                <a href={`/dashboard`}>My dashboard</a>
+                <a className='logoff' href={`/dashboard`} onClick={() => logout()}>Log off</a>
+            </section>}
         </header>
     )
 }
