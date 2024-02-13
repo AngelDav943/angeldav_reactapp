@@ -68,8 +68,8 @@ export default function () {
             "invites": await fetch('https://datatest.angelddcs.workers.dev/invites', {
                 headers: { "token": info?.token, "all": "true", "id": currentUserID },
             }),
-            "posts": await fetch('https://datatest.angelddcs.workers.dev/posts', {
-                headers: { "token": info?.token, "id": currentUserID },
+            "posts": await fetch(`https://datatest.angelddcs.workers.dev/posts?fromID=${currentUserID}`, {
+                headers: { "token": info?.token},
             })
         }
 
