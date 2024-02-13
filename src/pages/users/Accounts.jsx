@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom"
-import { useInfo } from "../context/useInfo"
+import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './accounts.css'

@@ -1,18 +1,18 @@
 
 import { Link } from "react-router-dom"
-import { useInfo } from "../context/useInfo"
+import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './posts.css'
-import Post from "../components/post";
+import Post from "../../components/post";
 
 export default function () {
     const { info } = useInfo();
 
-    const [usersLoaded, setLoaded] = useState(false);
-    const [users, setUsers] = useState([]);
+    const [postsLoaded, setLoaded] = useState(false);
+    const [posts, setPosts] = useState([]);
 
-    async function fetchUsers() {
+    async function fetchPosts() {
         var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts');
 
         var response = await fetchedData.json().catch(err => {
@@ -21,15 +21,15 @@ export default function () {
 
         if (response["msg"] == undefined) {
             setLoaded(true)
-            setUsers(response)
+            setPosts(response)
         }
     }
 
-    useEffect(() => { fetchUsers() }, [])
+    useEffect(() => { fetchPosts() }, [])
 
-    return usersLoaded ? <article className="posts">
+    return postsLoaded ? <article className="posts">
         <div className="items">
-            {users.map((post, index) => (
+            {posts.map((post, index) => (
                 <Post key={index} post={post} />
             ))}
             {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
