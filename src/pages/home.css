@@ -3,8 +3,41 @@ main.home {
     /* color: #1d1f20; */
 }
 
-main.home section.white {
+main.home .scroll_buttons {
     margin-top: 1rem;
+    display: flex;
+}
+
+main.home .scroll_buttons button {
+    background-color: white;
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+}
+
+main.home .scroll_buttons button:active {
+    outline: none;
+}
+
+main.home .scroll_buttons button.selected {
+    border-bottom: 3px solid var(--primary);
+}
+
+main.home div.scroller {
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+main.home div.scroller .empty {
+    display: contents;
+}
+
+main.home div.scroller section {
+    min-width: 90%;
+}
+
+main.home section.white {
     background-color: white;
     color: #1d1f20;
 }

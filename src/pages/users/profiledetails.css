@@ -41,7 +41,7 @@ main.profiledetails section.userdata {
     flex-grow: 1;
 }
 main.profiledetails section.posts {
-    /* background-color: rgba(0, 0, 0, 0.1); */
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
     padding: 0 1rem;
     display: flex;
     flex-direction: column-reverse;

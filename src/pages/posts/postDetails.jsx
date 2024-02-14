@@ -9,7 +9,7 @@ import MinimalPost from "../../components/MinimalPost";
 
 export default function () {
     const params = useParams();
-    const { info } = useInfo();
+    const { info, setError } = useInfo();
 
     const [postLoaded, setLoaded] = useState(false);
     const [post, setPost] = useState([]);

@@ -26,7 +26,7 @@ article.post section.user .info span {
 }
 
 article.post section.body > p {
-    flex-basis: 300px;
+    flex-basis: 280px;
     flex-grow: 1;
     padding-left: 0.5rem;
     padding-right: 1rem;
