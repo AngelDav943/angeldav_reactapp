@@ -8,30 +8,8 @@ import InviteTile from "../InviteTile";
 import Post from "../post";
 import MinimalPost from "../MinimalPost";
 
-function timeFromTimestamp(timestamp, hidetime) {
-    if (isNaN(parseInt(timestamp))) return "";
-
-    const date = new Date(parseInt(timestamp));
-    var time = {
-        "day": date.getDate(),
-        "month": date.getMonth() + 1,
-        "year": date.getFullYear(),
-        "hours": date.getHours(),
-        "minutes": date.getMinutes()
-    }
-
-    for (var t in time) {
-        if (time[t] < 10) time[t] = `0${time[t]}`
-    }
-
-    var timeStampCon = time.day + '/' + time.month + '/' + time.year;
-    if (hidetime != true) timeStampCon += " " + time.hours + ':' + time.minutes
-
-    return timeStampCon;
-}
-
 export default function () {
-    const { info, forceLogin, setError, setModal } = useInfo();
+    const { info, forceLogin, setError, setModal, fetchWeb } = useInfo();
     if (info == null) return forceLogin();
 
     if (info?.permissions.admin == 0) return <center className="loading">
@@ -49,13 +27,8 @@ export default function () {
     const [invites, setInvites] = useState(null);
 
     async function fetchUsers() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users');
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"] == undefined) setUsers(response)
+        var fetchedData = await fetchWeb('/users');
+        if (fetchedData) setUsers(response)
     }
 
     async function fetchData() {

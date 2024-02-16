@@ -15,7 +15,6 @@ export default function () {
         if (files == null || files[0] == null) return;
 
         var reader = new FileReader();
-        var result = ""
         reader.onload = function (e) {
             var image = new Image();
             image.src = reader.result;

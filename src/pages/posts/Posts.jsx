@@ -5,23 +5,20 @@ import { useEffect, useState } from 'react';
 
 import './posts.css'
 import Post from "../../components/post";
+// import useFetch from "../../hooks/useFetch";
 
 export default function () {
-    const { info } = useInfo();
+    const { info, fetchWeb } = useInfo();
 
     const [postsLoaded, setLoaded] = useState(false);
     const [posts, setPosts] = useState([]);
+    // const [test, setTest] = useFetch("/posts");
 
     async function fetchPosts() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts');
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"] == undefined) {
+        var fetchedData = await fetchWeb('/posts');
+        if (fetchedData) {
             setLoaded(true)
-            setPosts(response)
+            setPosts(fetchedData)
         }
     }
 
@@ -30,9 +27,9 @@ export default function () {
     return postsLoaded ? <article className="posts">
         <div className="items">
             {posts.map((post, index) => (
-                <a className="post" href={`/posts/${post.id}`} key={index}>
+                <Link className="post" to={`/posts/${post.id}`} key={index}>
                     <Post post={post} />
-                </a>
+                </Link>
             ))}
             {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
         </div>

@@ -36,27 +36,87 @@ export function InfoProvider({ children }) {
     const [error, setErrorMessage] = useState(null)
     const [modal, setModal] = useState(null)
 
-    const getData = async () => {
-        const savedToken = localStorage.getItem("uid")
-        if (savedToken == null) {
-            setLoaded(true)
-            return false;
-        }
+    const exportUtils = {
 
-        const userData = await fetchLogin({ "token": savedToken });
-        if (userData["token"]) {
-            setInfo(userData)
-            setLoaded(true)
-        } else {
-            setLoaded(true)
-            return false;
-        }
+        fetchWeb: async (path = "/", init = null) => {
+            init = init || { method: "GET", headers: null, data: null }
+            
+            const { method, headers, data} = init;
 
-        return userData
+            var fetchMethod = String(method).toUpperCase();
+            const allowedMethods = ["GET", "POST", "PUT", "DELETE", "PATCH"]
+            if (allowedMethods.indexOf(fetchMethod) == -1) fetchMethod = "GET"
+
+            const body = data != null ? { ...{ "body": JSON.stringify(...data) } } : null
+            const contentType = data != null ? { ...{ "body": JSON.stringify(...data) } } : null
+
+            try {
+                var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev${path}`, {
+                    method: fetchMethod,
+                    headers: { "token": info?.token, ...contentType, ...headers },
+                    ...body
+                })
+                
+                const response = await fetchedData.json();
+                if (response["msg"]) {
+                    setErrorMessage(response["msg"])
+                    return null;
+                }
+                return response;
+            } catch ( error ) {
+                setErrorMessage(`${String(error)}; client error`)
+            }
+
+            return null;
+        },
+
+        getData: async () => {
+            const savedToken = localStorage.getItem("uid")
+            if (savedToken == null) {
+                setLoaded(true)
+                return false;
+            }
+
+            const userData = await fetchLogin({ "token": savedToken });
+            if (userData["token"]) {
+                setInfo(userData)
+                setLoaded(true)
+            } else {
+                setLoaded(true)
+                return false;
+            }
+
+            return userData
+        },
+
+        login: async (username, password) => {
+            const loginData = await fetchLogin({
+                "username": username,
+                "password": password,
+            });
+
+            if (loginData["token"] == null) return {
+                "error": loginData["msg"]
+            }
+
+            localStorage.setItem("uid", loginData.token)
+            return { "success": true }
+        },
+
+        logout: () => {
+            localStorage.setItem("uid", undefined)
+            setInfo(null);
+        },
+
+        setError: (msg) => {
+            const message = String(msg);
+            if (error == null) setErrorMessage(message)
+        }
     }
 
+
     useEffect(() => {
-        if (info == null) getData()
+        if (info == null) exportUtils.getData()
         if (localStorage.getItem("dark") == "true" && document.body.classList.contains("dark") == false) document.body.classList.add("dark")
     }, [])
 
@@ -66,34 +126,11 @@ export function InfoProvider({ children }) {
         }, 4100)
     }, [[error]])
 
-    const login = async (username, password) => {
-        const loginData = await fetchLogin({
-            "username": username,
-            "password": password,
-        });
-
-        if (loginData["token"] == null) return {
-            "error": loginData["msg"]
-        }
-
-        localStorage.setItem("uid", loginData.token)
-        return { "success": true }
-    }
-
-    const logout = () => {
-        localStorage.setItem("uid", undefined)
-        setInfo(null);
-    }
-
-    const setError = (msg) => {
-        const message = String(msg);
-        if (error == null) setErrorMessage(message)
-    }
 
     const forceLogin = () => <Login />
 
     return (
-        <infoContext.Provider value={{ loaded, info, login, logout, forceLogin, getData, setError, setModal }}>
+        <infoContext.Provider value={{ info, loaded, ...exportUtils, forceLogin, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
             {modal && <div className="modalcontainer">

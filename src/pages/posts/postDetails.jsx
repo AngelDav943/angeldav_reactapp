@@ -9,7 +9,7 @@ import MinimalPost from "../../components/MinimalPost";
 
 export default function () {
     const params = useParams();
-    const { info, setError } = useInfo();
+    const { info, setError, fetchWeb } = useInfo();
 
     const [postLoaded, setLoaded] = useState(false);
     const [post, setPost] = useState([]);
@@ -18,37 +18,30 @@ export default function () {
 
     //*
     async function fetchPost() {
-        const postID = parseInt(params["postID"])
+        const postID = parseInt(params["postID"]);
         if (isNaN(postID)) return
 
-        var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev/posts?id=${postID}`);
+        var fetchedData = await fetchWeb(`/posts?id=${postID}`);
 
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"] == undefined) {
+        if (fetchedData) {
             setLoaded(true)
-            setPost(response)
+            setPost(fetchedData)
         }
     }
 
     const submitComment = async () => {
         if (isNaN(post.id)) return setError("Original post not found..");
 
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts/comment', {
+        var fetchedData = await fetchedData('/posts/comment', {
             method: 'POST',
             headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify({ "source": post.id, "body": comment })
+            data: { "source": post.id, "body": comment }
         })
 
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"]) return setError(response["msg"]);
-        setComment("");
-        fetchPost();
+        if (fetchedData) {
+            setComment("");
+            fetchPost();
+        }
     }
 
     useEffect(() => { fetchPost() }, [])
@@ -58,7 +51,7 @@ export default function () {
             {post.parent && <a className="post" href={`/posts/${post.parent.id}`}>
                 <Post post={post.parent} />
             </a>}
-            <Post post={post} />
+            {post && <Post post={post} />}
             <div className="comments">
                 <div className="inputs">
                     <input type="text" placeholder="Comment" value={comment} onChange={(e) => { setComment(e.target.value) }} />

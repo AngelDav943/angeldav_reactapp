@@ -37,6 +37,56 @@ export default function () {
         navigate('/posts');
     }
 
+    const onPasteBody = async e => {
+        e.preventDefault();
+        var dataTransfer = e;
+        const currentTarget = e.currentTarget;
+
+        if (e["dataTransfer"]) dataTransfer = e["dataTransfer"]
+        if (e["clipboardData"]) dataTransfer = e["clipboardData"]
+
+        const files = dataTransfer.files;
+        var bodyResult;
+
+        if (files.length > 0) {
+            var count = files.length;
+            console.log("File Count: " + count + "\n");
+            console.log(files[0])
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var image = new Image();
+                image.src = reader.result;
+
+                image.onload = function () {
+                    var canvas = document.createElement("canvas");
+                    const aspect_ratio = image.height / image.width;
+
+                    const new_width = 128 / aspect_ratio
+
+                    canvas.width = String(new_width);
+                    canvas.height = String(128);
+
+                    var ctx = canvas.getContext("2d");
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                    const dataURI = canvas.toDataURL("image/jpeg");
+
+                    // max length should be 5000
+                    console.log("from", reader.result.length, "to", dataURI.length)
+
+                    currentTarget.innerHTML += `<img src="${dataURI}"/>`
+                }
+            }
+            reader.readAsDataURL(files[0])
+            return
+        }
+
+        console.log(dataTransfer)
+
+        currentTarget.innerHTML += "<div>"+dataTransfer.getData("text/plain").replace(/</g, "⟨").replace(/>/g, "⟩")+"</div>"
+    }
+
     return <article className="createpost">
         <div className="editor">
             <form onSubmit={handleSubmit}>
@@ -53,7 +103,11 @@ export default function () {
                                 <span className='title'>{title}</span>
                             </div>
                         </section>
-                        <p contentEditable={true} onInput={(e) => { setBody(e.target.innerText) }}></p>
+                        <p contentEditable={true}
+                            onInput={(e) => { setBody(e.target.innerText) }}
+                            onPaste={(e) => onPasteBody(e)}
+                            onDrop={(e) => onPasteBody(e)}
+                        />
                     </section>
                 </article>
                 <br />

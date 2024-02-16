@@ -7,24 +7,19 @@ import { useInfo } from '../context/useInfo';
 
 
 export default function ({ post }) {
-    const { info, setError} = useInfo();
+    const { info, fetchWeb} = useInfo();
     const [likes, setLikes] = useState(post.likes);
+    console.log(post)
     const comments = isNaN(post.comments) ? post.comments.length : post.comments
 
     async function likePost() {
         if (info == null) return
 
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
-            headers: { "token": info?.token, "like": post.id },
+        const fetchedData = await fetchWeb('/posts', {
+            headers: {"like": post.id}
         })
 
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-        console.log("resp", response)
-
-        if (response["msg"]) return setError(response["msg"]);
-        if (response["likes"]) setLikes(response["likes"]);
+        if (fetchedData && fetchedData["likes"]) setLikes(fetchedData["likes"]);
     }
 
     return <article className="post">

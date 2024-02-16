@@ -39,7 +39,6 @@ export default function () {
     useEffect(() => {
         const scroller = document.querySelector(".scroller")
         if (scroller) {
-            console.log(currentView)
             const amount = Object.keys(scrollerItems).length
             scroller.scrollLeft = (scroller.scrollWidth / amount) * Math.max(0, Math.min(currentView, amount))
         }
