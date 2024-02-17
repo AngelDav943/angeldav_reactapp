@@ -12,27 +12,29 @@ export default function () {
     const { info, setError, fetchWeb } = useInfo();
 
     const [postLoaded, setLoaded] = useState(false);
+    const [notFound, setFound] = useState(true);
     const [post, setPost] = useState([]);
 
     const [comment, setComment] = useState([]);
 
-    //*
     async function fetchPost() {
         const postID = parseInt(params["postID"]);
         if (isNaN(postID)) return
 
-        var fetchedData = await fetchWeb(`/posts?id=${postID}`);
+        var data = await fetchWeb(`/posts?id=${postID}`);
 
-        if (fetchedData) {
+        if (data && data.length != 0) {
             setLoaded(true)
-            setPost(fetchedData)
+            setPost(data)
+            return
         }
+        setFound(false)
     }
 
     const submitComment = async () => {
         if (isNaN(post.id)) return setError("Original post not found..");
 
-        var fetchedData = await fetchedData('/posts/comment', {
+        var fetchedData = await fetchWeb('/posts/comment', {
             method: 'POST',
             headers: { "token": info?.token, "Content-Type": "application/json" },
             data: { "source": post.id, "body": comment }
@@ -44,13 +46,19 @@ export default function () {
         }
     }
 
-    useEffect(() => { fetchPost() }, [])
+    useEffect(() => { 
+        setLoaded(false)
+        fetchPost() 
+    }, [params.postID])
+
+    if (notFound == false) return <center className='loading'>
+        <img src="/images/monitor/monitor_red.png" alt="monitor" height={100} />
+        <span>404: Post not found.</span>
+    </center>
 
     return postLoaded ? <article className="posts">
         <div className="items reverse">
-            {post.parent && <a className="post" href={`/posts/${post.parent.id}`}>
-                <Post post={post.parent} />
-            </a>}
+            {post.parent && <Post post={post.parent} clickable={true}/>}
             {post && <Post post={post} />}
             <div className="comments">
                 <div className="inputs">
@@ -59,9 +67,7 @@ export default function () {
                 </div>
             </div>
             {post.comments && post.comments.map((comment, index) => (
-                <a className="post" href={`/posts/${comment.id}`} key={index}>
-                    <MinimalPost post={comment} />
-                </a>
+                <MinimalPost post={comment} key={index} clickable={true} />
             ))}
         </div>
     </article> : <center className='loading'>

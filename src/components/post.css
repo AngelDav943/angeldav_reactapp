@@ -10,29 +10,29 @@ article.post section.body {
     gap: 0.5rem;
 }
 
-article.post section.user {
+article.post.clickable {
+    cursor: pointer;
+}
+
+article.post a.user {
     width: 100%;
     max-width: 100px;
 }
 
-article.post section.user img {
+article.post a.user img {
     width: 100%;
     border-bottom-right-radius: 1rem;
 }
 
-article.post section.user .info span {
-    padding-left: 0.75rem;
-    padding-bottom: 0.75rem;
-}
 
-article.post section.body > p {
+article.post section.body>p {
     flex-basis: 280px;
     flex-grow: 1;
     padding-left: 0.5rem;
     padding-right: 1rem;
 }
 
-article.post section.body > p span {
+article.post section.body>p span {
     min-height: 1rem;
     display: block;
 }
@@ -71,8 +71,40 @@ article.post span.top button:hover {
 }
 
 article.post .info span {
-    width: 100%;
     display: block;
+}
+
+article.post .info {
+    padding: 0.5rem;
+    padding-bottom: 0.75rem;
+    
+    height: 1rem;
+    width: calc(100% - 1rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+article.post .info input {
+    height: 100%;
+    height: 2rem;
+    padding: 0 0.5rem;
+    color: green;
+}
+
+article.post .info span.comments {
+    display: flex;
+    align-items: center;
+}
+
+article.post .info span.comments::after {
+    content: '';
+    background: url('/images/comment.png');
+    display: block;
+    height: 2rem;
+    width: 2rem;
+    margin-left: 0.2rem;
+    background-size: contain;
 }
 
 /* minimal version */
@@ -82,17 +114,17 @@ article.post.minimal span.top {
     padding: 0.1rem 0.2rem;
 }
 
-article.post.minimal section.user img {
+article.post.minimal a.user img {
     border-bottom-right-radius: 0;
 }
 
-article.post.minimal section.user {
+article.post.minimal a.user {
     height: 100%;
     width: auto;
     max-height: 50px;
     max-width: 50px;
 }
 
-article.post.minimal section.body > p {
+article.post.minimal section.body>p {
     margin: 0;
 }

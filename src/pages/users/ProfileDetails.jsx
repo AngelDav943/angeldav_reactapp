@@ -7,29 +7,33 @@ import './profiledetails.css'
 import MinimalPost from "../../components/MinimalPost";
 
 export default function () {
+    const { fetchWeb } = useInfo();
     const params = useParams();
-    //const { loaded, /*info,*/ forceLogin, getData } = useInfo();
 
     const [usersLoaded, setLoaded] = useState(false);
+    const [notFound, setFound] = useState(true);
     const [user, setUser] = useState([]);
 
     async function fetchUsers() {
         const userID = parseInt(params["ID"])
         if (isNaN(userID)) return
 
-        var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev/users?id=${userID}&posts=true`);
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"] == undefined) {
+        var data = await fetchWeb(`/users?id=${userID}&posts=true`);
+        if (data && data["id"] != null) {
+            setUser(data)
             setLoaded(true)
-            setUser(response)
+            return
         }
+
+        setFound(false)
     }
 
     useEffect(() => { fetchUsers() }, [])
+
+    if (notFound == false) return <center className='loading'>
+        <img src="/images/monitor/monitor_red.png" alt="monitor" height={100} />
+        <span>404: User not found.</span>
+    </center>
 
     return usersLoaded ? <main className="profiledetails">
         <article className="central">
@@ -46,9 +50,7 @@ export default function () {
 
             <section className="posts">
                 {(user.posts != null) && user.posts.map((post, index) => (
-                    <a className="post" href={`/posts/${post.id}`} key={index}>
-                        <MinimalPost post={post} />
-                    </a>
+                    <MinimalPost post={post} key={index} clickable={true} />
                 ))}
                 <h2>All posts</h2>
             </section>

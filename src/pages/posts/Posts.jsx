@@ -27,9 +27,7 @@ export default function () {
     return postsLoaded ? <article className="posts">
         <div className="items">
             {posts.map((post, index) => (
-                <Link className="post" to={`/posts/${post.id}`} key={index}>
-                    <Post post={post} />
-                </Link>
+                <Post post={post} key={index} clickable={true}/>
             ))}
             {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
         </div>

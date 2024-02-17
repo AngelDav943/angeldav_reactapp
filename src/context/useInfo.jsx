@@ -40,15 +40,15 @@ export function InfoProvider({ children }) {
 
         fetchWeb: async (path = "/", init = null) => {
             init = init || { method: "GET", headers: null, data: null }
-            
-            const { method, headers, data} = init;
+
+            const { method, headers, data } = init;
 
             var fetchMethod = String(method).toUpperCase();
             const allowedMethods = ["GET", "POST", "PUT", "DELETE", "PATCH"]
             if (allowedMethods.indexOf(fetchMethod) == -1) fetchMethod = "GET"
 
-            const body = data != null ? { ...{ "body": JSON.stringify(...data) } } : null
-            const contentType = data != null ? { ...{ "body": JSON.stringify(...data) } } : null
+            const body = data != null ? { body: JSON.stringify(data) } : null
+            const contentType = data != null ? { "Content-Type": "application/json" } : null
 
             try {
                 var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev${path}`, {
@@ -56,14 +56,14 @@ export function InfoProvider({ children }) {
                     headers: { "token": info?.token, ...contentType, ...headers },
                     ...body
                 })
-                
+
                 const response = await fetchedData.json();
                 if (response["msg"]) {
                     setErrorMessage(response["msg"])
                     return null;
                 }
                 return response;
-            } catch ( error ) {
+            } catch (error) {
                 setErrorMessage(`${String(error)}; client error`)
             }
 

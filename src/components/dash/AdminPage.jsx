@@ -27,68 +27,42 @@ export default function () {
     const [invites, setInvites] = useState(null);
 
     async function fetchUsers() {
-        var fetchedData = await fetchWeb('/users');
-        if (fetchedData) setUsers(response)
+        var data = await fetchWeb('/users');
+        if (data) setUsers(data)
     }
 
     async function fetchData() {
         setLoadingData(false)
 
-        const fetched = {
-            "perms": await fetch('https://datatest.angelddcs.workers.dev/permissions', {
-                headers: { "token": info?.token, "id": currentUserID },
-            }),
-            "invites": await fetch('https://datatest.angelddcs.workers.dev/invites', {
-                headers: { "token": info?.token, "all": "true", "id": currentUserID },
-            }),
-            "posts": await fetch(`https://datatest.angelddcs.workers.dev/posts?fromID=${currentUserID}`, {
-                headers: { "token": info?.token},
-            })
-        }
+        const perms = await fetchWeb('/permissions', {
+            headers: {"id": currentUserID },
+        })
+        const invites = await fetchWeb('/invites', {
+            headers: { "all": "true", "id": currentUserID },
+        })
+        const posts = await fetchWeb(`/posts?fromID=${currentUserID}`)
 
-        var jsonDATA = {}
-        try {
-            const keys = Object.keys(fetched)
-            for (let i = 0; i < keys.length; i++) {
-                const key = keys[i]
-                const element = fetched[key];
-                jsonDATA[key] = await element.json();
-            }
-        } catch (error) {
-            jsonDATA = { msg: String(error) }
+        if (perms && invites && posts) {
+            setPosts(posts)
+            setInvites(invites)
+            setPermissions(perms)
+            setLoadingData(true)
         }
-
-        if (jsonDATA["msg"]) return setError(jsonDATA["msg"])
-        for (const key in jsonDATA) {
-            const element = jsonDATA[key];
-            if (element["msg"]) return setError(element["msg"])
-        }
-    
-        setPosts(jsonDATA["posts"]);
-        setInvites(jsonDATA["invites"]);
-        setPermissions(jsonDATA["perms"]);
         
-        setLoadingData(true)
     }
 
     async function toggleInvite(inviteID, inviteData) {
         var enabled = inviteData.enabled == 0 ? 1 : 0
 
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
+        var data = await fetchWeb('/invites', {
             method: 'PATCH',
-            headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify({
+            data: {
                 "inviteID": inviteID,
                 "enabled": enabled
-            })
+            }
         })
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"]) return setError(response["msg"]);
-        fetchData();
+        
+        if (data) fetchData();
     }
 
     async function togglePermission(userID, permission) {
@@ -96,39 +70,26 @@ export default function () {
         var bodyJSON = {
             "targetID": userID
         }
-        bodyJSON[String(permission)] = newstatus
-        console.log(bodyJSON)
+        bodyJSON[String(permission)] = newstatus;
 
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/permissions', {
+        var data = await fetchWeb('/permissions', {
             method: 'PATCH',
-            headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify(bodyJSON)
-        })
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
+            data: bodyJSON
         })
 
         setModal(null);
-        if (response["msg"]) return setError(response["msg"])
-        fetchData();
+        if (data) fetchData();
     }
 
     async function removePost(postID) {
 
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
+        var data = await fetchWeb('/posts', {
             method: 'DELETE',
-            headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify({id: postID})
-        })
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
+            data: {id: postID}
         })
 
         setModal(null);
-        if (response["msg"]) return setError(response["msg"]);
-        fetchData();
+        if (data) fetchData();
     }
 
     const openPermissionModal = function (permission) {

@@ -1,11 +1,18 @@
 import './post.css'
 import utils from '../utils'
+import { useNavigate } from 'react-router-dom';
 
-export default function ({ post, extrabutton }) {
-    const comments = post.comments != null ? (isNaN(post.comments) ? post.comments.length : post.comments) : -1
+export default function ({ post, extrabutton, clickable }) {
+    const navigate = useNavigate();
+    const commentCount = post.comments != null ? (post.comments["length"] != undefined) ? post.comments.length : post.comments : 0
 
-    return <article className="post minimal">
-        <span className='top'>
+    function bodyClick() {
+        if (clickable != true) return;
+        navigate(`/posts/${post.id}`);
+    }
+
+    return <article className={`post minimal ${clickable == true ? 'clickable' : ''}`}>
+        <span className='top' onClick={() => bodyClick()}>
             <div>
                 {extrabutton}
                 <span>@{post.user.username}</span>
@@ -16,12 +23,15 @@ export default function ({ post, extrabutton }) {
             <section className="user">
                 <img src={post.user.profile} alt="profile" />
             </section>
-            <p>
+            <p onClick={() => bodyClick()}>
                 {String(post.body).split("\n").map((item, index) => (
                     <span key={index}>{item}</span>
                 ))}
-                {comments != -1 && <span>{comments} comment{Math.abs(comments) > 1 || comments == 0 ? "s" : ""}</span>}
             </p>
         </section>
+        <span className="info" onClick={() => bodyClick()}>
+            <span className='likes'>{post.likes} radiation</span>
+            <span className='comments'>{String(commentCount)}</span>
+        </span>
     </article>
 }

@@ -38,22 +38,22 @@ article.posts .items.reverse {
     flex-direction: column;
 }
 
-article.posts .comments {
+article.posts div.comments {
     padding: 0 1rem;
 }
 
-article.posts .comments .inputs {
+article.posts div.comments .inputs {
     display: flex;
 }
 
-article.posts .comments input[type="text"] {
+article.posts div.comments input[type="text"] {
     width: 100%;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     outline: none;
 }
 
-article.posts .comments .inputs input[type="submit"] {
+article.posts div.comments .inputs input[type="submit"] {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 20%;
