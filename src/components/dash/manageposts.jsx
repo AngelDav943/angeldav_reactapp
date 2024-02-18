@@ -70,7 +70,7 @@ export default function () {
         {posts ? <>
             <div className="posts">
                 {posts && posts.map((post, index) => (
-                    <MinimalPost key={index} post={post} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
+                    <MinimalPost key={index} post={post} clickable={true} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
                 ))}
             </div>
         </> : <center>
