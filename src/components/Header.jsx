@@ -24,7 +24,7 @@ export default function () {
 
     return (
         <header className={headerOpen ? "open" : ""}>
-            <img src="/favicon.ico" alt="logo" onClick={() => { setHeaderOpen(!headerOpen) }} />
+            <img src={document.getElementById("favicon").href || "/favicon.ico"} alt="logo" onClick={() => { setHeaderOpen(!headerOpen) }} />
             <div className="left">
                 <nav>
                     <NavLink to={"/"}>Home</NavLink>

@@ -12,7 +12,6 @@ export default function () {
 
     const [postsLoaded, setLoaded] = useState(false);
     const [posts, setPosts] = useState([]);
-    // const [test, setTest] = useFetch("/posts");
 
     async function fetchPosts() {
         var fetchedData = await fetchWeb('/posts');
@@ -22,7 +21,9 @@ export default function () {
         }
     }
 
-    useEffect(() => { fetchPosts() }, [])
+    useEffect(() => {
+        fetchPosts() 
+    }, [])
 
     return postsLoaded ? <article className="posts">
         <div className="items">

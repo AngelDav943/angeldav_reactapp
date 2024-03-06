@@ -3,7 +3,6 @@ import './home.css'
 
 export default function () {
 
-
     const scrollerItems = {
         "Cone": (
             <section className="item right white">

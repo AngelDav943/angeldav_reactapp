@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { useInfo } from './context/useInfo'
 
 import Home from './pages/Home'
@@ -10,15 +10,35 @@ import Posts from './pages/posts/Posts'
 import CreatePost from './pages/posts/CreatePost'
 import PostDetails from './pages/posts/postDetails'
 import ProfileDetails from './pages/users/ProfileDetails'
+import { useEffect } from 'react'
 
 function App() {
+  const location = useLocation();
   const { loaded } = useInfo();
+
+  useEffect(() => {
+    if (import.meta.env.DEV == true) {
+      document.getElementById("favicon").href = '/images/favicons/development.ico'
+      return
+    }
+
+    if (location.pathname.includes("posts")) {
+      document.getElementById("favicon").href = '/images/favicons/posts.ico'
+      return
+    }
+
+    document.getElementById("favicon").href = '/favicon.ico'
+
+  }, [location.pathname])
 
   return loaded ? (
     <Routes>
       <Route path='/' element={<Home />} />
       {/* <Route path='/test' element={<Test/>} /> */}
+
+      <Route path='/login' element={<Dashboard />} />
       <Route path='/signin' element={<SigningIn />} />
+      <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/users'>
         <Route index element={<Accounts />} />
         <Route path=':ID' element={<ProfileDetails />} />
@@ -27,11 +47,9 @@ function App() {
       <Route path='/posts'>
         <Route index element={<Posts />} />
         <Route path='create' element={<CreatePost />} />
-        <Route path=':postID' element={<PostDetails/>} />
+        <Route path=':postID' element={<PostDetails />} />
       </Route>
 
-      <Route path='/login' element={<Dashboard />} />
-      <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/*' element={<p>No page found..</p>} />
     </Routes>
   ) : <center className='loading'>
