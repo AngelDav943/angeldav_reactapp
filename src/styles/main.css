@@ -64,12 +64,54 @@ main.basic section.outlined {
 
 main.basic section.item article {
     max-width: 500px;
+    flex-basis: 200px;
+    flex-grow: 1;
 }
 
 main.basic section video,
 main.basic section img {
     max-width: 400px;
     width: 100%;
+}
+
+main.basic section.white {
+    background-color: white;
+    color: #1d1f20;
+}
+
+main.basic section.gray {
+    background-color: #dddcdd;
+}
+
+main.basic section.blueprint{
+    color: white;
+    background: #086fb0 url("/images/blueprint_tiles.png");
+    background-size: 2rem;
+    padding: 25px 5%;
+}
+
+main.basic section.right {
+    text-align: right;
+}
+
+main.basic section.right .row {
+    justify-content: right;
+}
+
+main.basic section.blueprint img {
+    width: auto;
+    max-height: 300px;
+    height: 100%;
+}
+
+@media screen and (max-width: 501px) {
+    main.basic section.right {
+        text-align: left;
+    }
+
+    main.basic article.info input, main.basic article.info a {
+        width: 100%;
+    }
 }
 
 main.basic article.info p {

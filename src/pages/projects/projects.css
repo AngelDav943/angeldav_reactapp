@@ -1,0 +1,27 @@
+main.projects {
+
+}
+
+main.projects a.label h2 {
+    transition: padding .2s .1s;
+}
+
+main.projects a.label:hover h2 {
+    padding-left: 0.8rem;
+}
+
+main.projects a.label h2::after {
+    content: " >";
+}
+
+main.projects section.right a.label h2::after {
+    content: "";
+}
+
+main.projects section.right a.label h2::before {
+    content: "< ";
+}
+
+main.projects section.right a.label:hover h2 {
+    padding-right: 0.8rem;
+}
