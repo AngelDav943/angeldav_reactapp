@@ -81,6 +81,7 @@ main.basic section.white {
 
 main.basic section.gray {
     background-color: #dddcdd;
+    color: #1d1f20;
 }
 
 main.basic section.blueprint{
@@ -102,16 +103,6 @@ main.basic section.blueprint img {
     width: auto;
     max-height: 300px;
     height: 100%;
-}
-
-@media screen and (max-width: 501px) {
-    main.basic section.right {
-        text-align: left;
-    }
-
-    main.basic article.info input, main.basic article.info a {
-        width: 100%;
-    }
 }
 
 main.basic article.info p {
@@ -189,4 +180,14 @@ body.dark ::-webkit-scrollbar-track {
 
 ::-webkit-scrollbar-thumb:active {
     background: #4444449a;
+}
+
+@media screen and (max-width: 501px) {
+    main.basic section.right {
+        text-align: left;
+    }
+
+    main.basic article.info input, main.basic article.info a {
+        width: 100%;
+    }
 }

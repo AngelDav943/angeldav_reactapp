@@ -23,8 +23,19 @@ export default function () {
                 </article>
             </section>
         ),
-        "Book": (
+        "Projects": (
             <section className="item right gray">
+                <article className="info">
+                    <br />
+                    <p>
+                        Here I'll be posting some of the projects I've worked on.
+                    </p>
+                    <br />
+                    <div className="row">
+                        <a href='/projects' className="submit" >Visit projects</a>
+                    </div>
+                    <br />
+                </article>
                 <video poster="" preload='true' autoPlay muted playsInline loop>
                     <source src="/videos/blankbook.mp4" type="video/mp4" />
                 </video>
@@ -33,7 +44,6 @@ export default function () {
     }
 
     const [currentView, setView] = useState(0);
-    const [width, setWidth] = useState(window.innerWidth); // check width size of the window
     
     useEffect(() => {
         const scroller = document.querySelector(".scroller")
@@ -41,14 +51,7 @@ export default function () {
             const amount = Object.keys(scrollerItems).length
             scroller.scrollLeft = (scroller.scrollWidth / amount) * Math.max(0, Math.min(currentView, amount))
         }
-    }, [[currentView], [width]])
-
-    const handleWindowSizeChange = () => setWidth(window.innerWidth);
-    
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-        return () => { window.removeEventListener('resize', handleWindowSizeChange) };
-    }, []);
+    }, [[currentView]])
 
     return <main className="home basic">
         <section className="item reverse">
@@ -68,7 +71,7 @@ export default function () {
         </div>
         <div className='scroller'>
             {Object.keys(scrollerItems).map(key => (
-                <div className='empty' key={key} >
+                <div key={key} className='empty'>
                     {scrollerItems[key]}
                 </div>
             ))}
