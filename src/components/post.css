@@ -40,6 +40,7 @@ article.post section.body>p span {
 article.post span.top {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: calc(100% - 1rem);
     background-color: var(--primary);
     color: white;
@@ -63,6 +64,17 @@ article.post span.top button {
     color: var(--background);
     border-radius: 0;
     transition: background-color 0.3s ease-in-out;
+}
+
+article.post span.top .author {
+    display: flex;
+    align-items: center;
+}
+
+article.post span.top .author span.username {
+    padding-left: 0.5rem;
+    opacity: 0.5;
+    font-size: 0.7rem;
 }
 
 article.post span.top button:hover {

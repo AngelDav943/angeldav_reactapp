@@ -40,6 +40,7 @@ main.profiledetails section.userdata {
     flex-basis: 250px;
     flex-grow: 1;
 }
+
 main.profiledetails section.posts {
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
     padding: 0 1rem;
@@ -50,16 +51,26 @@ main.profiledetails section.posts {
     flex-grow: 1;
 }
 
-
 main.profiledetails section.userdata .top {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
 }
 
-main.profiledetails section.userdata .top .username {
+main.profiledetails .top .info span {
+    display: block;
+}
+
+main.profiledetails .top .info span.displayname {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+}
+
+main.profiledetails .top .info span.username {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-bottom: .5rem;
 }
 
 main.profiledetails section.userdata img {

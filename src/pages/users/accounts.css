@@ -40,6 +40,31 @@ article.users .user {
     outline: 1px solid var(--outline);
 }
 
+article.users .user img {
+    height: 5rem;
+}
+
+article.users .user .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    flex-grow: 1;
+}
+
+article.users .user .info span.username {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-bottom: 0.1rem;
+}
+
+article.users .user .info span.status {
+    max-height: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 article.users .user .info span {
     display: block;
 }

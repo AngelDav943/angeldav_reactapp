@@ -33,8 +33,9 @@ export default function () {
                     <div key={index} className="user">
                         <img src={user.profile} alt="profile" height={64} />
                         <div className="info">
-                            <span>{user.username}</span>
-                            <span>"{user.status}"</span>
+                            <span className="displayname">{user.displayname}</span>
+                            <span className="username">@{user.username}</span>
+                            <span className="status">"{user.status}"</span>
                         </div>
                     </div>
                 </a>
