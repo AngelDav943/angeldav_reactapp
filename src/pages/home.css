@@ -25,6 +25,7 @@ main.home .scroll_buttons button.selected {
 
 main.home div.scroller {
     display: flex;
+    scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
@@ -34,50 +35,11 @@ main.home div.scroller .empty {
 }
 
 main.home div.scroller section {
+    scroll-snap-align: start;
     min-width: 90%;
-}
-
-main.home section.white {
-    background-color: white;
-    color: #1d1f20;
-}
-
-main.home section.gray {
-    background-color: #dddcdd;
-}
-
-main.home section.blueprint{
-    color: white;
-    background: #086fb0 url("/images/blueprint_tiles.png");
-    background-size: 2rem;
-    padding: 25px 5%;
 }
 
 main.home .row {
     display: flex;  
     flex-wrap: wrap; 
-}
-
-main.home section.right {
-    text-align: right;
-}
-
-main.home section.right .row {
-    justify-content: right;
-}
-
-main.home section.blueprint img {
-    width: auto;
-    max-height: 300px;
-    height: 100%;
-}
-
-@media screen and (max-width: 501px) {
-    main.home section.right {
-        text-align: left;
-    }
-
-    main.home article.info input, main.home article.info a {
-        width: 100%;
-    }
 }

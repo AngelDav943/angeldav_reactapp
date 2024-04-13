@@ -29,7 +29,10 @@ export default function ({ post, clickable }) {
 
     return <article className={`post ${clickable == true ? 'clickable' : ''}`}>
         <span className='top' onClick={() => bodyClick()}>
-            <span className='username'>@{post.user.username}</span>
+            <div className='author'>
+                <span className='displayname'>{post.user.displayname}</span>
+                <span className='username'>@{post.user.username}</span>
+            </div>
             {utils.timeFromTimestamp(post.timestamp)}
         </span>
         <section className="body">

@@ -11,6 +11,7 @@ import CreatePost from './pages/posts/CreatePost'
 import PostDetails from './pages/posts/postDetails'
 import ProfileDetails from './pages/users/ProfileDetails'
 import { useEffect } from 'react'
+import Projects from './pages/projects/projects'
 
 function App() {
   const location = useLocation();
@@ -50,7 +51,15 @@ function App() {
         <Route path=':postID' element={<PostDetails />} />
       </Route>
 
-      <Route path='/*' element={<p>No page found..</p>} />
+      <Route path='/projects'>
+        <Route index element={<Projects />} />
+
+      </Route>
+
+      <Route path='/*' element={<center className='loading'>
+        <img src="/images/monitor/monitor_red.png" alt="not found image" height={100} />
+        <p>404: NOT FOUND</p>
+      </center>} />
     </Routes>
   ) : <center className='loading'>
     <img src="/loading_monitor.gif" alt="loading gif" height={100} />

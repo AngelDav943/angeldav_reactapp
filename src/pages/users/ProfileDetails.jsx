@@ -40,9 +40,10 @@ export default function () {
             <section className="userdata">
                 <div className="top">
                     <img src={user.profile} alt="profile" />
-                    <div>
-                        <p className="username">@{user.username}</p>
-                        <p>Radiation count: {user["total_likes"]}</p>
+                    <div className="info">
+                        <span className="displayname">{user.displayname}</span>
+                        <span className="username">@{user.username}</span>
+                        <span>Radiation count: {user["total_likes"]}</span>
                     </div>
                 </div>
                 <p>"{user.status}"</p>

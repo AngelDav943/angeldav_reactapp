@@ -7,7 +7,9 @@ export default function () {
     const { info, getData, setError } = useInfo();
 
     const [profileImage, setProfile] = useState(info?.profile);
+    const [profileDisplayName, setDisplayName] = useState(info?.displayname || "");
     const [profileStatus, setStatus] = useState(info?.status || "");
+
     const [darkmode, setDark] = useState(document.body.classList.contains("dark"));
 
     const uploadProfile = async () => {
@@ -50,6 +52,8 @@ export default function () {
         var modifiedData = {}
 
         if (info?.profile != profileImage) modifiedData["profile"] = profileImage
+        
+        if (info?.displayname != profileDisplayName) modifiedData["displayname"] = profileDisplayName
         if (info?.status != profileStatus) modifiedData["status"] = profileStatus
 
         // TODO: send all data to API
@@ -81,12 +85,19 @@ export default function () {
         <section className="item">
             <div className="profile">
                 <img src={profileImage} alt="profile picture" height={75} />
+                <span>{info.displayname}</span>
+                <br />
                 <span>@{info.username}</span>
             </div>
             <div className="inputs">
                 <label>
                     Username
                     <input placeholder={info?.username} disabled={true} />
+                </label>
+                <br />
+                <label>
+                    Display name
+                    <input placeholder={info?.displayname} value={profileDisplayName} onChange={(e) => { setDisplayName(e.target.value) }} />
                 </label>
                 <br />
                 <label>

@@ -1,0 +1,50 @@
+main.projects {
+
+}
+
+main.projects a.label h2 {
+    transition: padding .2s .1s;
+}
+
+main.projects a.label h2::after {
+    content: " >";
+}
+
+main.projects section.right a.label h2::after {
+    content: "";
+}
+
+main.projects section.right a.label h2::before {
+    content: "< ";
+}
+
+main.projects section.right:hover a.label h2 {
+    padding-right: 0.8rem;
+}
+
+main.projects section:hover a.label h2 {
+    padding-left: 0.8rem;
+}
+
+main.projects section.item img {
+    max-width: 175px;
+}
+
+@media screen and (max-width: 501px) {
+    main.projects section.right a.label h2::after {
+        content: " >";
+    }
+    
+    main.projects section.right a.label h2::before {
+        content: "";
+    }
+
+    main.projects section.right.item {
+        flex-direction: row-reverse;
+    }
+
+    main.projects section.item img {
+        max-width: 100px;
+        /* display: none; */
+    }
+}
