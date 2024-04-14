@@ -37,12 +37,14 @@ section.item .inputs {
 }
 
 article.dashhome section.item .profilepreview {
-    margin: -2rem;
+    margin-top: -1rem;
+    margin-left: -3rem;
     padding: 2rem;
-    margin-bottom: -1rem;
 
     display: grid;
     overflow: hidden;
+
+    width: 100%;
 }
 
 article.dashhome section.item .profilepreview .banner {
