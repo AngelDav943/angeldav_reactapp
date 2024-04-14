@@ -41,17 +41,17 @@ export default function () {
                 <div className="header">
                     <div
                         className="banner"
-                        style={{backgroundImage:`url("${user.banner}")`}}
+                        style={{ backgroundImage: `url("${user.banner}")` }}
                     />
                     <div className="top">
                         <img src={user.profile} alt="profile" />
                         <div className="info">
                             <span className="displayname">{user.displayname}</span>
                             <span className="username">@{user.username}</span>
-                            <span>Radiation count: {user["total_likes"]}</span>
                         </div>
                     </div>
                 </div>
+                <span className="radiation">Radiation count: {user["total_likes"]}</span>
                 <p>"{user.status}"</p>
             </section>
 
