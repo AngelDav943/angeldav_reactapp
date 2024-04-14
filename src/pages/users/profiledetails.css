@@ -52,7 +52,7 @@ main.profiledetails section.posts {
 main.profiledetails section.userdata .header {
     margin: -2rem;
     padding: 2rem;
-    margin-bottom: -1rem;
+    margin-bottom: 0rem;
     padding-bottom: 4rem;
 
     display: grid;
@@ -86,14 +86,33 @@ main.profiledetails section.userdata .top {
 
     margin: -2rem;
     padding: 2rem;
-    /* background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Sunset_2007-1.jpg/1280px-Sunset_2007-1.jpg"); */
+    
     display: flex;
     align-items: flex-start;
+    align-items: center;
+
     gap: 1rem;
 }
 
 main.profiledetails .top .info span {
     display: block;
+}
+
+main.profiledetails section.userdata span.radiation {
+    display: block;
+    color: white;
+    background-color: rgba(96, 180, 17, 0.7);
+    box-shadow: 0px 0px 2px 0.5rem rgba(96, 180, 17, 0.7);
+    /* padding: 0rem; */
+    margin: 0.2rem 0.5rem;
+    margin-bottom: 1.5rem;
+
+    transition: box-shadow 0.5s, background 0.5s;
+}
+
+main.profiledetails section.userdata span.radiation:hover {
+    background-color: rgba(96, 180, 17, 1);
+    box-shadow: 0px 0px 5px 0.5rem rgba(96, 180, 17, 1);
 }
 
 main.profiledetails .top .info span.displayname {
