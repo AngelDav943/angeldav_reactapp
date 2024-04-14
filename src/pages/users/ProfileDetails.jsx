@@ -38,12 +38,18 @@ export default function () {
     return usersLoaded ? <main className="profiledetails">
         <article className="central">
             <section className="userdata">
-                <div className="top">
-                    <img src={user.profile} alt="profile" />
-                    <div className="info">
-                        <span className="displayname">{user.displayname}</span>
-                        <span className="username">@{user.username}</span>
-                        <span>Radiation count: {user["total_likes"]}</span>
+                <div className="header">
+                    <div
+                        className="banner"
+                        style={{backgroundImage:`url("${user.banner}")`}}
+                    />
+                    <div className="top">
+                        <img src={user.profile} alt="profile" />
+                        <div className="info">
+                            <span className="displayname">{user.displayname}</span>
+                            <span className="username">@{user.username}</span>
+                            <span>Radiation count: {user["total_likes"]}</span>
+                        </div>
                     </div>
                 </div>
                 <p>"{user.status}"</p>

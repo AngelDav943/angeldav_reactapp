@@ -1,6 +1,4 @@
-main.profiledetails {
-    
-}
+main.profiledetails {}
 
 main.profiledetails::before {
     image-rendering: pixelated;
@@ -51,7 +49,44 @@ main.profiledetails section.posts {
     flex-grow: 1;
 }
 
+main.profiledetails section.userdata .header {
+    margin: -2rem;
+    padding: 2rem;
+    margin-bottom: -1rem;
+    padding-bottom: 4rem;
+
+    display: grid;
+    overflow: hidden;
+}
+
+main.profiledetails section.userdata .header .banner {
+    filter: blur(3px);
+    mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 0;
+    margin: -2rem;
+
+    position: relative;
+    top: -6px;
+    left: -6px;
+
+    background-size: cover;
+    background-position: center;
+
+    width: calc(100% + 4rem + 12px);
+    height: calc(100% + 6rem);
+}
+
 main.profiledetails section.userdata .top {
+    z-index: 1;
+    grid-column: 1;
+    grid-row: 1;
+
+    margin: -2rem;
+    padding: 2rem;
+    /* background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Sunset_2007-1.jpg/1280px-Sunset_2007-1.jpg"); */
     display: flex;
     align-items: flex-start;
     gap: 1rem;
