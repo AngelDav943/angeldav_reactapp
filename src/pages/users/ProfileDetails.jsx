@@ -37,7 +37,7 @@ export default function () {
 
         if (info == null) return
         const data = await fetchWeb(`/users/follow?id=${userID}`)
-        console.log("response:",data)
+        console.log("response:", data)
         if (data && data["followers"]) setFollowers(data.followers);
     }
 
@@ -68,8 +68,10 @@ export default function () {
                         </div>
                     </div>
                 </div>
+                <span className="radiation">Radiation count: {user["total_likes"]}</span>
+                <br />
                 <div className="stats">
-                    <span className="radiation">Radiation count: {user["total_likes"]}</span>
+                    <span>{user.following.length} following</span>
                     <span>{followers.length} follower{followers.length > 1 || followers.length == 0 ? "s" : ""}</span>
                 </div>
                 <p>"{user.status}"</p>
