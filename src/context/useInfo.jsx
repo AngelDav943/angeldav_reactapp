@@ -119,7 +119,7 @@ export function InfoProvider({ children }) {
     }
 
     async function getStats() {
-        const data = await exportUtils.fetchWeb('/users/stats')
+        const data = await exportUtils.fetchWeb('/stats')
         setWebStats(data)
     }
 

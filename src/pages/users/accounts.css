@@ -29,6 +29,7 @@ article.users .items {
 }
 
 article.users .items a {
+    --onBackground: #f5fafd;
     color: var(--onBackground);
 }
 
@@ -49,6 +50,8 @@ article.users .user:hover .banner {
 }
 
 article.users .user .banner {
+    opacity: 0.9;
+    background-color: rgba(17, 39, 17, 0.9);
     mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 
     filter: blur(3px);
@@ -60,14 +63,14 @@ article.users .user .banner {
     /* margin-top: 0; */
 
     position: relative;
-    top: -6px;
-    left: -6px;
+    top: -1rem;
+    left: -1rem;
 
     background-size: cover;
     background-position: center;
 
-    width: calc(100% + 12px);
-    height: calc(100% + 12px);
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
 
     transition: filter .5s;
 }
