@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ({ post, extrabutton, clickable }) {
     const navigate = useNavigate();
-    const commentCount = post.comments != null ? (post.comments["length"] != undefined) ? post.comments.length : post.comments : 0
 
     function bodyClick() {
         if (clickable != true) return;
@@ -30,8 +29,8 @@ export default function ({ post, extrabutton, clickable }) {
             </p>
         </section>
         <span className="info" onClick={() => bodyClick()}>
-            <span className='likes'>{post.likes} radiation</span>
-            <span className='comments'>{String(commentCount)}</span>
+            <span className='likes'>{post.likesCount} radiation</span>
+            <span className='comments'>{String(post.commentCount)}</span>
         </span>
     </article>
 }

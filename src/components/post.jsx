@@ -11,15 +11,14 @@ export default function ({ post, clickable }) {
     const { info, fetchWeb } = useInfo();
     const navigate = useNavigate();
 
-    const [likes, setLikes] = useState(post.likes);
-    const commentCount = (post.comments["length"] != undefined) ? post.comments.length : post.comments
+    const [likes, setLikes] = useState(post.likesCount);
 
     async function likePost() {
         if (info == null) return
         const data = await fetchWeb('/posts', {
             headers: { "like": post.id }
         })
-        if (data && data["likes"]) setLikes(data["likes"]);
+        if (data && data["likesCount"]) setLikes(data["likesCount"]);
     }
 
     function bodyClick() {
@@ -45,7 +44,7 @@ export default function ({ post, clickable }) {
         </section>
         <span className="info">
             <input disabled={info == null} type='button' className='likes' value={likes + " radiation"} onClick={() => likePost()} />
-            <span className='comments' onClick={() => bodyClick()}>{String(commentCount)}</span>
+            <span className='comments' onClick={() => bodyClick()}>{String(post.commentCount)}</span>
         </span>
     </article>
 }
