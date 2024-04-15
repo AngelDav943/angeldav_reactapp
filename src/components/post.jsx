@@ -11,14 +11,14 @@ export default function ({ post, clickable }) {
     const { info, fetchWeb } = useInfo();
     const navigate = useNavigate();
 
-    const [likes, setLikes] = useState(post.likesCount);
+    const [likes, setLikes] = useState(post.likes);
 
     async function likePost() {
         if (info == null) return
         const data = await fetchWeb('/posts', {
             headers: { "like": post.id }
         })
-        if (data && data["likesCount"]) setLikes(data["likesCount"]);
+        if (data && data["likes"]) setLikes(data["likes"]);
     }
 
     function bodyClick() {
@@ -44,9 +44,9 @@ export default function ({ post, clickable }) {
         </section>
         <span className="info">
             <div className="likes">
-                <input disabled={info == null} type='button' className='likes' value={likes + " radiation"} onClick={() => likePost()} />
+                <input disabled={info == null} type='button' className='likes' value={likes.length + " radiation"} onClick={() => likePost()} />
                 <div className="users">
-                    {post.likes.map((userID, index) => {
+                    {likes.map((userID, index) => {
                         if (index > 5) return;
                         return <img key={index} className='userpreview' src={`https://datatest.angelddcs.workers.dev/users/profile?id=${userID}`} alt={userID} />
                     })}
