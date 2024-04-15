@@ -62,9 +62,9 @@ export default function () {
                         <div className="info">
                             <span className="displayname">{user.displayname}</span>
                             <span className="username">@{user.username}</span>
-                            <div className="buttons">
-                                <span onClick={() => followUser()}>{(info != null && followers.includes(String(info.id))) ? "Unf" : "F"}ollow</span>
-                            </div>
+                            {(info) && <div className="buttons">
+                                {String(info.id) != params["ID"] && <span onClick={() => followUser()}>{(info != null && followers.includes(String(info.id))) ? "Unf" : "F"}ollow</span>}
+                            </div>}
                         </div>
                     </div>
                 </div>
