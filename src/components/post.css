@@ -131,7 +131,17 @@ article.post .info .users .userpreview {
     border-radius: 0.3rem;
 }
 
-@media screen and (max-width: 501px) {
+@media screen and (max-width: 361px) {
+    article.post span.top .author span.displayname {
+        display: none;
+    }
+
+    article.post span.top .author span.username {
+        padding-left: 0rem;
+        opacity: 1;
+        font-size: 0.9rem;
+    }
+
     article.post .info .users {
         display: none;
     }

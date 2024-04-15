@@ -111,6 +111,7 @@ header section.popup a:hover {
         height: calc(100dvh - 1rem);
         flex-direction: column;
         justify-content: flex-start;
+        z-index: 10;
     }
 
     header section.popup {

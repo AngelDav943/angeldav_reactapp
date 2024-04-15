@@ -79,5 +79,6 @@ main.dashboard button.sidebar {
 
     main.dashboard aside.open {
         display: flex;
+        z-index: 2;
     }
 }
