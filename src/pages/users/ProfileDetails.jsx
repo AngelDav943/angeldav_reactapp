@@ -7,12 +7,14 @@ import './profiledetails.css'
 import MinimalPost from "../../components/MinimalPost";
 
 export default function () {
-    const { fetchWeb } = useInfo();
+    const { info, fetchWeb } = useInfo();
     const params = useParams();
 
     const [usersLoaded, setLoaded] = useState(false);
     const [notFound, setFound] = useState(true);
     const [user, setUser] = useState([]);
+
+    const [followers, setFollowers] = useState([]);
 
     async function fetchUsers() {
         const userID = parseInt(params["ID"])
@@ -21,12 +23,24 @@ export default function () {
         var data = await fetchWeb(`/users?id=${userID}&posts=true`);
         if (data && data["id"] != null) {
             setUser(data)
+            setFollowers(data.followers)
             setLoaded(true)
             return
         }
 
         setFound(false)
     }
+
+    async function followUser() {
+        const userID = parseInt(params["ID"])
+        if (isNaN(userID)) return
+
+        if (info == null) return
+        const data = await fetchWeb(`/users/follow?id=${userID}`)
+        console.log("response:",data)
+        if (data && data["followers"]) setFollowers(data.followers);
+    }
+
 
     useEffect(() => { fetchUsers() }, [])
 
@@ -44,14 +58,20 @@ export default function () {
                         style={{ backgroundImage: `url("${user.banner}")` }}
                     />
                     <div className="top">
-                        <img src={user.profile} alt="profile" />
+                        <img src={user.profile} alt="profile" className="profile" />
                         <div className="info">
                             <span className="displayname">{user.displayname}</span>
                             <span className="username">@{user.username}</span>
+                            <div className="buttons">
+                                <span onClick={() => followUser()}>{(info != null && followers.includes(String(info.id))) ? "Unf" : "F"}ollow</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <span className="radiation">Radiation count: {user["total_likes"]}</span>
+                <div className="stats">
+                    <span className="radiation">Radiation count: {user["total_likes"]}</span>
+                    <span>{followers.length} follower{followers.length > 1 || followers.length == 0 ? "s" : ""}</span>
+                </div>
                 <p>"{user.status}"</p>
             </section>
 

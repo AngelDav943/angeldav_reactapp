@@ -119,6 +119,24 @@ article.post .info span.comments::after {
     background-size: contain;
 }
 
+article.post .info .users {
+    align-items: center;
+    padding-left: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+article.post .info .users .userpreview {
+    height: 1.5rem;
+    border-radius: 0.3rem;
+}
+
+@media screen and (max-width: 501px) {
+    article.post .info .users {
+        display: none;
+    }
+}
+
 /* minimal version */
 article.post.minimal span.top {
     width: calc(100% - 0.4rem + 1px);

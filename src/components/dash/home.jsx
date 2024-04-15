@@ -117,7 +117,6 @@ export default function () {
             <div className="profilepreview">
                 <div
                     className="banner"
-                    // style={{ backgroundImage: `url("https://datatest.angelddcs.workers.dev/users/banner?id=1")` }}
                     style={{ backgroundImage: `url("${bannerImage}")` }}
                 />
                 <div className="top">
@@ -129,13 +128,6 @@ export default function () {
                 </div>
             </div>
 
-            {/* <div className="profile">
-                <img src={bannerImage} alt="banner" />
-                <img src={profileImage} alt="profile picture" height={75} />
-                <span>{info.displayname}</span>
-                <br />
-                <span>@{info.username}</span>
-            </div> */}
             <div className="inputs">
                 <label>
                     Username

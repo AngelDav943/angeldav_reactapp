@@ -29,13 +29,19 @@ export default function () {
     return usersLoaded ? <article className="users">
         <div className="items">
             {users.map((user, index) => (
-                <a key={index} href={`/users/${user.id}`}>
+                <a className="item" key={index} href={`/users/${user.id}`}>
                     <div key={index} className="user">
-                        <img src={user.profile} alt="profile" height={64} />
-                        <div className="info">
-                            <span className="displayname">{user.displayname}</span>
-                            <span className="username">@{user.username}</span>
-                            <span className="status">"{user.status}"</span>
+                        <div
+                            className="banner"
+                            style={{ backgroundImage: `url("${user.banner}")` }}
+                        />
+                        <div className="top">
+                            <img src={user.profile} alt="profile" />
+                            <div className="info">
+                                <span className="displayname">{user.displayname}</span>
+                                <span className="username">@{user.username}</span>
+                                <span className="status">"{user.status}"</span>
+                            </div>
                         </div>
                     </div>
                 </a>

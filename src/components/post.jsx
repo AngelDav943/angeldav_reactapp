@@ -43,7 +43,15 @@ export default function ({ post, clickable }) {
             ))}</p>
         </section>
         <span className="info">
-            <input disabled={info == null} type='button' className='likes' value={likes + " radiation"} onClick={() => likePost()} />
+            <div className="likes">
+                <input disabled={info == null} type='button' className='likes' value={likes + " radiation"} onClick={() => likePost()} />
+                <div className="users">
+                    {post.likes.map((userID, index) => {
+                        if (index > 5) return;
+                        return <img key={index} className='userpreview' src={`https://datatest.angelddcs.workers.dev/users/profile?id=${userID}`} alt={userID} />
+                    })}
+                </div>
+            </div>
             <span className='comments' onClick={() => bodyClick()}>{String(post.commentCount)}</span>
         </span>
     </article>
