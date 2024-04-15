@@ -37,6 +37,8 @@ export function InfoProvider({ children }) {
     const [error, setErrorMessage] = useState(null)
     const [modal, setModal] = useState(null)
 
+    const [webStats, setWebStats] = useState({})
+
     const exportUtils = {
 
         fetchWeb: async (path = "/", init = null) => {
@@ -113,10 +115,16 @@ export function InfoProvider({ children }) {
             const message = String(msg);
             if (error == null) setErrorMessage(message)
         }
+
     }
 
+    async function getStats() {
+        const data = await exportUtils.fetchWeb('/users/stats')
+        setWebStats(data)
+    }
 
     useEffect(() => {
+        getStats()
         if (info == null) exportUtils.getData()
         if (localStorage.getItem("dark") == "true" && document.body.classList.contains("dark") == false) document.body.classList.add("dark")
     }, [])
@@ -127,11 +135,10 @@ export function InfoProvider({ children }) {
         }, 4100)
     }, [[error]])
 
-
     const forceLogin = () => <Login />
 
     return (
-        <infoContext.Provider value={{ info, loaded, ...exportUtils, forceLogin, setModal }}>
+        <infoContext.Provider value={{ info, userStats: webStats, loaded, ...exportUtils, forceLogin, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
             {modal && <div className="modalcontainer">

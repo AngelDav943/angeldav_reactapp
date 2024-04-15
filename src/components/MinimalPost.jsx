@@ -1,16 +1,30 @@
 import './post.css'
 import utils from '../utils'
 import { useNavigate } from 'react-router-dom';
+import { useInfo } from '../context/useInfo';
+import { useEffect, useState } from 'react';
 
 export default function ({ post, extrabutton, clickable }) {
+    const { info, userStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
+
+    const [likes, setLikes] = useState(post.likes);
+
+    async function likePost() {
+        if (info == null) return
+        const data = await fetchWeb('/posts', {
+            headers: { "like": post.id }
+        })
+        if (data && data["likes"]) setLikes(data["likes"]);
+    }
 
     function bodyClick() {
         if (clickable != true) return;
         navigate(`/posts/${post.id}`);
     }
+    
 
-    return <article className={`post minimal ${clickable == true ? 'clickable' : ''}`}>
+    return <article className={`post minimal ${likes.length >= Math.floor(userStats.total * 0.5) && "radiated"} ${clickable == true ? 'clickable' : ''}`}>
         <span className='top' onClick={() => bodyClick()}>
             <div>
                 {extrabutton}
@@ -28,9 +42,9 @@ export default function ({ post, extrabutton, clickable }) {
                 ))}
             </p>
         </section>
-        <span className="info" onClick={() => bodyClick()}>
-            <span className='likes'>{post.likesCount} radiation</span>
-            <span className='comments'>{String(post.commentCount)}</span>
+        <span className="info">
+            <input disabled={info == null} type='button' className='likes' value={likes.length + " radiation"} onClick={() => likePost()} />
+            <span className='comments' onClick={() => bodyClick()}>{String(post.commentCount)}</span>
         </span>
     </article>
 }
