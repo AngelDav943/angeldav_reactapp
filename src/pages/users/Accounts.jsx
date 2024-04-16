@@ -36,7 +36,7 @@ export default function () {
                             style={{ backgroundImage: `url("${user.banner}")` }}
                         />
                         <div className="top">
-                            <img src={user.profile} alt="profile" />
+                            <img src={user.profile} alt="profile" className="profile" />
                             <div className="info">
                                 <span className="displayname">{user.displayname}</span>
                                 <span className="username">@{user.username}</span>

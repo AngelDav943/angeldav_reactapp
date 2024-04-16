@@ -23,6 +23,7 @@ main.dashboard aside input.selected {
 }
 
 main.dashboard aside {
+    background: var(--backgroundimg);
     position: inherit;
 
     width: 100%;

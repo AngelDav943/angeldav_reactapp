@@ -1,5 +1,6 @@
 header {
     width: calc(100% - 2em);
+    background: var(--backgroundimg);
     background-color: var(--background);
     border-bottom: 1px solid var(--outline);
     height: var(--headerSize);

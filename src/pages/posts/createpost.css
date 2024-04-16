@@ -10,7 +10,7 @@ article.createpost .editor {
     padding: 1rem 1rem;
 
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1rem - 1px);
-    background: var(--background);
+    background-image: var(--background);
     max-width: 600px;
     margin: auto;
 }

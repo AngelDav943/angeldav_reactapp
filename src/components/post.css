@@ -1,5 +1,5 @@
 article.post {
-    background: var(--background);
+    background-color: var(--background);
     margin: 1rem;
     outline: 1px solid var(--outline);
 }

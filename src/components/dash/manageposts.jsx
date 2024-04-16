@@ -49,7 +49,7 @@ export default function () {
         const post = posts[postIndex]
 
         setModal(<>
-            <p>Are you sure you want to delete your post with the title of '{post.title}'?</p>
+            <p>Are you sure you want to delete your post '{post.body}'?</p>
             <div className="buttons">
                 <input type="button" value="Cancel" onClick={() => setModal(null)} />
                 <input type="submit" value="Confirm" onClick={() => removePost(post.id)} />

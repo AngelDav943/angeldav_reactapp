@@ -42,7 +42,18 @@ article.users .user {
     display: grid;
     overflow: hidden;
 
+    height: 8.5rem;
     width: 100%;
+}
+
+article.users .user img.profile {
+    border-radius: 0.3rem;
+    transition: transform .8s, margin 0.6s;
+}
+
+article.users .user:hover img.profile {
+    transform: scale(1.3);
+    margin-right: 0.8rem;
 }
 
 article.users .user:hover .banner {
@@ -59,8 +70,6 @@ article.users .user .banner {
     grid-column: 1;
     grid-row: 1;
     z-index: 0;
-    /* margin: -1rem; */
-    /* margin-top: 0; */
 
     position: relative;
     top: -1rem;
@@ -94,6 +103,8 @@ article.users .user .info span {
 article.users .user .info span.displayname {
     margin: 0;
     font-size: 1.3rem;
+
+    transition: font-size 0.5s;
 }
 
 article.users .user .info span.username {
@@ -101,6 +112,8 @@ article.users .user .info span.username {
     font-size: 1rem;
     opacity: 0.7;
     margin-bottom: .5rem;
+
+    transition: font-size 0.5s;
 }
 
 article.users .user .info span.status {
@@ -110,4 +123,19 @@ article.users .user .info span.status {
     text-overflow: ellipsis;
     max-width: 420px;
     width: calc(90dvw - 4rem - 64px);
+
+    transition: font-size 0.7s, opacity 0.6s;
+}
+
+article.users .user:hover .info span.displayname {
+    font-size: 1.5rem;
+}
+
+article.users .user:hover .info span.username {
+    font-size: 1rem;
+}
+
+article.users .user:hover .info span.status {
+    opacity: 0.5;
+    font-size: 0.8rem;
 }

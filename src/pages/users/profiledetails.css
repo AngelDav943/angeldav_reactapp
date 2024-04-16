@@ -15,7 +15,7 @@ main.profiledetails::before {
 }
 
 main.profiledetails article.central {
-    background: var(--background);
+    background-color: var(--background);
     margin: auto;
     max-width: 800px;
     display: flex;
