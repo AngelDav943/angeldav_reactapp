@@ -11,7 +11,7 @@ export default function () {
         <h3>Posts statistics</h3>
         <p>Total posts: {webStats.posts.total}</p>
         <p>Total radiation: {webStats.posts.totalLikes}</p>
-        <h4>Distribution</h4>
+        <h4>Radiation distribution</h4>
         <div className="likeDistribution">
             {Object.keys(webStats.posts.likesDistribution).map(id => {
                 const distribution = webStats.posts.likesDistribution[id];
