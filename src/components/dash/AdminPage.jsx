@@ -62,7 +62,17 @@ export default function () {
             }
         })
         
-        if (data) fetchData();
+        if (data) {
+            let updatedInvites = [...invites]
+
+            let inviteIndex = null;
+            updatedInvites.forEach((inviteItem, index) => { 
+                if (inviteItem.id == data.id) inviteIndex = index
+            })
+            
+            if (inviteIndex != null) updatedInvites[inviteIndex] = data;
+            setInvites(updatedInvites)
+        }
     }
 
     async function togglePermission(userID, permission) {
@@ -78,7 +88,7 @@ export default function () {
         })
 
         setModal(null);
-        if (data) fetchData();
+        if (data) setPermissions(data)
     }
 
     async function removePost(postID) {
@@ -89,7 +99,17 @@ export default function () {
         })
 
         setModal(null);
-        if (data) fetchData();
+        if (data) {
+            let updatedPosts = [...posts]
+
+            let postIndex = null;
+            updatedPosts.forEach((postItem, index) => { 
+                if (postItem.id == data.id) postIndex = index
+            })
+
+            if (postIndex != null) updatedPosts.splice(postIndex, 1)
+            setPosts(updatedPosts)
+        }
     }
 
     const openPermissionModal = function (permission) {
@@ -112,7 +132,7 @@ export default function () {
         const post = posts[postIndex]
 
         setModal(<>
-            <p>Are you sure you want to delete {post.user.username}'s post with the title of '{post.title}'?</p>
+            <p>Are you sure you want to delete {post.user.username}'s post '{post.body}'?</p>
             <div className="buttons">
                 <input type="button" value="Cancel" onClick={() => setModal(null)} />
                 <input type="submit" value="Confirm" onClick={() => removePost(post.id)} />

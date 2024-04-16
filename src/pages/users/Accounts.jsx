@@ -4,6 +4,7 @@ import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
 import './accounts.css'
+import UserTile from "../../components/UserTile";
 
 export default function () {
     //const { loaded, /*info,*/ forceLogin, getData } = useInfo();
@@ -29,22 +30,7 @@ export default function () {
     return usersLoaded ? <article className="users">
         <div className="items">
             {users.map((user, index) => (
-                <a className="item" key={index} href={`/users/${user.id}`}>
-                    <div key={index} className="user">
-                        <div
-                            className="banner"
-                            style={{ backgroundImage: `url("${user.banner}")` }}
-                        />
-                        <div className="top">
-                            <img src={user.profile} alt="profile" className="profile" />
-                            <div className="info">
-                                <span className="displayname">{user.displayname}</span>
-                                <span className="username">@{user.username}</span>
-                                <span className="status">"{user.status}"</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                <UserTile user={user} key={index}/>
             ))}
         </div>
     </article> : <center className='loading'>

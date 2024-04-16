@@ -18,8 +18,8 @@ export default function ({ post, extrabutton, clickable }) {
         if (data && data["likes"]) setLikes(data["likes"]);
     }
 
-    function bodyClick() {
-        if (clickable != true) return;
+    function bodyClick(override) {
+        if (clickable != true && override != true) return;
         navigate(`/posts/${post.id}`);
     }
     
@@ -44,7 +44,7 @@ export default function ({ post, extrabutton, clickable }) {
         </section>
         <span className="info">
             <input disabled={info == null} type='button' className='likes' value={likes.length + " radiation"} onClick={() => likePost()} />
-            <span className='comments' onClick={() => bodyClick()}>{String(post.commentCount)}</span>
+            <span className='comments' onClick={() => bodyClick(true)}>{String(post.commentCount)}</span>
         </span>
     </article>
 }

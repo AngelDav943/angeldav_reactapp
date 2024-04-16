@@ -148,6 +148,10 @@ article.post .info .users .userpreview {
 }
 
 /* minimal version */
+article.post.minimal {
+    margin-bottom: 0;
+}
+
 article.post.minimal span.top {
     width: calc(100% - 0.4rem + 1px);
     font-size: 0.9rem;
@@ -167,6 +171,10 @@ article.post.minimal a.user {
 
 article.post.minimal section.body>p {
     margin: 0;
+}
+
+article.post.minimal .info span.comments {
+    cursor: pointer;
 }
 
 /* radiated version */

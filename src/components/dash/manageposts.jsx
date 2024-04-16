@@ -7,7 +7,7 @@ import './manageposts.css'
 import MinimalPost from "../MinimalPost";
 
 export default function () {
-    const { info, forceLogin, setError, setModal } = useInfo();
+    const { info, forceLogin, fetchWeb, setModal } = useInfo();
     if (info == null) return forceLogin();
 
     if (info?.permissions.post == 0) return <center className="loading">
@@ -18,31 +18,27 @@ export default function () {
     const [posts, setPosts] = useState(null);
 
     async function fetchPosts() {
-        var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev/posts?fromID=${info?.id}`, {
-            headers: { "token": info?.token },
-        });
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        if (response["msg"] == undefined) setPosts(response)
+        var data = await fetchWeb(`/posts?fromID=${info?.id}`)
+        if (data) setPosts(data)
     }
     async function removePost(postID) {
-
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
+        var data = await fetchWeb('/posts', {
             method: 'DELETE',
-            headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify({ id: postID })
-        })
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
+            data: { id: postID }
         })
 
         setModal(null);
-        if (response["msg"]) return setError(response["msg"]);
-        fetchPosts();
+        if (data) {
+            let updatedPosts = [...posts]
+
+            let postIndex = null;
+            updatedPosts.forEach((postItem, index) => { 
+                if (postItem.id == data.id) postIndex = index
+            })
+
+            if (postIndex) updatedPosts.splice(postIndex, 1)
+            setPosts(updatedPosts)
+        }
     }
 
     const openPostDeletionModal = function (postIndex) {
@@ -70,7 +66,7 @@ export default function () {
         {posts ? <>
             <div className="posts">
                 {posts && posts.map((post, index) => (
-                    <MinimalPost key={index} post={post} clickable={true} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
+                    <MinimalPost key={index} post={post} clickable={false} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>} />
                 ))}
             </div>
         </> : <center>

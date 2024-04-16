@@ -1,12 +1,42 @@
+import { useEffect, useState } from 'react';
 import { useInfo } from '../context/useInfo';
 import './stats.css'
+import Post from '../components/post';
+import UserTile from '../components/UserTile';
 
 export default function () {
-    const { loading, webStats, fetchWeb } = useInfo();
+    const { loading, fetchWeb } = useInfo();
+
+    const [webStats, setStatistics] = useState(null);
+    const [mostLikedPost, setMostLikedPost] = useState(null)
+
+    async function fetchStatistics() {
+        const data = await fetchWeb('/stats');
+        if (data) {
+            setStatistics(data)
+
+            const fetchedPost = await fetchWeb(`/posts?id=${data.posts.mostliked.id}`);
+            if (fetchedPost) setMostLikedPost(fetchedPost)
+        }
+    }
+
+    useEffect(() => {
+        fetchStatistics()
+    }, [])
+
+    if (webStats == null) return <center className='loading'>
+        <img src="/loading_monitor.gif" alt="loading gif" height={100} />
+        <p>Loading website's statistics</p>
+    </center>
 
     return <main className="statistics">
-        <h2>Basic website statistics:</h2>
+        <h2>Basic website statistics</h2>
+        <hr />
+        <h3>User statistics</h3>
         <p>Total users: {webStats.users.total}</p>
+        <p>Most followed user:</p>
+        <UserTile user={webStats.users.mostFollowed} extra={`${webStats.users.mostFollowed.followerCount} followers`} />
+
         <hr />
         <h3>Posts statistics</h3>
         <p>Total posts: {webStats.posts.total}</p>
@@ -34,7 +64,9 @@ export default function () {
             })}
         </div>
         <br />
-        <a href={`./posts${webStats.posts.mostliked.id}`}>Most liked post</a>
+        <a href={`./posts/${webStats.posts.mostliked.id}`}>Most liked post</a>
+        {mostLikedPost && <Post clickable={true} post={mostLikedPost} />}
+        <hr />
         {/* <code>{JSON.stringify(webStats)}</code> */}
     </main>
 }

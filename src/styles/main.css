@@ -9,6 +9,10 @@
 
     --headerSize: 3rem;
     --headerPadding: 1rem;
+
+    --darkBackground: #2a2a2d;
+    --darkOnBackground: #f5fafd;
+    --darkOutline: #ffffff2d;
 }
 
 body.dark {

@@ -37,7 +37,7 @@ export function InfoProvider({ children }) {
     const [error, setErrorMessage] = useState(null)
     const [modal, setModal] = useState(null)
 
-    const [webStats, setWebStats] = useState({})
+    const [simpleStatistics, setWebStats] = useState({})
 
     const exportUtils = {
 
@@ -74,7 +74,7 @@ export function InfoProvider({ children }) {
         },
 
         getData: async () => {
-            const webStatistics = await exportUtils.fetchWeb('/stats')
+            const webStatistics = await exportUtils.fetchWeb('/stats?simple=true')
             setWebStats(webStatistics)
 
             const savedToken = localStorage.getItem("uid")
@@ -135,7 +135,7 @@ export function InfoProvider({ children }) {
     const forceLogin = () => <Login />
 
     return (
-        <infoContext.Provider value={{ info, webStats, loaded, ...exportUtils, forceLogin, setModal }}>
+        <infoContext.Provider value={{ info, webStats: simpleStatistics, loaded, ...exportUtils, forceLogin, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
             {modal && <div className="modalcontainer">
