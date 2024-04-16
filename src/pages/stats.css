@@ -89,79 +89,9 @@ main.statistics .likeDistribution .item .data img {
         display: grid;
     }
 
-    main.statistics .item .banner {
+    main.statistics .likeDistribution .item .banner {
         left: -5px;
         width: var(--w);
         mask-image: linear-gradient(90deg, black 95%, transparent 90%);
     }
-}
-
-main.statistics .userlink {
-    color: var(--onBackground);
-}
-
-main.statistics .userlink .user {
-    display: grid;
-    overflow: hidden;
-}
-
-main.statistics .userlink .user div {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-main.statistics .userlink .user .top {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    
-    z-index: 1;
-    padding: 1rem;
-}
-
-main.statistics .userlink .user .banner {
-    opacity: 0.7;
-    background-color: rgba(17, 39, 17, 0.9);
-    /* mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
-
-    filter: blur(3px);
-
-    grid-column: 1;
-    grid-row: 1;
-    z-index: 0;
-
-    position: relative;
-    top: -1rem;
-    left: -1rem;
-
-    background-size: cover;
-    background-position: center;
-
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-}
-
-main.statistics .userlink .user .info span {
-    display: block;
-}
-
-main.statistics .userlink .user .info span.displayname {
-    margin: 0;
-    font-size: 1.3rem;
-}
-
-main.statistics .userlink .user .info span.username {
-    margin: 0;
-    font-size: 1rem;
-    opacity: 0.7;
-    margin-bottom: .5rem;
-}
-
-main.statistics .userlink .user .info span.status {
-    max-height: 2rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 420px;
-    width: calc(90dvw - 4rem - 64px);
 }
