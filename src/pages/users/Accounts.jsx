@@ -30,7 +30,7 @@ export default function () {
     return usersLoaded ? <article className="users">
         <div className="items">
             {users.map((user, index) => (
-                <UserTile user={user} key={index}/>
+                <UserTile user={user} key={index} extra={`"${user.status}"`}/>
             ))}
         </div>
     </article> : <center className='loading'>
