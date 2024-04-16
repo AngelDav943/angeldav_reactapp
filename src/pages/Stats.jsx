@@ -64,7 +64,7 @@ export default function () {
             })}
         </div>
         <br />
-        <a href={`./posts/${webStats.posts.mostliked.id}`}>Most liked post</a>
+        <a href={`./posts/${webStats.posts.mostliked.id}`}>Most irradiating post</a>
         {mostLikedPost && <Post clickable={true} post={mostLikedPost} />}
         <hr />
         {/* <code>{JSON.stringify(webStats)}</code> */}
