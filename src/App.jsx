@@ -12,6 +12,7 @@ import PostDetails from './pages/posts/postDetails'
 import ProfileDetails from './pages/users/ProfileDetails'
 import { useEffect } from 'react'
 import Projects from './pages/projects/projects'
+import Stats from './pages/Stats'
 
 function App() {
   const location = useLocation();
@@ -53,8 +54,9 @@ function App() {
 
       <Route path='/projects'>
         <Route index element={<Projects />} />
-
       </Route>
+
+      <Route path='statistics' element={<Stats />} />
 
       <Route path='/*' element={<center className='loading'>
         <img src="/images/monitor/monitor_red.png" alt="not found image" height={100} />

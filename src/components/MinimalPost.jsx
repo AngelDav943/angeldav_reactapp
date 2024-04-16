@@ -5,7 +5,7 @@ import { useInfo } from '../context/useInfo';
 import { useEffect, useState } from 'react';
 
 export default function ({ post, extrabutton, clickable }) {
-    const { info, userStats, fetchWeb } = useInfo();
+    const { info, webStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
 
     const [likes, setLikes] = useState(post.likes);
@@ -24,7 +24,7 @@ export default function ({ post, extrabutton, clickable }) {
     }
     
 
-    return <article className={`post minimal ${likes.length >= Math.floor(userStats.total * 0.5) && "radiated"} ${clickable == true ? 'clickable' : ''}`}>
+    return <article className={`post minimal ${likes.length >= Math.floor(webStats.users.total * 0.5) && "radiated"} ${clickable == true ? 'clickable' : ''}`}>
         <span className='top' onClick={() => bodyClick()}>
             <div>
                 {extrabutton}

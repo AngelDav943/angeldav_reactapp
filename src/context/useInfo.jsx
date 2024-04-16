@@ -74,6 +74,9 @@ export function InfoProvider({ children }) {
         },
 
         getData: async () => {
+            const webStatistics = await exportUtils.fetchWeb('/stats')
+            setWebStats(webStatistics)
+
             const savedToken = localStorage.getItem("uid")
             if (savedToken == null) {
                 setLoaded(true)
@@ -118,13 +121,7 @@ export function InfoProvider({ children }) {
 
     }
 
-    async function getStats() {
-        const data = await exportUtils.fetchWeb('/stats')
-        setWebStats(data)
-    }
-
     useEffect(() => {
-        getStats()
         if (info == null) exportUtils.getData()
         if (localStorage.getItem("dark") == "true" && document.body.classList.contains("dark") == false) document.body.classList.add("dark")
     }, [])
@@ -138,7 +135,7 @@ export function InfoProvider({ children }) {
     const forceLogin = () => <Login />
 
     return (
-        <infoContext.Provider value={{ info, userStats: webStats, loaded, ...exportUtils, forceLogin, setModal }}>
+        <infoContext.Provider value={{ info, webStats, loaded, ...exportUtils, forceLogin, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
             {modal && <div className="modalcontainer">

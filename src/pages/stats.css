@@ -1,0 +1,96 @@
+main.statistics {
+    margin-top: -1rem;
+    padding-top: 1rem;
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
+    max-width: 1000px;
+    margin: auto;
+}
+
+main.statistics .likeDistribution {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main.statistics .likeDistribution .item {
+    width: var(--w);
+    overflow: hidden;
+    /* min-width: 50px; */
+    flex-grow: 1;
+    display: grid;
+    background: darkgray;
+    margin-bottom: 0.5rem;
+}
+
+main.statistics .item div {
+    grid-column: 1;
+    grid-row: 1;
+    height: 4rem;
+}
+
+
+main.statistics .item .banner {
+    background-color: var(--bgcolor);
+    z-index: 0;
+    filter: blur(3px);
+    
+    position: relative;
+    top: -2rem;
+    left: -2rem;
+
+    background-size: cover;
+    background-position: center;
+
+    width: calc(100% + 4rem);
+    height: calc(100% + 4rem);
+}
+
+main.statistics .item .data {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    padding-left: 0.8rem;
+    gap: 1rem;
+}
+
+main.statistics .item .data .stats {
+    min-width: 4rem;
+}
+
+main.statistics .item .data .stats .percentage {
+    margin-right: 0.3rem;
+}
+
+main.statistics .item .data .stats .distribution {
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+main.statistics .item .data .stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
+
+main.statistics .item .data img {
+    height: 2rem;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 701px) {
+    main.statistics .likeDistribution .item {
+        width: 100%;
+        overflow: hidden;
+        min-width: 100%;
+        flex-grow: 1;
+        display: grid;
+    }
+
+    main.statistics .item .banner {
+        left: -5px;
+        width: var(--w);
+        mask-image: linear-gradient(90deg, black 95%, transparent 90%);
+    }
+}

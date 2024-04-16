@@ -69,7 +69,6 @@ article.dashhome section.item .profilepreview .top {
     grid-row: 1;
     
     padding: 2rem;
-    /* background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Sunset_2007-1.jpg/1280px-Sunset_2007-1.jpg"); */
     display: flex;
     align-items: flex-start;
     gap: 1rem;

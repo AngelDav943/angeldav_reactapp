@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function ({ post, clickable }) {
-    const { info, userStats, fetchWeb } = useInfo();
+    const { info, webStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
 
     const [likes, setLikes] = useState(post.likes);
@@ -26,7 +26,7 @@ export default function ({ post, clickable }) {
         navigate(`/posts/${post.id}`);
     }
 
-    return <article className={`post ${likes.length >= Math.floor(userStats.total * 0.5) && "radiated"} ${clickable == true ? 'clickable' : ''}`}>
+    return <article className={`post ${likes.length >= Math.floor(webStats.users.total * 0.5) && "radiated"} ${clickable == true ? 'clickable' : ''}`}>
         <span className='top' onClick={() => bodyClick()}>
             <div className='author'>
                 <span className='displayname'>{post.user.displayname}</span>
