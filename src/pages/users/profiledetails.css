@@ -14,6 +14,11 @@ main.profiledetails::before {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
+main.profiledetails h1, main.profiledetails h2, main.profiledetails h3, main.profiledetails h4 {
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
 main.profiledetails article.central {
     background-color: var(--background);
     margin: auto;
@@ -23,10 +28,6 @@ main.profiledetails article.central {
     justify-content: space-between;
 
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
-}
-
-main.profiledetails article.central section {
-    width: 100%;
 }
 
 main.profiledetails section.userdata {
@@ -159,4 +160,32 @@ main.profiledetails section.posts h2 {
 
 main.profiledetails a.post {
     color: var(--onBackground);
+}
+
+main.profiledetails .badges {
+    display: flex;
+    gap: 0.1rem;
+}
+
+main.profiledetails .badges .badge img {
+    height: 50px;
+    width: auto;
+}
+
+main.profiledetails .badgelink {
+    color: var(--onBackground);
+}
+
+main.profiledetails .badgelink::after {
+    content: ">";
+    opacity: 0.9;
+    padding-left: 0.3rem;
+    font-weight: 300;
+    
+    transition: padding 0.5s;
+}
+
+main.profiledetails .badgelink:hover::after {
+    font-weight: 500;
+    padding-left: 0.9rem;
 }

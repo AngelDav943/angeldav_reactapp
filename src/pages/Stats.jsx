@@ -3,6 +3,7 @@ import { useInfo } from '../context/useInfo';
 import './stats.css'
 import Post from '../components/post';
 import UserTile from '../components/UserTile';
+import { Link } from 'react-router-dom';
 
 export default function () {
     const { loading, fetchWeb } = useInfo();
@@ -64,7 +65,7 @@ export default function () {
             })}
         </div>
         <br />
-        <a href={`./posts/${webStats.posts.mostliked.id}`}>Most irradiating post</a>
+        <Link to={`./posts/${webStats.posts.mostliked.id}`}>Most irradiating post</Link>
         {mostLikedPost && <Post clickable={true} post={mostLikedPost} />}
         <hr />
         {/* <code>{JSON.stringify(webStats)}</code> */}

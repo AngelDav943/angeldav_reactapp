@@ -41,6 +41,7 @@ header .profile {
     align-items: center;
     gap: 1rem;
     font-size: 1.2rem;
+    cursor: pointer;
 }
 
 header .profile img {

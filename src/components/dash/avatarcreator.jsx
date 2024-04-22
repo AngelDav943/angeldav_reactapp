@@ -6,7 +6,7 @@ import './avatarcreator.css'
 const avatarLink = "https://angeldav943.github.io/static/assets/images/avatar/"
 
 export default function () {
-    const { info, getData, setError } = useInfo();
+    const { info, getData, setError, fetchWeb } = useInfo();
 
     const [avatarImage, setAvatar] = useState("");
 
@@ -88,18 +88,12 @@ export default function () {
 
         if (avatarImage != "") modifiedData["profile"] = avatarImage
 
-        // TODO: send all data to API
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users', {
+        const response = fetchWeb('/users', { 
             method: 'PATCH',
-            headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify(modifiedData)
+            data: modifiedData
         })
 
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        console.log("avatar image size:", dataURL.length)
+        // console.log(modifiedData)
         if (response["msg"] == "Given values are too long") return setError("The given image is too large")
         getData();
     }

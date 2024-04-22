@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './projects.css'
 
 export default function () {
@@ -10,9 +11,9 @@ export default function () {
         <section className="item">
             <img src="/images/pocketwatch_wireframe.png" alt="pocketwatch model" />
             <article className="info">
-                <a className="label" href="">
+                <Link className="label" to="">
                     <h2>3D Designs</h2>
-                </a>
+                </Link>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
@@ -20,9 +21,9 @@ export default function () {
         </section>
         <section className="item right">
             <article className="info">
-                <a className="label" href="">
+                <Link className="label" to="">
                     <h2>2D Designs</h2>
-                </a>
+                </Link>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
@@ -32,9 +33,9 @@ export default function () {
         <section className="item">
             <img src="/images/drawn_computer.png" alt="placeholder" />
             <article className="info">
-                <a className="label" href="">
+                <Link className="label" to="">
                     <h2>Games</h2>
-                </a>
+                </Link>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
@@ -42,9 +43,9 @@ export default function () {
         </section>
         <section className="item right">
             <article className="info">
-                <a className="label" href="">
+                <Link className="label" to="">
                     <h2>Apps</h2>
-                </a>
+                </Link>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
@@ -57,9 +58,9 @@ export default function () {
                 <source src="/videos/turret.mp4" type="video/mp4" />
             </video>
             <article className="info">
-                <a className="label" href="">
+                <Link className="label" to="">
                     <h2>Label</h2>
-                </a>
+                </Link>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>

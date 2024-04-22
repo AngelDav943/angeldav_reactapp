@@ -1,18 +1,22 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { useInfo } from './context/useInfo'
+import { useEffect } from 'react'
 
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import SigningIn from './pages/SigningIn'
-import Accounts from './pages/users/Accounts'
 
 import Posts from './pages/posts/Posts'
 import CreatePost from './pages/posts/CreatePost'
 import PostDetails from './pages/posts/postDetails'
+
+import Accounts from './pages/users/Accounts'
 import ProfileDetails from './pages/users/ProfileDetails'
-import { useEffect } from 'react'
+
 import Projects from './pages/projects/projects'
 import Stats from './pages/Stats'
+import CreateBadge from './pages/create/CreateBadge'
+import Badges from './pages/badges/Badges'
 
 function App() {
   const location = useLocation();
@@ -54,6 +58,15 @@ function App() {
 
       <Route path='/projects'>
         <Route index element={<Projects />} />
+      </Route>
+
+      <Route path='/create'>
+        <Route path='badge' element={<CreateBadge />} />
+      </Route>
+
+      <Route path='/badges'>
+        <Route index element={<Badges />} />
+        <Route path=':userID' element={<Badges />} />
       </Route>
 
       <Route path='statistics' element={<Stats />} />

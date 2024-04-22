@@ -20,7 +20,7 @@ export default function () {
         const userID = parseInt(params["ID"])
         if (isNaN(userID)) return
 
-        var data = await fetchWeb(`/users?id=${userID}&posts=true`);
+        const data = await fetchWeb(`/users?id=${userID}&posts=true`);
         if (data && data["id"] != null) {
             setUser(data)
             setFollowers(data.followers)
@@ -75,13 +75,22 @@ export default function () {
                     <span>{followers.length} follower{followers.length > 1 || followers.length == 0 ? "s" : ""}</span>
                 </div>
                 <p>"{user.status}"</p>
+                <br />
+                <Link to={`/badges/${user.id}`}><h3 className="badgelink">Badges ({user?.badges.length})</h3></Link>
+                <div className="badges">
+                    {user.badges.map(badge => (
+                        <div className="badge" key={badge.id}>
+                            <img src={badge.image} alt="badge" title={badge.displayname} />
+                        </div>
+                    ))}
+                </div>
             </section>
 
             <section className="posts">
                 {(user.posts != null) && user.posts.map((post, index) => (
                     <MinimalPost post={post} key={index} clickable={true} />
                 ))}
-                <h2>All posts</h2>
+                <h2>All posts ({user?.posts.length})</h2>
             </section>
         </article>
     </main> : <center className='loading'>

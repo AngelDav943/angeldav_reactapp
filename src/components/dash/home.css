@@ -74,6 +74,11 @@ article.dashhome section.item .profilepreview .top {
     gap: 1rem;
 }
 
+article.dashhome section.item .profilepreview .top img {
+    max-height: 64px;
+    max-width: 64px;
+}
+
 article.dashhome section.item .profilepreview .top .info span {
     display: block;
 }

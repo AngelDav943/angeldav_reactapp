@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import './userTile.css'
 
 export default function ({ user, extra }) {
 
-    return <a className="usertile" href={`/users/${user.id}`}>
+    return <Link className="usertile" to={`/users/${user.id}`}>
         <div className="account">
             <div
                 className="banner"
@@ -17,5 +18,5 @@ export default function ({ user, extra }) {
                 </div>
             </div>
         </div>
-    </a>
+    </Link>
 }

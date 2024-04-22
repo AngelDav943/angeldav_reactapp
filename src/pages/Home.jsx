@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './home.css'
+import { Link } from 'react-router-dom';
 
 export default function () {
 
@@ -16,8 +17,8 @@ export default function () {
                     </p>
                     <br />
                     <div className="row">
-                        <a href="/login" className='button'>Log in</a>
-                        <a href='/signin' className="submit" >Create account</a>
+                        <Link to="/login" className='button'>Log in</Link>
+                        <Link to='/signin' className="submit" >Create account</Link>
                     </div>
                     <br />
                 </article>
@@ -32,7 +33,7 @@ export default function () {
                     </p>
                     <br />
                     <div className="row">
-                        <a href='/projects' className="submit" >Visit projects</a>
+                        <Link to='/projects' className="submit" >Visit projects</Link>
                     </div>
                     <br />
                 </article>

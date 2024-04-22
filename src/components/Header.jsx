@@ -24,7 +24,7 @@ export default function () {
 
     return (
         <header className={headerOpen ? "open" : ""}>
-            <img src={document.getElementById("favicon").href || "/favicon.ico"} alt="logo" onClick={() => { setHeaderOpen(!headerOpen) }} />
+            <img draggable={false} src={document.getElementById("favicon").href || "/favicon.ico"} alt="logo" onClick={() => { setHeaderOpen(!headerOpen) }} />
             <div className="left">
                 <nav>
                     <NavLink to={"/"}>Home</NavLink>
@@ -35,16 +35,16 @@ export default function () {
                 {info == null ? (
                     <NavLink className="submit" to={"/dashboard"}>Login</NavLink>
                 ) : (
-                    <a className="profile" onClick={() => setPopupOpen(!popup)}>
-                        <img src={prefix + info?.profile} alt="profile" />
-                        <span>{info?.username}</span>
-                    </a>
+                    <div className="profile" onClick={() => setPopupOpen(!popup)}>
+                        <img src={prefix + info?.profile} alt="profile" draggable={false} />
+                        <span>@{info?.username}</span>
+                    </div>
                 )}
             </div>
             {(info && popup) && <section className="popup">
-                <a href={`/users/${info?.id}`}>My profile</a>
-                <a href={`/dashboard`}>My dashboard</a>
-                <a className='logoff' href={`/dashboard`} onClick={() => logout()}>Log off</a>
+                <Link to={`/users/${info?.id}`}>My profile</Link>
+                <Link to={`/dashboard`}>My dashboard</Link>
+                <Link to={`/dashboard`} className='logoff' onClick={() => logout()}>Log off</Link>
             </section>}
         </header>
     )

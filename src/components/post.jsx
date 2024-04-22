@@ -3,7 +3,7 @@ import './post.css'
 import utils from '../utils';
 import { useState } from 'react';
 import { useInfo } from '../context/useInfo';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -35,9 +35,9 @@ export default function ({ post, clickable }) {
             {utils.timeFromTimestamp(post.timestamp)}
         </span>
         <section className="body">
-            <a className="user" href={`/users/${post.fromID}`}>
+            <Link className="user" to={`/users/${post.fromID}`}>
                 <img src={post.user.profile} alt="profile" />
-            </a>
+            </Link>
             <p onClick={() => bodyClick()}>{String(post.body).split("\n").map((item, index) => (
                 <span key={index}>{item}</span>
             ))}</p>

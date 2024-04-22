@@ -100,6 +100,8 @@ export default function () {
             return { msg: String(err) }
         })
 
+        console.log(response)
+
         if (response["msg"] == "Given values are too long") return setError("The given image is too large")
 
         getData();

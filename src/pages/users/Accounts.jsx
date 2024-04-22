@@ -7,17 +7,13 @@ import './accounts.css'
 import UserTile from "../../components/UserTile";
 
 export default function () {
-    //const { loaded, /*info,*/ forceLogin, getData } = useInfo();
+    const { fetchWeb } = useInfo();
 
     const [usersLoaded, setLoaded] = useState(false);
     const [users, setUsers] = useState([]);
 
     async function fetchUsers() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users');
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
+        const response = await fetchWeb('/users');
 
         if (response["msg"] == undefined) {
             setLoaded(true)
