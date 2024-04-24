@@ -44,6 +44,26 @@ export function InfoProvider({ children }) {
 
     const exportUtils = {
 
+        setError: (msg) => {
+            const message = String(msg);
+            if (error == null) setErrorMessage(message)
+        },
+
+        addNotification: (icon, title, description) => {
+            const notificationID = notifications.length;
+            
+            const newNotificationArray = [
+                {
+                    "id": notificationID,
+                    "icon": icon,
+                    "title": title,
+                    "description": description
+                },
+                ...notifications
+            ]
+            setNotificationArray(newNotificationArray)
+        },
+
         fetchWeb: async (path = "/", init = null) => {
             init = init || { method: "GET", headers: null, data: null }
 
@@ -68,6 +88,18 @@ export function InfoProvider({ children }) {
                     setErrorMessage(response["msg"])
                     return null;
                 }
+
+                if (response && response["badge_award"] != null) {
+                    const badge_award = response["badge_award"]
+                    if (badge_award.badge != null && badge_award.success == true) {
+                        exportUtils.addNotification(
+                            badge_award.badge.image,
+                            "You got a badge!",
+                            `You obtained the "${badge_award.badge.displayname}" badge!`
+                        )
+                    }
+                }
+
                 return response;
             } catch (error) {
                 setErrorMessage(`${String(error)}; client error`)
@@ -116,27 +148,6 @@ export function InfoProvider({ children }) {
             localStorage.setItem("uid", undefined)
             setInfo(null);
         },
-
-        setError: (msg) => {
-            const message = String(msg);
-            if (error == null) setErrorMessage(message)
-        },
-
-        addNotification: (icon, title, description) => {
-            const notificationID = notifications.length;
-            
-            const newNotificationArray = [
-                {
-                    "id": notificationID,
-                    "icon": icon,
-                    "title": title,
-                    "description": description
-                },
-                ...notifications
-            ]
-            setNotificationArray(newNotificationArray)
-        },
-
     }
 
     useEffect(() => {

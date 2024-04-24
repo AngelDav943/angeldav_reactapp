@@ -62,9 +62,11 @@ article.badges .profilepreview {
     overflow: hidden;
 
     width: 100%;
+    color: var(--darkOnBackground);
 }
 
 article.badges .profilepreview .banner {
+    background-color: var(--darkBackground);
     filter: blur(3px);
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 

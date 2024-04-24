@@ -94,17 +94,6 @@ export default function () {
             headers: { "token": info?.token, "Content-Type": "application/json" },
             data: modifiedData
         })
-        
-        if (response && response["badge_award"] != null) {
-            const badge_award = response["badge_award"]
-            if (badge_award.badge != null && badge_award.success == true) {
-                addNotification(
-                    badge_award.badge.image,
-                    "You got a badge!",
-                    `You obtained the "${badge_award.badge.displayname}" badge!`
-                )
-            }
-        }
 
         getData();
     }
