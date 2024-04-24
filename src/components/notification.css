@@ -1,0 +1,71 @@
+#root > .notifications {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.notifications article.notification {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    background-color: var(--onBackground);
+    color: var(--background);
+    padding: 0.5rem;
+    padding-right: 1rem;
+    max-width: 350px;
+    width: calc(100dvw - 1rem);
+    min-height: 4rem;
+    max-height: 10rem;
+    overflow: hidden;
+
+    transition: border-radius 0.3s;
+
+    animation: notifAppear 1s, notifDisappear 1s linear 7s;
+}
+
+.notifications article.notification:first-child {
+    border-top-left-radius: 0.5rem;
+}
+
+.notifications article.notification img {
+    height: 100%;
+    width: auto;
+    max-width: 5rem;
+    object-fit: contain;
+    background: transparent;
+
+}
+
+.notifications article.notification span {
+    display: block;
+}
+
+.notifications article.notification span.title {
+    font-size: 1.3rem;
+}
+
+.notifications article.notification span.description {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+@keyframes notifAppear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes notifDisappear {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

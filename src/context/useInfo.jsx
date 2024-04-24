@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Login from "../pages/Login";
 
 import '../styles/modals.css'
+import Notification from "../components/Notification";
 
 const infoContext = createContext()
 
@@ -35,6 +36,8 @@ export function InfoProvider({ children }) {
     const [info, setInfo] = useState(null)
 
     const [error, setErrorMessage] = useState(null)
+    const [notifications, setNotificationArray] = useState([]);
+
     const [modal, setModal] = useState(null)
 
     const [simpleStatistics, setWebStats] = useState({})
@@ -117,7 +120,22 @@ export function InfoProvider({ children }) {
         setError: (msg) => {
             const message = String(msg);
             if (error == null) setErrorMessage(message)
-        }
+        },
+
+        addNotification: (icon, title, description) => {
+            const notificationID = notifications.length;
+            
+            const newNotificationArray = [
+                {
+                    "id": notificationID,
+                    "icon": icon,
+                    "title": title,
+                    "description": description
+                },
+                ...notifications
+            ]
+            setNotificationArray(newNotificationArray)
+        },
 
     }
 
@@ -131,6 +149,28 @@ export function InfoProvider({ children }) {
             setErrorMessage(null)
         }, 4100)
     }, [[error]])
+    
+    useEffect(() => {
+        if (notifications.length > 0) {
+            const latestID = notifications[0].id
+            setTimeout(() => {
+                setNotificationArray(current => {
+                    let newNotifs = [...current];
+                    let foundIndex = -1
+                    for (let index = 0; index < newNotifs.length; index++) {
+                        if (newNotifs[index].id == latestID) foundIndex = index
+                    }
+
+                    if (foundIndex != -1) {
+                        newNotifs.splice(foundIndex, 1)
+                        return newNotifs
+                    }
+
+                    return current;
+                })
+            }, 7900)
+        }
+    }, [notifications])
 
     const forceLogin = () => <Login />
 
@@ -138,6 +178,16 @@ export function InfoProvider({ children }) {
         <infoContext.Provider value={{ info, webStats: simpleStatistics, loaded, ...exportUtils, forceLogin, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
+            <div className="notifications">
+                {notifications && notifications.map(notif => (
+                    <Notification
+                        key={notif.id}
+                        iconImage={notif.icon}
+                        title={notif.title}
+                        description={notif.description}
+                    />
+                ))}
+            </div>
             {modal && <div className="modalcontainer">
                 <div className="modal">
                     <button className="close" onClick={() => setModal(null)}>X</button>

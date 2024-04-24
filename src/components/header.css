@@ -137,6 +137,7 @@ header section.popup a:hover {
     header.open div.left {
         display: flex;
         flex-direction: column;
+        align-items: stretch;
         height: 100%;
     }
 

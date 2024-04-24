@@ -4,7 +4,7 @@ import { useInfo } from "../../context/useInfo";
 import './home.css'
 
 export default function () {
-    const { info, getData, setError } = useInfo();
+    const { info, getData, fetchWeb, addNotification } = useInfo();
 
     const [bannerImage, setBanner] = useState(info?.banner || "none");
     const [profileImage, setProfile] = useState(info?.profile);
@@ -89,20 +89,22 @@ export default function () {
         if (info?.displayname != profileDisplayName) modifiedData["displayname"] = profileDisplayName
         if (info?.status != profileStatus) modifiedData["status"] = profileStatus
 
-        // TODO: send all data to API
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users', {
+        const response = await fetchWeb('/users', {
             method: 'PATCH',
             headers: { "token": info?.token, "Content-Type": "application/json" },
-            body: JSON.stringify(modifiedData)
+            data: modifiedData
         })
-
-        var response = await fetchedData.json().catch(err => {
-            return { msg: String(err) }
-        })
-
-        console.log(response)
-
-        if (response["msg"] == "Given values are too long") return setError("The given image is too large")
+        
+        if (response && response["badge_award"] != null) {
+            const badge_award = response["badge_award"]
+            if (badge_award.badge != null && badge_award.success == true) {
+                addNotification(
+                    badge_award.badge.image,
+                    "You got a badge!",
+                    `You obtained the "${badge_award.badge.displayname}" badge!`
+                )
+            }
+        }
 
         getData();
     }
