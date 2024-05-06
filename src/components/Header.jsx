@@ -42,9 +42,9 @@ export default function () {
                 )}
             </div>
             {(info && popup) && <section className="popup">
-                <Link to={`/users/${info?.id}`}>My profile</Link>
-                <Link to={`/dashboard`}>My dashboard</Link>
-                <Link to={`/dashboard`} className='logoff' onClick={() => logout()}>Log off</Link>
+                <NavLink to={`/users/${info?.id}`}>My profile</NavLink>
+                <NavLink to={`/dashboard`}>My dashboard</NavLink>
+                <NavLink to={`/dashboard`} className='logoff' onClick={() => logout()}>Log off</NavLink>
             </section>}
         </header>
     )

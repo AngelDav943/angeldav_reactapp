@@ -24,7 +24,7 @@ article.posts::before {
 }
 
 article.posts .items {
-    max-width: 600px;
+    max-width: 740px;
     margin: auto;
     display: flex;
     flex-direction: column-reverse;
