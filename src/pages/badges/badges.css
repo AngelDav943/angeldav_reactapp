@@ -10,6 +10,7 @@ article.badges {
 article.badges .items {
     max-width: 600px;
     margin: auto;
+    padding: 0 2rem;
 }
 
 article.badges .badge {
@@ -17,6 +18,7 @@ article.badges .badge {
     color: var(--outline);
     padding: 0.5rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
     border: 1px solid var(--outline);
@@ -31,6 +33,8 @@ article.badges .badge.obtained {
 article.badges .badge .info {
     display: inline-block;
     height: 100%;
+    flex-grow: 1;
+    flex-basis: 150px;
 }
 
 article.badges .badge .info span {

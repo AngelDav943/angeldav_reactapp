@@ -37,7 +37,7 @@ export default function () {
         navigate('/posts');
     }
 
-    const onPasteBody = async e => {
+    /*const onPasteBody = async e => {
         e.preventDefault();
         var dataTransfer = e;
         const currentTarget = e.currentTarget;
@@ -83,37 +83,30 @@ export default function () {
         }
 
         console.log(dataTransfer)
-
-        currentTarget.innerHTML += "<div>"+dataTransfer.getData("text/plain").replace(/</g, "⟨").replace(/>/g, "⟩")+"</div>"
-    }
+    }*/
 
     return <article className="createpost">
         <div className="editor">
             <form onSubmit={handleSubmit}>
                 <br />
-                <article className="post">
-                    <span className='top'>
-                        <span className='username'>@{info?.username}</span>
-                        {utils.timeFromTimestamp(Date.now())}
-                    </span>
-                    <section className="body">
-                        <section className="user">
-                            <img src={info?.profile} alt="profile" />
-                            <div className="info">
-                                <span className='title'>{title}</span>
-                            </div>
-                        </section>
-                        <p contentEditable={true}
-                            onInput={(e) => { setBody(e.target.innerText) }}
-                            onPaste={(e) => onPasteBody(e)}
-                            onDrop={(e) => onPasteBody(e)}
-                        />
-                    </section>
-                </article>
-                <br />
-                <div className="row">
-                    <input type="submit" value="Submit" />
-                </div>
+                <Post
+                    post={{
+                        commentCount: 0,
+                        body: body,
+                        timestamp: Date.now(),
+                        user: info,
+                        fromID: info?.id,
+                        likes: []
+                    }}
+                    clickable={false}
+                />
+                <section id="inputs">
+                    <textarea name="" id="" cols="30" onChange={(e) => { setBody(e.target.value) }} />
+                    <br />
+                    <div className="row">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </section>
             </form>
         </div>
     </article>

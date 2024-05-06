@@ -126,6 +126,21 @@ article.post .info .users {
     gap: 0.5rem;
 }
 
+article.post .body #content p {
+    margin: 0;
+}
+
+article.post .body #content video {
+    height: 200px;
+}
+
+article.post .body #content code {
+    display: block;
+    background-color: var(--outline);
+    padding: 0.3rem 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
 article.post .info .users .userpreview {
     height: 1.5rem;
     border-radius: 0.3rem;

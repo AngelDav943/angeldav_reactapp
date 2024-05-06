@@ -38,9 +38,14 @@ export default function ({ post, clickable }) {
             <Link className="user" to={`/users/${post.fromID}`}>
                 <img src={post.user.profile} alt="profile" />
             </Link>
-            <p onClick={() => bodyClick()}>{String(post.body).split("\n").map((item, index) => (
+            <div
+                id='content'
+                onClick={() => bodyClick()}
+                dangerouslySetInnerHTML={{ __html: utils.parseMarkdown(post.body) }}
+            />
+            {/* <p onClick={() => bodyClick()}>{String(post.body).split("\n").map((item, index) => (
                 <span key={index}>{item}</span>
-            ))}</p>
+            ))}</p> */}
         </section>
         <span className="info">
             <div className="likes">

@@ -17,6 +17,7 @@ import Projects from './pages/projects/projects'
 import Stats from './pages/Stats'
 import CreateBadge from './pages/create/CreateBadge'
 import Badges from './pages/badges/Badges'
+import MarkdownTest from './pages/tests/MarkdownTest'
 
 function App() {
   const location = useLocation();
@@ -67,6 +68,11 @@ function App() {
       <Route path='/badges'>
         <Route index element={<Badges />} />
         <Route path=':userID' element={<Badges />} />
+      </Route>
+
+      <Route path='/tests'>
+        <Route path='markdown' element={<MarkdownTest />} />
+
       </Route>
 
       <Route path='statistics' element={<Stats />} />
