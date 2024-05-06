@@ -25,17 +25,17 @@ article.post a.user img {
 }
 
 
-article.post section.body>p {
+article.post section.body>#content {
     flex-basis: 280px;
     flex-grow: 1;
     padding-left: 0.5rem;
     padding-right: 1rem;
 }
 
-article.post section.body>p span {
+/*article.post section.body>p span {
     min-height: 1rem;
     display: block;
-}
+}*/
 
 article.post span.top {
     display: flex;
@@ -184,7 +184,7 @@ article.post.minimal a.user {
     max-width: 50px;
 }
 
-article.post.minimal section.body>p {
+article.post.minimal section.body>#content {
     margin: 0;
 }
 

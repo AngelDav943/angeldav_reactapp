@@ -36,11 +36,11 @@ export default function ({ post, extrabutton, clickable }) {
             <section className="user">
                 <img src={post.user.profile} alt="profile" />
             </section>
-            <p onClick={() => bodyClick()}>
-                {String(post.body).split("\n").map((item, index) => (
-                    <span key={index}>{item}</span>
-                ))}
-            </p>
+            <div
+                id='content'
+                onClick={() => bodyClick()}
+                dangerouslySetInnerHTML={{ __html: utils.parseMarkdown(post.body) }}
+            />
         </section>
         <span className="info">
             <input disabled={info == null} type='button' className='likes' value={likes.length + " radiation"} onClick={() => likePost()} />

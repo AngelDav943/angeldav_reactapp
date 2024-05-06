@@ -90,7 +90,7 @@ export default function () {
                 {(user.posts != null) && user.posts.map((post, index) => (
                     <MinimalPost post={post} key={index} clickable={true} />
                 ))}
-                <h2>All posts ({user?.posts.length})</h2>
+                <h2 className="header">All posts ({user?.posts.length})</h2>
             </section>
         </article>
     </main> : <center className='loading'>
