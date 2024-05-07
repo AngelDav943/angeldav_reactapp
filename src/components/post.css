@@ -32,11 +32,6 @@ article.post section.body>#content {
     padding-right: 1rem;
 }
 
-/*article.post section.body>p span {
-    min-height: 1rem;
-    display: block;
-}*/
-
 article.post span.top {
     display: flex;
     justify-content: space-between;

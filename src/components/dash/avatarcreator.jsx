@@ -88,12 +88,11 @@ export default function () {
 
         if (avatarImage != "") modifiedData["profile"] = avatarImage
 
-        const response = fetchWeb('/users', { 
+        const response = fetchWeb('/users', {
             method: 'PATCH',
             data: modifiedData
         })
 
-        // console.log(modifiedData)
         if (response["msg"] == "Given values are too long") return setError("The given image is too large")
         getData();
     }

@@ -11,10 +11,6 @@ export default function () {
         <span>You don't have enough permissions to access this page.</span>
     </center>
 
-    // const [badgeImage, setBadgeImage] = useState("");
-    // const [badgeName, setBadgeName] = useState("");
-    // const [badgeDescription, setBadgeDescription] = useState("");
-
     const [badgeData, setBadgeData] = useState({
         "image": "",
         "name": "",
@@ -31,7 +27,6 @@ export default function () {
         console.log("sent data:",badgeData)
         console.log("response:", response)
         if (response["msg"] != null) return setError("The given image is too large")
-        // getData();
     }
 
     const uploadProfile = async () => {

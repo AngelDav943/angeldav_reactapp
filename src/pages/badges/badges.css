@@ -3,7 +3,6 @@ article.badges {
     padding-top: 1rem;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
 
-    /* background: #8c8c8c url("/images/floor_tiles.png"); */
     background-size: 10rem;
 }
 
@@ -94,7 +93,7 @@ article.badges .profilepreview .top {
     z-index: 1;
     grid-column: 1;
     grid-row: 1;
-    
+
     padding: 2rem;
     display: flex;
     align-items: flex-start;

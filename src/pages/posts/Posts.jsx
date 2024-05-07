@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 
 import './posts.css'
 import Post from "../../components/post";
-// import useFetch from "../../hooks/useFetch";
 
 export default function () {
     const { info, fetchWeb } = useInfo();
@@ -22,7 +21,7 @@ export default function () {
     }
 
     useEffect(() => {
-        fetchPosts() 
+        fetchPosts()
     }, [])
 
     return postsLoaded ? <article className="posts">

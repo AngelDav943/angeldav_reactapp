@@ -34,7 +34,7 @@ main.projects section.item img {
     main.projects section.right a.label h2::after {
         content: " >";
     }
-    
+
     main.projects section.right a.label h2::before {
         content: "";
     }
@@ -45,6 +45,5 @@ main.projects section.item img {
 
     main.projects section.item img {
         max-width: 100px;
-        /* display: none; */
     }
 }

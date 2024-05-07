@@ -41,7 +41,6 @@ function App() {
   return loaded ? (
     <Routes>
       <Route path='/' element={<Home />} />
-      {/* <Route path='/test' element={<Test/>} /> */}
 
       <Route path='/login' element={<Dashboard />} />
       <Route path='/signin' element={<SigningIn />} />

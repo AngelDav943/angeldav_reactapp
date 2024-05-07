@@ -43,9 +43,6 @@ export default function ({ post, clickable }) {
                 onClick={() => bodyClick()}
                 dangerouslySetInnerHTML={{ __html: utils.parseMarkdown(post.body) }}
             />
-            {/* <p onClick={() => bodyClick()}>{String(post.body).split("\n").map((item, index) => (
-                <span key={index}>{item}</span>
-            ))}</p> */}
         </section>
         <span className="info">
             <div className="likes">

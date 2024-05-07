@@ -40,7 +40,7 @@ export default function () {
             setError(response["msg"])
             return
         }
-        
+
         if (response["user"] != undefined) {
             localStorage.setItem("uid", response.user.token)
             if (response["success"] == true) {
@@ -54,7 +54,6 @@ export default function () {
     return <main className="login">
         <h2>Create account</h2>
         {errorMessage && <span className="error">{errorMessage}</span>}
-        {/*<span className="error">Account creation currently in development</span>*/}
         <form onSubmit={handleSubmit}>
             <label placeholder="Username">
                 <input error={String(errorMessage != null)} type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />

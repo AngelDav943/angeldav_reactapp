@@ -11,7 +11,7 @@ export default function () {
     const [popup, setPopupOpen] = useState(false)
 
     function navClick() {
-        setHeaderOpen(false); 
+        setHeaderOpen(false);
         if (getData != null) getData();
     }
 
@@ -30,7 +30,6 @@ export default function () {
                     <NavLink to={"/"}>Home</NavLink>
                     <NavLink to={"/users"}>Users</NavLink>
                     <NavLink to={"/posts"}>Posts</NavLink>
-                    {/* <NavLink to={"/test"}>Test</NavLink> */}
                 </nav>
                 {info == null ? (
                     <NavLink className="submit" to={"/dashboard"}>Login</NavLink>

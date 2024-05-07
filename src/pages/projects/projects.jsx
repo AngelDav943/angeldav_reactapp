@@ -7,7 +7,7 @@ export default function () {
         <section>
             <h2>Projects</h2>
         </section>
-        
+
         <section className="item">
             <img src="/images/pocketwatch_wireframe.png" alt="pocketwatch model" />
             <article className="info">
@@ -52,19 +52,5 @@ export default function () {
             </article>
             <img src="/images/favicons/posts.ico" aria-label='placeholder' alt="placeholder"/>
         </section>
-        <br />
-        {/* <section className="item white">
-            <video poster="" preload='true' autoPlay muted playsInline loop>
-                <source src="/videos/turret.mp4" type="video/mp4" />
-            </video>
-            <article className="info">
-                <Link className="label" to="">
-                    <h2>Label</h2>
-                </Link>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-            </article>
-        </section> */}
     </main>
 }
