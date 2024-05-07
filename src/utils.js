@@ -52,6 +52,9 @@ const markdownRules = [
     ],
 
     [/([^\n]+\n?)/g, "<p>$1</p>"],
+
+    // Spacing
+    [/\n\n/g,"<br>"],
     
     // HTML Misc
     // [/<(\w+)\s*><(\w+)\s*>(.*)<\/\2><\/\1>/g, "<$2>$3</$2>"],
@@ -86,15 +89,18 @@ export default {
     parseMarkdown(body) {
         if (body == null) return;
 
-        let html = body.split("```").map((sector, index) => {
-            if (index % 2 == 1) return sector.replace(/([^\n]+\n?)/g, "<p>$1</p>")
+        let html = body.replace(/</g, "&lt;").replace(/>/g, "&gt;").split("```").map((sector, index) => {
+            if (index % 2 == 1) return sector.replace(/([^\n]+\n?)/g, "<p>$1</p>").replace(/\n\n/g,"<br>")
             
             let result = sector
             markdownRules.forEach(([rule, template]) => {
                 result = result.replace(rule, template)
             })
             return result
-        }).join("```").replace(/```([^`+]+)```/g, "<code>$1</code>")
+        }).join("```")
+            .replace(/```([^`+]+)```/g, "<code>$1</code>")
+            
+            
 
         console.log(html)
 
