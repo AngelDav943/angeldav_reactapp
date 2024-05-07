@@ -126,7 +126,9 @@ article.post .body #content p {
 }
 
 article.post .body #content img {
-    height: 200px;
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
 }
 
 article.post .body #content video {
