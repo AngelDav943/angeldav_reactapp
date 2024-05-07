@@ -22,7 +22,7 @@ main.profiledetails h1.header, main.profiledetails h2.header {
 main.profiledetails article.central {
     background-color: var(--background);
     margin: auto;
-    max-width: 800px;
+    max-width: 900px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

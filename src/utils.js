@@ -1,3 +1,4 @@
+
 const markdownRules = [
     [/</g, "&lt;"],
     [/>/g, "&gt;"],
@@ -85,10 +86,17 @@ export default {
     parseMarkdown(body) {
         if (body == null) return;
 
-        let html = body
-        markdownRules.forEach(([rule, template]) => {
-            html = html.replace(rule, template)
-        })
+        let html = body.split("```").map((sector, index) => {
+            if (index % 2 == 1) return sector.replace(/([^\n]+\n?)/g, "<p>$1</p>")
+            
+            let result = sector
+            markdownRules.forEach(([rule, template]) => {
+                result = result.replace(rule, template)
+            })
+            return result
+        }).join("```").replace(/```([^`+]+)```/g, "<code>$1</code>")
+
+        console.log(html)
 
         return html
     }
