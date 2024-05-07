@@ -125,6 +125,10 @@ article.post .body #content p {
     margin: 0;
 }
 
+article.post .body #content img {
+    height: 200px;
+}
+
 article.post .body #content video {
     height: 200px;
 }
