@@ -40,6 +40,32 @@ main.home div.scroller section {
 }
 
 main.home .row {
-    display: flex;  
-    flex-wrap: wrap; 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main.home span.bouncy {
+    display: inline-flex;
+    counter-reset: bounce-text;
+}
+
+main.home span.bouncy * {
+    display: inline-block;
+    animation: bounce 4s infinite ease-in-out;
+    counter-increment: bounce-text;
+    transform: translate(0px, 6px) scale(1);
+    -webkit-transform: translate(0px, 6px) scale(1);
+}
+
+@keyframes bounce {
+
+    30% {
+        opacity: 0.3;
+    }
+
+    60% {
+        transform: translate(0px, -6px);
+        -webkit-transform: translate(0px, -6px);
+        opacity: 1;
+    }
 }

@@ -45,7 +45,7 @@ export default function () {
     }
 
     const [currentView, setView] = useState(0);
-    
+
     useEffect(() => {
         const scroller = document.querySelector(".scroller")
         if (scroller) {
@@ -59,7 +59,12 @@ export default function () {
             <img src="/images/city_pencil.png" alt="city" />
             <article className="info" style={{ maxWidth: "400px" }}>
                 <p>
-                    Welcome to this website, made by AngelDav943. <br />
+                    Welcome to this website, made by <span className='bouncy'>{
+                        "AngelDav943".split("").map((str, index) => (
+                            <span key={index} style={{animationDelay:`${index/10}s`}}>{str}</span>
+                        ))
+                    }</span>.
+                    <br />
                     I know lua, javascript, C#, some python, a bit of dart and some 3D modelling.
                 </p>
             </article>
