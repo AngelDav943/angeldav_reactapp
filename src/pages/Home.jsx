@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './home.css'
 import { Link } from 'react-router-dom';
 
+import Bouncy from '../components/Bouncy';
+
 export default function () {
 
     const scrollerItems = {
@@ -59,11 +61,7 @@ export default function () {
             <img src="/images/city_pencil.png" alt="city" />
             <article className="info" style={{ maxWidth: "400px" }}>
                 <p>
-                    Welcome to this website, made by <span className='bouncy'>{
-                        "AngelDav943".split("").map((str, index) => (
-                            <span key={index} style={{animationDelay:`${index/10}s`}}>{str}</span>
-                        ))
-                    }</span>.
+                    Welcome to this website, made by <Bouncy>AngelDav943</Bouncy>.
                     <br />
                     I know lua, javascript, C#, some python, a bit of dart and some 3D modelling.
                 </p>

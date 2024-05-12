@@ -1,3 +1,4 @@
+import React from 'react';
 import './post.css'
 
 import utils from '../utils';
@@ -5,9 +6,7 @@ import { useState } from 'react';
 import { useInfo } from '../context/useInfo';
 import { Link, useNavigate } from 'react-router-dom';
 
-
-
-export default function ({ post, clickable }) {
+export default function ({ post, clickable }: {post: any, clickable: boolean}) {
     const { info, webStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
 

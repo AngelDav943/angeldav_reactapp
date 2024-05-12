@@ -1,7 +1,8 @@
+import React from 'react';
 import { Link } from 'react-router-dom'
 import './userTile.css'
 
-export default function ({ user, extra }) {
+export default function ({ user, extra }: { user: any, extra: string}) {
 
     return <Link className="usertile" to={`/users/${user.id}`}>
         <div className="account">

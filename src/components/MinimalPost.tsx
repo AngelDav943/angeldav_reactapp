@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './post.css'
 import utils from '../utils'
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +12,7 @@ export default function ({ post, extrabutton, clickable }) {
 
     const [likes, setLikes] = useState(post.likes);
 
-    async function likePost() {
+    async function likePost(): Promise<void> {
         if (info == null) return
         const data = await fetchWeb('/posts', {
             headers: { "like": post.id }
@@ -18,7 +20,7 @@ export default function ({ post, extrabutton, clickable }) {
         if (data && data["likes"]) setLikes(data["likes"]);
     }
 
-    function bodyClick(override) {
+    function bodyClick(override: boolean = false): void {
         if (clickable != true && override != true) return;
         navigate(`/posts/${post.id}`);
     }

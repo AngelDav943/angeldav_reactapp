@@ -1,3 +1,4 @@
+import React from 'react';
 import './inviteTile.css'
 
 export default function({ info, onClick, clickText = "X", leading }) {
