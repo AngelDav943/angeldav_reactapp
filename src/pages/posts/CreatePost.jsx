@@ -105,6 +105,7 @@ export default function () {
                     <br />
                     <div className="row">
                         <input type="submit" value="Submit" />
+                        <Link className="button" to={'/posts/60'}>?</Link>
                     </div>
                 </section>
             </form>

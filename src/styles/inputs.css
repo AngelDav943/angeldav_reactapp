@@ -33,10 +33,23 @@ input:focus::placeholder, textarea:focus::placeholder {
 }
 
 input[type="submit"], a.submit {
-    background-color: var(--primary);
+    background: var(--primary);
+    box-shadow: inset 0px -10px 20px var(--dark-primary);
+    /* background: var(--primary) linear-gradient(var(--primary), var(--dark-primary) 90%); */
     color: white;
     cursor: pointer;
     outline: none;
+    transition: box-shadow 0.2s;
+}
+
+input[type="submit"]:disabled, a.submit:disabled {
+    background: var(--dark-primary);
+    color: var(--darkOnBackground);
+    cursor: default;
+}
+
+input[type="submit"]:hover:not(:disabled), a.submit:hover:not(:disabled) {
+    box-shadow: inset 0px 0px 0px -10px var(--dark-primary);
 }
 
 input[type="button"], button, a.button {
@@ -47,6 +60,7 @@ input[type="button"], button, a.button {
 }
 
 input[type="button"]:not(:disabled):hover, button:not(:disabled):hover, a.button:not(:disabled):hover {
+    box-shadow: 0px 0px 10px -5px black;
     color: var(--dark-primary);
     cursor: pointer;
     background-color: var(--transparent-primary);

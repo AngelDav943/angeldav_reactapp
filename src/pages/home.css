@@ -3,8 +3,12 @@ main.home {
     /* color: #1d1f20; */
 }
 
+main.home .item.gradient {
+    background: linear-gradient(transparent, var(--transparent-primary));
+    padding-bottom: 2.5rem;
+}
+
 main.home .scroll_buttons {
-    margin-top: 1rem;
     display: flex;
 }
 
@@ -13,6 +17,15 @@ main.home .scroll_buttons button {
     border-radius: 0;
     width: 100%;
     margin: 0;
+    padding-bottom: 0.7rem;
+    border-bottom: solid 3px transparent;
+    transition: border 0.2s;
+}
+
+main.home .scroll_buttons button:hover {
+    /* background-color: var(--outline); */
+    border-color: #4d59ff31;
+    font-weight: 600;
 }
 
 main.home .scroll_buttons button:active {
@@ -20,7 +33,8 @@ main.home .scroll_buttons button:active {
 }
 
 main.home .scroll_buttons button.selected {
-    border-bottom: 3px solid var(--primary);
+    padding-bottom: 0.7rem;
+    border-color: var(--primary);
 }
 
 main.home div.scroller {
@@ -42,4 +56,5 @@ main.home div.scroller section {
 main.home .row {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.5rem;
 }

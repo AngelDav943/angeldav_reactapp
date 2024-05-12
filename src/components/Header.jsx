@@ -34,7 +34,7 @@ export default function () {
                 {info == null ? (
                     <NavLink className="submit" to={"/dashboard"}>Login</NavLink>
                 ) : (
-                    <div className="profile" onClick={() => setPopupOpen(!popup)}>
+                    <div className={`profile ${popup ? 'clicked' : ''}`} onClick={() => setPopupOpen(!popup)}>
                         <img src={prefix + info?.profile} alt="profile" draggable={false} />
                         <span>@{info?.username}</span>
                     </div>
@@ -43,7 +43,7 @@ export default function () {
             {(info && popup) && <section className="popup">
                 <NavLink to={`/users/${info?.id}`}>My profile</NavLink>
                 <NavLink to={`/dashboard`}>My dashboard</NavLink>
-                <NavLink to={`/dashboard`} className='logoff' onClick={() => logout()}>Log off</NavLink>
+                <Link to={`/dashboard`} className='logoff' onClick={() => {setHeaderOpen(false); logout()}}>Log off</Link>
             </section>}
         </header>
     )

@@ -16,8 +16,10 @@ export default function (
 ) {
     return (
         <span className='bouncytext'>{
-            String(children).split("").map((str, index) => (
-                <span
+            String(children).split("").map((str, index) => {
+                if (str == " ") return <span key={index} style={{width: '0.3em'}}> </span>
+
+                return <span
                     key={index}
                     style={{
                         animationDelay: `${delay + -((String(children).length - index) / 5)}s`,
@@ -26,7 +28,7 @@ export default function (
                 >
                     {str}
                 </span>
-            ))
+            })
         }</span>
     )
 }

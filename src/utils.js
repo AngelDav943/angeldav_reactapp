@@ -100,10 +100,7 @@ export default {
         }).join("```")
             .replace(/```([^`+]+)```/g, "<code>$1</code>")
             
-            
-
-        console.log(html)
-
+        // console.log(html)
         return html
     }
 }

@@ -52,3 +52,10 @@ article.createpost form .post {
 article.createpost form .post section.body {
     flex-grow: 1;
 }
+
+article.createpost .row {
+    border-radius: 0.25rem;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: row;
+}

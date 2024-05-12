@@ -126,7 +126,26 @@ center.loading {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100dvh - var(--headerSize) - 1px);
+    min-height: calc(100dvh - var(--headerSize) - 1px - 1rem);
+}
+
+center.loading img {
+    height: 6rem;
+    animation: imageBounce 3s infinite ease-in-out;
+}
+
+@keyframes imageBounce {
+    0% {
+        transform: rotate(2deg);
+    }
+    
+    50% {
+        transform: rotate(-2deg) scale(1.05);
+    }
+
+    100% {
+        transform: rotate(2deg);
+    }
 }
 
 span.error {

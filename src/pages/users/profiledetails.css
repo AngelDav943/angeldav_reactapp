@@ -147,11 +147,38 @@ main.profiledetails section.userdata span.radiation:hover {
     box-shadow: 0px 0px 5px 0.5rem rgba(96, 180, 17, 1);
 }
 
-main.profiledetails section.userdata img {
+main.profiledetails section.userdata img.profile {
     width: 100%;
     height: auto;
     max-width: 100px;
+    transform: rotate(0deg);
+    transition: transform .5s ease-in-out, box-shadow .5s;
 }
+
+main.profiledetails section.userdata img.profile:hover {
+    transform: rotate(3deg);
+    animation: profileBobbling 2s ease-in-out .5s infinite;
+}
+
+main.profiledetails section.userdata img.profile:active {
+    animation-duration: .8s;
+    box-shadow: 0px 0px 20px -5px white;
+}
+
+@keyframes profileBobbling {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(3deg);
+    }
+}
+
 
 main.profiledetails section.posts h2.header {
     text-align: right;

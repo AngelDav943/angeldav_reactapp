@@ -2,6 +2,8 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { useInfo } from './context/useInfo'
 import { useEffect } from 'react'
 
+import NotFound from './pages/NotFound'
+
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import SigningIn from './pages/SigningIn'
@@ -76,10 +78,7 @@ function App() {
 
       <Route path='statistics' element={<Stats />} />
 
-      <Route path='/*' element={<center className='loading'>
-        <img src="/images/monitor/monitor_red.png" alt="not found image" height={100} />
-        <p>404: NOT FOUND</p>
-      </center>} />
+      <Route path='/*' element={<NotFound/>} />
     </Routes>
   ) : <center className='loading'>
     <img src="/loading_monitor.gif" alt="loading gif" height={100} />

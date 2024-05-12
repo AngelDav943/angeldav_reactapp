@@ -37,7 +37,7 @@ article.post span.top {
     justify-content: space-between;
     align-items: center;
     width: calc(100% - 1rem);
-    background-color: var(--primary);
+    background: var(--primary) linear-gradient(90deg, var(--primary), var(--dark-primary));
     color: white;
     font-size: 0.9rem;
     padding: 0.2rem 0.5rem;
@@ -200,5 +200,5 @@ article.post.radiated {
 }
 
 article.post.radiated span.top {
-    background-color: rgba(96, 180, 17, 0.9);
+    background: rgba(96, 180, 17, 0.9);
 }
