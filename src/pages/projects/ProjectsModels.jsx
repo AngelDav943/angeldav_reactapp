@@ -8,6 +8,13 @@ import Bouncy from '../../components/Bouncy'
 export default function () {
 
     const scrollerItems = {
+        "Device": (
+            <section className="item white">
+                <video poster="" preload='true' autoPlay muted playsInline loop>
+                    <source src="/videos/device.mp4" type="video/mp4" />
+                </video>
+            </section>
+        ),
         "Monitor": (
             <section className="item white">
                 <video poster="" preload='true' autoPlay muted playsInline loop>
