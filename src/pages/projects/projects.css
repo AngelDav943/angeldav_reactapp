@@ -1,49 +1,51 @@
-main.projects {
+main.projects.home {
 
 }
 
-main.projects a.label h2 {
+main.projects.home a.label h2 {
+    /* transition: padding .2s .1s; */
+}
+
+main.projects.home a.label h2::after {
+    content: " >";
     transition: padding .2s .1s;
 }
 
-main.projects a.label h2::after {
-    content: " >";
+main.projects.home section.right a.label h2::after {
+    content: none;
 }
 
-main.projects section.right a.label h2::after {
-    content: "";
-}
-
-main.projects section.right a.label h2::before {
+main.projects.home section.right a.label h2::before {
     content: "< ";
+    transition: padding .2s .1s;
 }
 
-main.projects section.right:hover a.label h2 {
+main.projects.home section.right:hover a.label h2::before {
     padding-right: 0.8rem;
 }
 
-main.projects section:hover a.label h2 {
+main.projects.home section:hover a.label h2::after {
     padding-left: 0.8rem;
 }
 
-main.projects section.item img {
+main.projects.home section.item img {
     max-width: 175px;
 }
 
 @media screen and (max-width: 501px) {
-    main.projects section.right a.label h2::after {
+    main.projects.home section.right a.label h2::after {
         content: " >";
     }
 
-    main.projects section.right a.label h2::before {
+    main.projects.home section.right a.label h2::before {
         content: "";
     }
 
-    main.projects section.right.item {
+    main.projects.home section.right.item {
         flex-direction: row-reverse;
     }
 
-    main.projects section.item img {
+    main.projects.home section.item img {
         max-width: 100px;
     }
 }

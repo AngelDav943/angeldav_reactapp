@@ -8,6 +8,7 @@ import App from './App.jsx'
 import Header from './components/Header.jsx'
 
 import './styles/main.css'
+import './styles/basic.css'
 import './styles/inputs.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

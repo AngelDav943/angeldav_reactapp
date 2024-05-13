@@ -1,0 +1,64 @@
+article.scrollerButtons .buttons {
+    display: flex;
+}
+
+article.scrollerButtons .buttons button {
+    background-color: white;
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 0.7rem;
+    border-bottom: solid 3px transparent;
+    transition: border 0.2s, padding 0.2s;
+}
+
+article.scrollerButtons .buttons button:hover {
+    z-index: 1;
+    border-color: #4d59ff7e;
+    font-weight: 600;
+}
+
+article.scrollerButtons .buttons button.selected {
+    border-color: var(--primary);
+}
+
+article.scrollerButtons .buttons button:active {
+    outline: none;
+    padding-bottom: calc(0.7rem - 3px);
+    border-width: 6px;
+}
+
+article.scrollerButtons div.scroller {
+    display: flex;
+    gap:1px;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+article.scrollerButtons div.scroller .empty {
+    display: contents;
+}
+
+article.scrollerButtons div.scroller section {
+    scroll-snap-align: start;
+    min-width: 100%;
+    padding: 0;
+}
+
+article.scrollerButtons section.item article.info {
+    padding: 0;
+    padding-right: 2rem;
+}
+
+article.scrollerButtons section.item article.info.right {
+    padding: 0;
+    padding-left: 2rem;
+}
+
+@media screen and (max-width: 501px) {
+    article.scrollerButtons section.item article.info,
+    article.scrollerButtons section.item article.info.right {
+        padding: 0 1rem;
+    }
+}

@@ -15,7 +15,9 @@ import PostDetails from './pages/posts/postDetails'
 import Accounts from './pages/users/Accounts'
 import ProfileDetails from './pages/users/ProfileDetails'
 
-import Projects from './pages/projects/projects'
+import Projects from './pages/projects/Projects'
+import ProjectsGames from './pages/projects/ProjectsGames'
+import ProjectsModels from './pages/projects/ProjectsModels'
 import Stats from './pages/Stats'
 import CreateBadge from './pages/create/CreateBadge'
 import Badges from './pages/badges/Badges'
@@ -60,6 +62,8 @@ function App() {
 
       <Route path='/projects'>
         <Route index element={<Projects />} />
+        <Route path='games' element={<ProjectsGames />} />
+        <Route path='models' element={<ProjectsModels />} />
       </Route>
 
       <Route path='/create'>

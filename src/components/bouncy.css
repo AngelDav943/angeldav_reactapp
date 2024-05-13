@@ -1,14 +1,13 @@
 span.bouncytext {
     --speed: 3s;
     display: inline-flex;
-    counter-reset: bounce-text;
+    flex-wrap: wrap;
     padding-bottom: 0.1em;
 }
 
 span.bouncytext * {
     display: inline-block;
     animation: bounce var(--speed) infinite ease-in-out;
-    counter-increment: bounce-text;
     transform: translate(0px, 0.2em) scale(1);
     -webkit-transform: translate(0px, 0.2em) scale(1);
 }

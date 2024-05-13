@@ -3,11 +3,12 @@ import './home.css'
 import { Link } from 'react-router-dom';
 
 import Bouncy from '../components/Bouncy';
+import ScrollerButtons from '../components/ScrollerButtons';
 
 export default function () {
 
     const scrollerItems = {
-        "Cone": (
+        "Welcome": (
             <section className="item right white">
                 <video poster="" preload='true' autoPlay muted playsInline loop>
                     <source src="/videos/cone.mp4" type="video/mp4" />
@@ -36,7 +37,7 @@ export default function () {
                     </p>
                     <br />
                     <div className="row">
-                        <Link to='/projects' className="submit">Visit projects (work in progress)</Link>
+                        <Link to='/projects' className="submit">Visit projects</Link>
                     </div>
                     <br />
                 </article>
@@ -46,16 +47,6 @@ export default function () {
             </section>
         )
     }
-
-    const [currentView, setView] = useState(0);
-
-    useEffect(() => {
-        const scroller = document.querySelector(".scroller")
-        if (scroller) {
-            const amount = Object.keys(scrollerItems).length
-            scroller.scrollLeft = (scroller.scrollWidth / amount) * Math.max(0, Math.min(currentView, amount))
-        }
-    }, [[currentView]])
 
     return <main className="home basic">
         <section className="item reverse gradient">
@@ -68,19 +59,7 @@ export default function () {
                 </p>
             </article>
         </section>
-        <div className="scroll_buttons">
-            {Object.keys(scrollerItems).map((key, index) => (
-                <button key={key} className={currentView == index ? "selected" : ""} onClick={() => setView(index)}>{key}</button>
-            ))}
-        </div>
-        <div className='scroller'>
-            {Object.keys(scrollerItems).map(key => (
-                <div key={key} className='empty'>
-                    {scrollerItems[key]}
-                </div>
-            ))}
-        </div>
-
+        <ScrollerButtons items={scrollerItems} />
         <section className="blueprint">
             <div className="row">
                 <img src="/images/turret_drawing.png" alt="turret sideways" />

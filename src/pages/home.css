@@ -8,51 +8,6 @@ main.home .item.gradient {
     padding-bottom: 2.5rem;
 }
 
-main.home .scroll_buttons {
-    display: flex;
-}
-
-main.home .scroll_buttons button {
-    background-color: white;
-    border-radius: 0;
-    width: 100%;
-    margin: 0;
-    padding-bottom: 0.7rem;
-    border-bottom: solid 3px transparent;
-    transition: border 0.2s;
-}
-
-main.home .scroll_buttons button:hover {
-    /* background-color: var(--outline); */
-    border-color: #4d59ff31;
-    font-weight: 600;
-}
-
-main.home .scroll_buttons button:active {
-    outline: none;
-}
-
-main.home .scroll_buttons button.selected {
-    padding-bottom: 0.7rem;
-    border-color: var(--primary);
-}
-
-main.home div.scroller {
-    display: flex;
-    scroll-snap-type: x proximity;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-main.home div.scroller .empty {
-    display: contents;
-}
-
-main.home div.scroller section {
-    scroll-snap-align: start;
-    min-width: 90%;
-}
-
 main.home .row {
     display: flex;
     flex-wrap: wrap;

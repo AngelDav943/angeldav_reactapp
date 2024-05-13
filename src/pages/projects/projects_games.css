@@ -1,0 +1,12 @@
+main.projects.games {
+
+}
+
+main.projects.games section.item {
+    padding: 0;
+    width: 100%;
+}
+
+main.projects.games section.item article.info {
+    padding-left: 2rem;
+}

@@ -36,97 +36,18 @@ main {
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
 }
 
-main.basic section {
-    width: 90%;
-    font-size: 1rem;
-    padding: 0px 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-main.basic section.item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-main.basic section.item.reverse {
-    flex-direction: row-reverse;
-}
-
-main.basic section.outlined {
-    border-top: 1px solid var(--outline);
-    border-bottom: 1px solid var(--outline);
-    margin-top: 25px;
-}
-
-main.basic section.item article {
-    max-width: 500px;
-    flex-basis: 200px;
-    flex-grow: 1;
-}
-
-main.basic section video,
-main.basic section img {
-    max-width: 400px;
-    width: 100%;
-}
-
-main.basic section.white {
-    background-color: white;
-    color: #1d1f20;
-}
-
-main.basic section.gray {
-    background-color: #dddcdd;
-    color: #1d1f20;
-}
-
-main.basic section.blueprint{
-    color: white;
-    background: #086fb0 url("/images/blueprint_tiles.png");
-    background-size: 2rem;
-    padding: 25px 5%;
-}
-
-main.basic section.right {
-    text-align: right;
-}
-
-main.basic section.right .row {
-    justify-content: right;
-}
-
-main.basic section.blueprint img {
-    width: auto;
-    max-height: 300px;
-    max-width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-main.basic article.info p {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
 h1 {
     font-size: 2rem;
     margin: 0.5rem 0;
     font-weight: 600;
 }
 
-center.loading {
+center.loading, main.center {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100dvh - var(--headerSize) - 1px - 1rem);
+    min-height: calc(100dvh - var(--headerSize) - 1px - 2rem - var(--headerSize));
 }
 
 center.loading img {
@@ -209,14 +130,4 @@ body.dark ::-webkit-scrollbar-track {
 
 ::-webkit-scrollbar-thumb:active {
     background: #4444449a;
-}
-
-@media screen and (max-width: 501px) {
-    main.basic section.right {
-        text-align: left;
-    }
-
-    main.basic article.info input, main.basic article.info a {
-        width: 100%;
-    }
 }
