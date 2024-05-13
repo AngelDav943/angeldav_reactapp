@@ -1,9 +1,14 @@
-main.projects.home {
-
+main.projects section.item article.info {
+    flex-basis: 300px;
+    flex-grow: 0.2;
 }
 
-main.projects.home a.label h2 {
-    /* transition: padding .2s .1s; */
+main.projects section.scrollerButtons video {
+    max-width: 100px;
+}
+
+main.projects.home {
+
 }
 
 main.projects.home a.label h2::after {
