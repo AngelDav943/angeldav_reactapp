@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import './posts.css'
 import Post from "../../components/post";
 import MinimalPost from "../../components/MinimalPost";
+import Bouncy from "../../components/Bouncy";
 
 export default function () {
     const params = useParams();
@@ -19,7 +20,10 @@ export default function () {
 
     async function fetchPost() {
         const postID = parseInt(params["postID"]);
-        if (isNaN(postID)) return
+        if (isNaN(postID)) {
+            setFound(false)
+            return
+        }
 
         var data = await fetchWeb(`/posts?id=${postID}`);
 
@@ -53,7 +57,8 @@ export default function () {
 
     if (notFound == false) return <center className='loading'>
         <img src="/images/monitor/monitor_red.png" alt="monitor" height={100} />
-        <span>404: Post not found.</span>
+        <h1><Bouncy>Post not found</Bouncy></h1>
+        <span>Couldn't get post '{params["postID"]}'</span>
     </center>
 
     return postLoaded ? <article className="posts">
