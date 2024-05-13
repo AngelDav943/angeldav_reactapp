@@ -15,7 +15,7 @@ import PostDetails from './pages/posts/postDetails'
 import Accounts from './pages/users/Accounts'
 import ProfileDetails from './pages/users/ProfileDetails'
 
-import Projects from './pages/projects/Projects'
+import Projects from './pages/projects/ProjectsHome'
 import ProjectsGames from './pages/projects/ProjectsGames'
 import ProjectsModels from './pages/projects/ProjectsModels'
 import Stats from './pages/Stats'
