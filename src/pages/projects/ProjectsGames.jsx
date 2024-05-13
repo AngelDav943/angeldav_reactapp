@@ -40,7 +40,7 @@ export default function () {
                 </h1>
                 <Link to='..'> &lt; Go back</Link>
             </article>
-            <ScrollerButtons items={scrollerItems} />
+            <ScrollerButtons items={scrollerItems} reverse={true} />
         </section>
     </main>
 }

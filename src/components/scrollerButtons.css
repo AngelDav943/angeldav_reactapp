@@ -1,3 +1,8 @@
+article.scrollerButtons.reverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 article.scrollerButtons .buttons {
     display: flex;
 }

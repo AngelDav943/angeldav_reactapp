@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import './profiledetails.css'
 import MinimalPost from "../../components/MinimalPost";
+import utils from "../../utils";
 
 export default function () {
     const { info, fetchWeb } = useInfo();
@@ -41,6 +42,33 @@ export default function () {
         if (data && data["followers"]) setFollowers(data.followers);
     }
 
+    function getLastOnline(timestamp) {
+        const date = new Date(timestamp)
+        const difference = Date.now() - date;
+
+        const time = {
+            years: Math.floor(difference / (1000 * 60 * 60 * 24 * 365.25)),
+            months: Math.floor(difference / (1000 * 60 * 60 * 24 * 30.4375)),
+            weeks: Math.floor(difference / (1000 * 60 * 60 * 24 * 7)),
+
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / 1000 / 60) % 60),
+            seconds: Math.floor((difference / 1000) % 60),
+        };
+
+        if (time.years > 0) return `Last online ${time.years} year${time.years > 1 ? 's' : ''} ago`
+        if (time.months > 0) return `Last online ${time.months} month${time.months > 1 ? 's' : ''} ago`
+        if (time.weeks > 0) return `Last online ${time.weeks} week${time.weeks > 1 ? 's' : ''} ago`
+        if (time.days > 0) return `Last online ${time.days} day${time.days > 1 ? 's' : ''} ago`
+        if (time.hours > 1) return `Last online ${time.hours} hour${time.hours > 1 ? 's' : ''} ago`
+        if (time.minutes > 10) return `Last online ${time.minutes} minute${time.minutes > 1 ? 's' : ''} ago`
+        if (time.seconds > 0) return `Online`
+
+
+        return `Last online some time ago`
+    }
+
 
     useEffect(() => { fetchUsers() }, [])
 
@@ -58,7 +86,7 @@ export default function () {
                         style={{ backgroundImage: `url("${user.banner}")` }}
                     />
                     <div className="top">
-                        <img src={user.profile} alt="profile" className="profile" />
+                        <img src={user.profile} alt="profile" className={`profile ${ Date.now() - user.lastonline < 600000 ? 'online' : '' }`} />
                         <div className="info">
                             <span className="displayname">{user.displayname}</span>
                             <span className="username">@{user.username}</span>
@@ -83,6 +111,12 @@ export default function () {
                             <img src={badge.image} alt="badge" title={badge.displayname} />
                         </div>
                     ))}
+                </div>
+                <br />
+                <br />
+                <div className="stats">
+                    <span>{getLastOnline(user.lastonline)}</span>
+                    <span>Joined {utils.timeFromTimestamp(user.joindate, true)}</span>
                 </div>
             </section>
 

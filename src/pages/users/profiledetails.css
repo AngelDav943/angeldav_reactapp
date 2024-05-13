@@ -155,6 +155,11 @@ main.profiledetails section.userdata img.profile {
     transition: transform .5s ease-in-out, box-shadow .5s;
 }
 
+main.profiledetails section.userdata img.profile.online {
+    outline: 5px solid rgba(96, 180, 17, 1);
+    border-radius: 0.4rem;
+}
+
 main.profiledetails section.userdata img.profile:hover {
     transform: rotate(3deg);
     animation: profileBobbling 2s ease-in-out .5s infinite;
