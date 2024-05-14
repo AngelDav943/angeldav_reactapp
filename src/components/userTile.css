@@ -22,6 +22,10 @@
     margin-right: 0.8rem;
 }
 
+.usertile .account img.profile.online {
+    outline: 3px solid rgba(96, 180, 17, 1);
+}
+
 .usertile .account:hover .banner {
     filter: blur(10px);
 }

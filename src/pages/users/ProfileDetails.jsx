@@ -65,7 +65,6 @@ export default function () {
         if (time.minutes > 10) return `Last online ${time.minutes} minute${time.minutes > 1 ? 's' : ''} ago`
         if (time.seconds > 0) return `Online`
 
-
         return `Last online some time ago`
     }
 

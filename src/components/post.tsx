@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useInfo } from '../context/useInfo';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function ({ post, clickable }: {post: any, clickable: boolean}) {
+export default function ({ post, clickable }: { post: any, clickable: boolean }) {
     const { info, webStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
 
@@ -45,7 +45,13 @@ export default function ({ post, clickable }: {post: any, clickable: boolean}) {
         </section>
         <span className="info">
             <div className="likes">
-                <input disabled={info == null} type='button' className='likes' value={likes.length + " radiation"} onClick={() => likePost()} />
+                <input
+                    disabled={info == null}
+                    type='button'
+                    className={likes.includes(String(info?.id || '-1')) ? 'liked' : ''}
+                    value={likes.length + " radiation"}
+                    onClick={() => likePost()}
+                />
                 <div className="users">
                     {likes.map((userID, index) => {
                         if (index > 5) return;
