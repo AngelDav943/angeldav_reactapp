@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './scrollerButtons.css'
 
-export default function ({ items, startingPoint = 0, reverse = false }: { items: Record<string, any>, startingPoint: number, reverse: boolean }) {
+export default function ({ items, startingPoint = 0, reverse = false }: { items: Record<string, React.JSX.Element>, startingPoint: number, reverse: boolean }) {
     const [currentView, setView] = useState(startingPoint);
 
     useEffect(() => {
