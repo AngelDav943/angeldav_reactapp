@@ -4,7 +4,7 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './websocketTest.css'
 
 export default function () {
-    const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8787/websockets/games/memory');
+    const [socketUrl, setSocketUrl] = useState('wss://datatest.angelddcs.workers.dev/websockets/games/memory');
     const [messageHistory, setMessageHistory] = useState<MessageEvent<any>[]>([]);
 
     const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
