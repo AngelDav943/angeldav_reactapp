@@ -21,7 +21,10 @@ import ProjectsModels from './pages/projects/ProjectsModels'
 import Stats from './pages/Stats'
 import CreateBadge from './pages/create/CreateBadge'
 import Badges from './pages/badges/Badges'
+
 import MarkdownTest from './pages/tests/MarkdownTest'
+import WebsocketTest from './pages/tests/WebsocketTest'
+import MemoryGame from './pages/games/memory/MemoryGame'
 
 function App() {
   const location = useLocation();
@@ -77,7 +80,11 @@ function App() {
 
       <Route path='/tests'>
         <Route path='markdown' element={<MarkdownTest />} />
+        <Route path='websocket' element={<WebsocketTest />} />
+      </Route>
 
+      <Route path='/games'>
+        <Route path='memory' element={<MemoryGame />} />
       </Route>
 
       <Route path='statistics' element={<Stats />} />
