@@ -12,7 +12,7 @@ let last: null | { card: number, ref: React.MutableRefObject<any>, state: [numbe
 
 export default function () {
     const { info, addNotification, updateBalance } = useInfo();
-    const [socketUrl, setSocketUrl] = useState(`ws://127.0.0.1:8787/websockets/games/memory`);
+    const [socketUrl, setSocketUrl] = useState(`ws://datatest.angelddcs.workers.dev/websockets/games/memory`);
 
     const { sendJsonMessage, lastMessage, lastJsonMessage, readyState } = useWebSocket(
         socketUrl,
