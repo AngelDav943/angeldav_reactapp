@@ -49,15 +49,16 @@
 
     content: '';
     position: absolute;
-    width: 70%;
-    height: 70%;
-    top: 15%;
-    left: 15%;
+    width: 54%;
+    height: 55%;
+    top: 23%;
+    left: 23%;
+    opacity: 0;
 
     border-radius: 0.1em;
     background: url('/loading_monitor.gif');
     background-size: contain;
-    animation: loading 2s ease-in-out infinite;
+    animation: loading 2s ease-in-out .7s infinite;
 }
 
 @keyframes loading {
