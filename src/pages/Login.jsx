@@ -23,6 +23,7 @@ export default function () {
     }
 
     return <main className="login">
+	<div className="modal">
         <h2>Log in</h2>
         {error && <span className="error">{error}</span>}
         <form onSubmit={handleSubmit}>
@@ -40,5 +41,6 @@ export default function () {
                 <input type="submit" value="Submit" />
             </div>
         </form>
+	</div>
     </main>
 }

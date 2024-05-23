@@ -52,6 +52,7 @@ export default function () {
     }
 
     return <main className="login">
+	<div className="modal">
         <h2>Create account</h2>
         {errorMessage && <span className="error">{errorMessage}</span>}
         <form onSubmit={handleSubmit}>
@@ -73,5 +74,6 @@ export default function () {
                 <input type="submit" value="Create Account" />
             </div>
         </form>
+	</div>
     </main>
 }

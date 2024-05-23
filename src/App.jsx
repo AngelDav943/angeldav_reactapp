@@ -22,6 +22,8 @@ import Stats from './pages/Stats'
 import CreateBadge from './pages/create/CreateBadge'
 import Badges from './pages/badges/Badges'
 
+import Directories from './pages/Directories'
+
 import MarkdownTest from './pages/tests/MarkdownTest'
 import WebsocketTest from './pages/tests/WebsocketTest'
 import MemoryGame from './pages/games/memory/MemoryGame'
@@ -88,6 +90,7 @@ function App() {
       </Route>
 
       <Route path='statistics' element={<Stats />} />
+	<Route path='directories' element={<Directories />} />
 
       <Route path='/*' element={<NotFound/>} />
     </Routes>

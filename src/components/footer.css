@@ -1,0 +1,44 @@
+footer {
+	background: var(--darkBackground);
+	color: var(--darkOnBackground);
+	padding: 1rem 2rem;
+	padding-top: 1.5rem;
+	/*
+	position: sticky;
+	top: 100vh;
+	*/
+}
+
+footer .links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding-bottom: .4rem;
+
+}
+
+footer .row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+footer p {
+	margin: 0;
+	padding: 1rem 0;	
+}
+
+footer .icon {
+	display: flex;
+	align-items: center;
+	padding: .5rem 0;
+}
+
+footer .icon::before {
+	content: '';
+	display: inline-block;
+	height: 2em;
+	width: 2em;
+	background: url('/favicon.ico');
+	background-size: contain;
+}
