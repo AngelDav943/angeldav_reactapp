@@ -110,11 +110,11 @@ export default function () {
                 <span className='points'>Points: {points}</span>
                 <span className='fails' >Fails: {fails}</span>
             </p>
-            <section className="cards">
+            { cards != 0 ? <section className="cards">
                 {Array.from(Array(cards).keys()).map(index => (
                     <MemoryCard key={index} onClick={(e, cardRef, cardState) => cardHandle(index, cardRef, cardState)} pair={0} />
                 ))}
-            </section>
+            </section> : <p>Connecting</p> }
         </main>
     );
 }
