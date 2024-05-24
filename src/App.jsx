@@ -29,74 +29,74 @@ import WebsocketTest from './pages/tests/WebsocketTest'
 import MemoryGame from './pages/games/memory/MemoryGame'
 
 function App() {
-  const location = useLocation();
-  const { loaded } = useInfo();
+	const location = useLocation();
+	const { loaded } = useInfo();
 
-  useEffect(() => {
-    if (import.meta.env.DEV == true) {
-      document.getElementById("favicon").href = '/images/favicons/development.ico'
-      return
-    }
+	useEffect(() => {
+		if (import.meta.env.DEV == true) {
+			document.getElementById("favicon").href = '/images/favicons/development.ico'
+			return
+		}
 
-    if (location.pathname.includes("posts")) {
-      document.getElementById("favicon").href = '/images/favicons/posts.ico'
-      return
-    }
+		if (location.pathname.includes("posts")) {
+			document.getElementById("favicon").href = '/images/favicons/posts.ico'
+			return
+		}
 
-    document.getElementById("favicon").href = '/favicon.ico'
+		document.getElementById("favicon").href = '/favicon.ico'
 
-  }, [location.pathname])
+	}, [location.pathname])
 
-  return loaded ? (
-    <Routes>
-      <Route path='/' element={<Home />} />
+	return loaded ? (
+		<Routes>
+			<Route path='/' element={<Home />} />
 
-      <Route path='/login' element={<Dashboard />} />
-      <Route path='/signin' element={<SigningIn />} />
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/users'>
-        <Route index element={<Accounts />} />
-        <Route path=':ID' element={<ProfileDetails />} />
-      </Route>
+			<Route path='/login' element={<Dashboard />} />
+			<Route path='/signin' element={<SigningIn />} />
+			<Route path='/dashboard' element={<Dashboard />} />
+			<Route path='/users'>
+				<Route index element={<Accounts />} />
+				<Route path=':ID' element={<ProfileDetails />} />
+			</Route>
 
-      <Route path='/posts'>
-        <Route index element={<Posts />} />
-        <Route path='create' element={<CreatePost />} />
-        <Route path=':postID' element={<PostDetails />} />
-      </Route>
+			<Route path='/posts'>
+				<Route index element={<Posts />} />
+				<Route path='create' element={<CreatePost />} />
+				<Route path=':postID' element={<PostDetails />} />
+			</Route>
 
-      <Route path='/projects'>
-        <Route index element={<Projects />} />
-        <Route path='games' element={<ProjectsGames />} />
-        <Route path='models' element={<ProjectsModels />} />
-      </Route>
+			<Route path='/projects'>
+				<Route index element={<Projects />} />
+				<Route path='games' element={<ProjectsGames />} />
+				<Route path='models' element={<ProjectsModels />} />
+			</Route>
 
-      <Route path='/create'>
-        <Route path='badge' element={<CreateBadge />} />
-      </Route>
+			<Route path='/create'>
+				<Route path='badge' element={<CreateBadge />} />
+			</Route>
 
-      <Route path='/badges'>
-        <Route index element={<Badges />} />
-        <Route path=':userID' element={<Badges />} />
-      </Route>
+			<Route path='/badges'>
+				<Route index element={<Badges />} />
+				<Route path=':userID' element={<Badges />} />
+			</Route>
 
-      <Route path='/tests'>
-        <Route path='markdown' element={<MarkdownTest />} />
-        <Route path='websocket' element={<WebsocketTest />} />
-      </Route>
+			<Route path='/tests'>
+				<Route path='markdown' element={<MarkdownTest />} />
+				<Route path='websocket' element={<WebsocketTest />} />
+			</Route>
 
-      <Route path='/games'>
-        <Route path='memory' element={<MemoryGame />} />
-      </Route>
+			<Route path='/games'>
+				<Route path='memory' element={<MemoryGame />} />
+			</Route>
 
-      <Route path='statistics' element={<Stats />} />
-	<Route path='directories' element={<Directories />} />
+			<Route path='statistics' element={<Stats />} />
+			<Route path='directory' element={<Directories />} />
 
-      <Route path='/*' element={<NotFound/>} />
-    </Routes>
-  ) : <center className='loading'>
-    <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-  </center>
+			<Route path='/*' element={<NotFound />} />
+		</Routes>
+	) : <center className='loading'>
+		<img src="/loading_monitor.gif" alt="loading gif" height={100} />
+	</center>
 }
 
 export default App

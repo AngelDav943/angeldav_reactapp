@@ -34,6 +34,8 @@ export default function () {
         if (data.cards != undefined) return setCards(data.cards)
         if (data.start == 1) {
             document.querySelectorAll('.keep').forEach(item => item.classList.remove('keep'))
+            document.querySelectorAll('.show').forEach(item => item.classList.remove('show'))
+            document.querySelectorAll('.loaded').forEach(item => item.classList.remove('loaded'))
         }
 
         if (data.points != undefined) setPoints(data.points)

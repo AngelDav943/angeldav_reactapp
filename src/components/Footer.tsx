@@ -7,8 +7,9 @@ import './footer.css'
 export default function () {
 	return <footer>
 		<div className="links">
+			<Link to="/directory" >Directory</Link>
+			<Link to="/statistics" >Statistics</Link>
 			<Link to="https://github.com/AngelDav943" >Github</Link>
-			<Link to="/directories" >Directories</Link>
 		</div>
 		<div className="row">
 			<p className="icon" >Angel's website</p>

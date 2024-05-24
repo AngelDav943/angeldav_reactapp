@@ -1,86 +1,88 @@
 .memoryCard {
-    width: 100px;
-    height: 100px;
+	width: 100px;
+	height: 100px;
 
-    margin: 1px;
+	margin: 1px;
 
-    font-size: 3em;
-    transform: perspective(700px) rotateY(180deg);
-    transform-style: preserve-3d;
-    transition: transform .5s;
+	font-size: 3em;
+	transform: perspective(700px) rotateY(180deg);
+	transform-style: preserve-3d;
+	transition: transform .5s;
 }
 
 .memoryCard .face {
-    backface-visibility: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.1em;
+	backface-visibility: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 0.1em;
 }
 
 .memoryCard .front {
-    transform: rotateY(0deg);
-    /*background-color: powderblue;*/
-    background-image: url('/images/games/memory/base.png');
-    background-size: contain;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	transform: rotateY(0deg);
+	/*background-color: powderblue;*/
+	background-image: url('/images/games/memory/base.png');
+	background-size: contain;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .memoryCard .face img {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
+	width: 80%;
+	height: 80%;
+	object-fit: contain;
 }
 
 .memoryCard .back {
-    transform: rotateY(-180deg);
-    background-color: darkslategrey;
+	transform: rotateY(-180deg);
+	background-color: darkslategrey;
 }
 
 .memoryCard:hover {
-    transform: perspective(700px) rotateY(150deg);
+	transform: perspective(700px) rotateY(150deg);
 }
 
 .memoryCard.show:not(.loaded)::after {
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 
-    content: '';
-    position: absolute;
-    width: 54%;
-    height: 55%;
-    top: 23%;
-    left: 23%;
-    opacity: 0;
+	content: '';
+	position: absolute;
+	width: 54%;
+	height: 55%;
+	top: 23%;
+	left: 23%;
+	opacity: 0;
 
-    border-radius: 0.1em;
-    background: url('/loading_monitor.gif');
-    background-size: contain;
-    animation: loading 2s ease-in-out .7s infinite;
+	border-radius: 0.1em;
+	background: url('/loading_monitor.gif');
+	background-size: contain;
+	animation: loading 2s ease-in-out .7s infinite;
 }
 
 @keyframes loading {
-    0% {
-        opacity: .6;
-    }
-    50% {
-        opacity: .3;
-    }
-    100% {
-        opacity: .6;
-    }
+	0% {
+		opacity: .6;
+	}
+
+	50% {
+		opacity: .3;
+	}
+
+	100% {
+		opacity: .6;
+	}
 }
 
 .memoryCard.loaded {
-    animation: none;
+	animation: none;
 }
 
 .memoryCard.loaded.show {
-    transform: perspective(700px) rotateY(0deg);
+	transform: perspective(700px) rotateY(0deg);
 }
 
 .memoryCard.loaded.keep {
-    transform: perspective(700px) rotateY(0deg)
+	transform: perspective(700px) rotateY(0deg)
 }

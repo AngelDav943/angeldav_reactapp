@@ -22,17 +22,17 @@ export default function () {
 			<DirLink to="/posts" />
 			<DirLink to="/posts/create" />
 
-			<DirLink to="/dashboard" />
 			<DirLink to="/login" />
 			<DirLink to="/signin" />
+			<DirLink to="/dashboard" />
 
 			<DirLink to="/users" />
 			<DirLink to="/badges" />
 
 			<DirLink to="/games/memory" />
 
-			<DirLink to="/directory" />
 			<DirLink to="/statistics" />
+			<DirLink to="/directory" />
 		</section>
 	</main>
 }

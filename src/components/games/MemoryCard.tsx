@@ -19,6 +19,9 @@ export default function ({ onClick, pair = 0 }: cardProps) {
         if (onClick && current.classList.contains('show') == false) {
             await onClick(event, cardRef, [cardPair, setPair]);
             current.classList.add('show')
+            setTimeout(() => {
+                if (current.classList.contains('loaded') == false) current.classList.remove('show')
+            }, 5000);
         }
     }
 

@@ -1,12 +1,9 @@
 footer {
-	background: var(--darkBackground);
+	background: var(--darkBackground) linear-gradient(#1a1a1d, var(--darkBackground) 50%);
 	color: var(--darkOnBackground);
 	padding: 1rem 2rem;
 	padding-top: 1.5rem;
-	/*
-	position: sticky;
-	top: 100vh;
-	*/
+	/* border-top: solid 1px var(--outline); */
 }
 
 footer .links {
@@ -32,6 +29,7 @@ footer .icon {
 	display: flex;
 	align-items: center;
 	padding: .5rem 0;
+	gap: .25rem;
 }
 
 footer .icon::before {
@@ -41,4 +39,6 @@ footer .icon::before {
 	width: 2em;
 	background: url('/favicon.ico');
 	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
