@@ -1,5 +1,5 @@
 footer {
-	background: var(--darkBackground) linear-gradient(#1a1a1d, var(--darkBackground) 50%);
+	background: linear-gradient(#1a1a1d, transparent 50%), url('/images/hexagon_tile.png'), var(--darkBackground);
 	color: var(--darkOnBackground);
 	padding: 1rem 2rem;
 	padding-top: 1.5rem;

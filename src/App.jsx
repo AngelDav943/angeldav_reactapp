@@ -27,6 +27,7 @@ import Directories from './pages/Directories'
 import MarkdownTest from './pages/tests/MarkdownTest'
 import WebsocketTest from './pages/tests/WebsocketTest'
 import MemoryGame from './pages/games/memory/MemoryGame'
+import ChatSocketTest from './pages/tests/ChatSocketTest'
 
 function App() {
 	const location = useLocation();
@@ -83,6 +84,7 @@ function App() {
 			<Route path='/tests'>
 				<Route path='markdown' element={<MarkdownTest />} />
 				<Route path='websocket' element={<WebsocketTest />} />
+				{/* <Route path='chat' element={<ChatSocketTest />} /> */}
 			</Route>
 
 			<Route path='/games'>

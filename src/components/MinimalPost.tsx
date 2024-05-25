@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useInfo } from '../context/useInfo';
 import { useEffect, useState } from 'react';
 
-export default function ({ post, extrabutton, clickable }) {
+export default function ({ post, extrabutton = null, clickable = false }) {
     const { info, webStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
 

@@ -2,24 +2,35 @@ import React, { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 import './websocketTest.css'
+import { useInfo } from '../../context/useInfo';
 
 export default function () {
-    const [socketUrl, setSocketUrl] = useState('wss://datatest.angelddcs.workers.dev/websockets/games/memory');
-    const [messageHistory, setMessageHistory] = useState<MessageEvent<any>[]>([]);
+    const { info } = useInfo();
+    const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8787/websockets/tests');
+    const [messageHistory, setMessageHistory] = useState<string[]>([]);
 
-    const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+    const { sendJsonMessage, lastJsonMessage, lastMessage, readyState } = useWebSocket(
+        socketUrl,
+        {
+            shouldReconnect: (closeEvent) => true,
+            reconnectAttempts: 10,
+            reconnectInterval: (attemptNumber) => Math.min(10000, Math.pow(2, attemptNumber)),
+            queryParams: {
+                token: info?.token
+            }
+        });
 
-    const [position, setPosition] = useState(0);
+    const [msg, setMsg] = useState("");
 
     useEffect(() => {
-        if (lastMessage !== null) {
-            setMessageHistory((prev) => prev.concat(lastMessage));
+        if (lastJsonMessage !== null) {
+            setMessageHistory((prev) => prev.concat(JSON.stringify(lastJsonMessage)));
         }
-    }, [lastMessage]);
+    }, [lastJsonMessage]);
 
-    const handleClickSendMessage = useCallback(() => sendMessage(JSON.stringify({
-        "position": position,
-    })), [position]);
+    const handleClickSendMessage = useCallback(() => sendJsonMessage({
+        "message": msg,
+    }), [msg]);
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -31,21 +42,21 @@ export default function () {
 
     return (
         <main className='TEST_websocket1'>
-            <input type="number" value={position} onChange={({target}) => setPosition(parseInt(target.value))} />
+            <input value={msg} onChange={({ target }) => setMsg(target.value)} />
             <button
                 onClick={handleClickSendMessage}
                 disabled={readyState !== ReadyState.OPEN}
             >
-                Click Me to send position {position}
+                Click Me to send '{msg}'
             </button>
             <p>The WebSocket is currently {connectionStatus}</p>
-            {lastMessage ? <p>Last message: {lastMessage.data}</p> : null}
+            {lastMessage ? <p>Last message: {JSON.stringify(lastJsonMessage)}</p> : null}
             <ul>
-                {messageHistory.map((message, idx) => (
-                    <span key={idx}>{message ? message.data : null}</span>
+                {messageHistory.map((message, index) => (
+                    <code key={index}>{message ? message : null}</code>
                 ))}
             </ul>
-            
+
         </main>
     );
 }
