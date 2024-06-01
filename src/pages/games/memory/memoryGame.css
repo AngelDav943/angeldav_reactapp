@@ -1,0 +1,34 @@
+main.GAME_memory {
+    margin: auto;
+    max-width: 600px;
+}
+
+main.GAME_memory .gameinfo span {
+    margin-right: 1rem;
+    padding: .2rem .5rem;
+    border-radius: .4rem;
+}
+
+main.GAME_memory .gameinfo .points {
+    background-color: green;
+}
+
+main.GAME_memory .gameinfo .fails {
+    background-color: red;
+}
+
+main.GAME_memory .cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+
+    max-width: 600px;
+}
+
+main.GAME_memory ul {}
+
+main.GAME_memory ul span {
+    display: block;
+}

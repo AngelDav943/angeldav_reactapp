@@ -4,18 +4,20 @@ body:has(main.login) {
 }
 
 main.login {
+
+}
+
+main.login .modal {
     border: solid 1px var(--outline);
     border-radius: 10px;
-    
+
     background: var(--backgroundimg);
     background-color: var(--background);
 
     margin: 5rem auto;
     padding: 30px;
-    max-height: 400px;
-    min-height: auto;
-    height: 100%;
 
+    max-height: 400px;
     max-width: 300px;
     width: calc(100% - 60px);
 

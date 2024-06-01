@@ -150,6 +150,13 @@ export function InfoProvider({ children }) {
             localStorage.setItem("uid", undefined)
             setInfo(null);
         },
+
+        updateBalance: (amount) => {
+            setInfo({
+                ...info,
+                balance: amount
+            })
+        },
     }
 
     useEffect(() => {

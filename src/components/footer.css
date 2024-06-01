@@ -1,0 +1,44 @@
+footer {
+	background: linear-gradient(#1a1a1d, transparent 50%), url('/images/hexagon_tile.png'), var(--darkBackground);
+	color: var(--darkOnBackground);
+	padding: 1rem 2rem;
+	padding-top: 1.5rem;
+	/* border-top: solid 1px var(--outline); */
+}
+
+footer .links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding-bottom: .4rem;
+
+}
+
+footer .row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+footer p {
+	margin: 0;
+	padding: 1rem 0;	
+}
+
+footer .icon {
+	display: flex;
+	align-items: center;
+	padding: .5rem 0;
+	gap: .25rem;
+}
+
+footer .icon::before {
+	content: '';
+	display: inline-block;
+	height: 2em;
+	width: 2em;
+	background: url('/favicon.ico');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}

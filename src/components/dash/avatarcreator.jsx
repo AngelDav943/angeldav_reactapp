@@ -116,7 +116,6 @@ export default function () {
         var addSelected = { ...selectedHats }
         addSelected[String(item.name)] = item
         setSelected(addSelected);
-        //updateProfile();
     }
 
     return <article className="avatarcreator">

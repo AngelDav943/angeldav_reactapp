@@ -32,7 +32,7 @@ input:focus::placeholder, textarea:focus::placeholder {
     color: var(--outline);
 }
 
-input[type="submit"], a.submit {
+input[type="submit"], a.submit, button[type="submit"], button.submit {
     background: var(--primary);
     box-shadow: inset 0px -10px 20px var(--dark-primary);
     /* background: var(--primary) linear-gradient(var(--primary), var(--dark-primary) 90%); */
@@ -42,13 +42,20 @@ input[type="submit"], a.submit {
     transition: box-shadow 0.2s;
 }
 
-input[type="submit"]:disabled, a.submit:disabled {
+input[type="submit"]:disabled, a.submit:disabled, button[type="submit"]:disabled, button.submit:disabled {
     background: var(--dark-primary);
     color: var(--darkOnBackground);
     cursor: default;
 }
 
-input[type="submit"]:hover:not(:disabled), a.submit:hover:not(:disabled) {
+input[type="button"]:disabled, button:disabled, a.button:disabled {
+    background-color: var(--outline);
+    color: var(--darkOnBackground);
+    opacity: 0.7;
+    cursor: default;
+}
+
+input[type="submit"]:hover:not(:disabled), a.submit:hover:not(:disabled), button[type="submit"]:hover:not(:disabled), button.submit:hover:not(:disabled) {
     box-shadow: inset 0px 0px 0px -10px var(--dark-primary);
 }
 

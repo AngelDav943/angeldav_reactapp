@@ -31,19 +31,24 @@ export default function () {
                     <NavLink to={"/users"}>Users</NavLink>
                     <NavLink to={"/posts"}>Posts</NavLink>
                 </nav>
-                {info == null ? (
-                    <NavLink className="submit" to={"/dashboard"}>Login</NavLink>
-                ) : (
-                    <div className={`profile ${popup ? 'clicked' : ''}`} onClick={() => setPopupOpen(!popup)}>
-                        <img src={prefix + info?.profile} alt="profile" draggable={false} />
-                        <span>@{info?.username}</span>
-                    </div>
-                )}
+                <div className="side">
+                    {info == null ? (
+                        <NavLink className="submit" to={"/dashboard"}>Login</NavLink>
+                    ) : (
+                        <>
+                            <span className="coins">{info?.balance || 0}</span>
+                            <div className={`profile ${popup ? 'clicked' : ''}`} onClick={() => setPopupOpen(!popup)}>
+                                <img src={prefix + info?.profile} alt="profile" draggable={false} />
+                                <span>@{info?.username}</span>
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
             {(info && popup) && <section className="popup">
                 <NavLink to={`/users/${info?.id}`}>My profile</NavLink>
                 <NavLink to={`/dashboard`}>My dashboard</NavLink>
-                <Link to={`/dashboard`} className='logoff' onClick={() => {setHeaderOpen(false); logout()}}>Log off</Link>
+                <Link to={`/dashboard`} className='logoff' onClick={() => { setHeaderOpen(false); logout() }}>Log off</Link>
             </section>}
         </header>
     )
