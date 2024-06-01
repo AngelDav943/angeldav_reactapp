@@ -51,7 +51,7 @@ export function InfoProvider({ children }) {
 
         addNotification: (icon, title, description) => {
             const notificationID = notifications.length;
-            
+
             const newNotificationArray = [
                 {
                     "id": notificationID,
@@ -64,20 +64,22 @@ export function InfoProvider({ children }) {
             setNotificationArray(newNotificationArray)
         },
 
-        fetchWeb: async (path = "/", init = null) => {
+        fetchWeb: async (path = "/", init = null, isJSON = true, developmentMode = false) => {
             init = init || { method: "GET", headers: null, data: null }
 
+            const apiURL = developmentMode == true ? 'http://127.0.0.1:8787' : 'https://datatest.angelddcs.workers.dev'
+            console.log(apiURL)
             const { method, headers, data } = init;
 
             var fetchMethod = String(method).toUpperCase();
             const allowedMethods = ["GET", "POST", "PUT", "DELETE", "PATCH"]
             if (allowedMethods.indexOf(fetchMethod) == -1) fetchMethod = "GET"
 
-            const body = data != null ? { body: JSON.stringify(data) } : null
-            const contentType = data != null ? { "Content-Type": "application/json" } : null
+            const body = data != null ? isJSON == true ? { body: JSON.stringify(data) } : { body: data } : null
+            const contentType = data != null || isJSON == true ? { "Content-Type": "application/json" } : null
 
             try {
-                var fetchedData = await fetch(`https://datatest.angelddcs.workers.dev${path}`, {
+                var fetchedData = await fetch(`${apiURL}${path}`, {
                     method: fetchMethod,
                     headers: { "token": info?.token, ...contentType, ...headers },
                     ...body
@@ -160,7 +162,7 @@ export function InfoProvider({ children }) {
             setErrorMessage(null)
         }, 4100)
     }, [[error]])
-    
+
     useEffect(() => {
         if (notifications.length > 0) {
             const latestID = notifications[0].id

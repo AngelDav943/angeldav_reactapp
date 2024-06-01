@@ -22,6 +22,7 @@ import Stats from './pages/Stats'
 import CreateBadge from './pages/create/CreateBadge'
 import Badges from './pages/badges/Badges'
 import MarkdownTest from './pages/tests/MarkdownTest'
+import BlobTest from './pages/tests/BlobTest'
 
 function App() {
   const location = useLocation();
@@ -77,6 +78,7 @@ function App() {
 
       <Route path='/tests'>
         <Route path='markdown' element={<MarkdownTest />} />
+        <Route path='blob' element={<BlobTest />} />
 
       </Route>
 
