@@ -29,6 +29,8 @@ import BlobTest from './pages/tests/BlobTest'
 import WebsocketTest from './pages/tests/WebsocketTest'
 import MemoryGame from './pages/games/memory/MemoryGame'
 import ChatSocketTest from './pages/tests/ChatSocketTest'
+import GalleryVault from './pages/gallery/Vault'
+import PublicGallery from './pages/gallery/PublicGallery'
 
 function App() {
 	const location = useLocation();
@@ -85,8 +87,13 @@ function App() {
 			<Route path='/tests'>
 				<Route path='markdown' element={<MarkdownTest />} />
 				<Route path='websocket' element={<WebsocketTest />} />
-        <Route path='blob' element={<BlobTest />} />
+				<Route path='blob' element={<BlobTest />} />
 				{/* <Route path='chat' element={<ChatSocketTest />} /> */}
+			</Route>
+
+			<Route path='/gallery'>
+				<Route path='vault' element={<GalleryVault/>} />
+				<Route index element={<PublicGallery/>} />
 			</Route>
 
 			<Route path='/games'>
