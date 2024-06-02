@@ -2,12 +2,13 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import './scrollerButtons.css'
 
 interface props {
-    items: Record<string, React.JSX.Element>,
-    startingPoint: number,
-    reverse: boolean
+    items: Record<string, React.JSX.Element>;
+    startingPoint: number;
+    reverse: boolean;
+    basicStyling?: boolean;
 }
 
-export default function ({ items, startingPoint = 0, reverse = false }: props) {
+export default function ({ items, startingPoint = 0, reverse = false, basicStyling = true }: props) {
     const scrollRef: React.MutableRefObject<any> = useRef();
     const [currentView, setView] = useState(startingPoint);
 
@@ -20,7 +21,7 @@ export default function ({ items, startingPoint = 0, reverse = false }: props) {
     }, [[currentView]])
 
     return (
-        <article className={`scrollerButtons basicmain ${reverse ? 'reverse' : ''}`}>
+        <article className={`scrollerButtons ${basicStyling ? 'basicmain' : 'normal'} ${reverse ? 'reverse' : ''}`}>
             <div className="buttons">
                 {Object.keys(items).map((key, index) => (
                     <button key={key} className={currentView == index ? "selected" : ""} onClick={() => setView(index)}>{key}</button>

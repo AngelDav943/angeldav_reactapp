@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import './profiledetails.css'
 import MinimalPost from "../../components/MinimalPost";
 import utils from "../../utils";
+import ScrollerButtons from "../../components/ScrollerButtons";
+import { GalleryResource } from "../../components/GalleryResource";
 
 export default function () {
     const { info, fetchWeb } = useInfo();
@@ -14,6 +16,7 @@ export default function () {
     const [usersLoaded, setLoaded] = useState(false);
     const [notFound, setFound] = useState(true);
     const [user, setUser] = useState([]);
+    const [userGallery, setGallery] = useState(null);
 
     const [followers, setFollowers] = useState([]);
 
@@ -26,6 +29,19 @@ export default function () {
             setUser(data)
             setFollowers(data.followers)
             setLoaded(true)
+            return
+        }
+
+        setFound(false)
+    }
+
+    async function fetchGallery() {
+        const userID = parseInt(params["ID"])
+        if (isNaN(userID)) return
+
+        const data = await fetchWeb(`/gallery?fromID=${userID}`);
+        if (data && data["msg"] == null) {
+            setGallery(data)
             return
         }
 
@@ -68,7 +84,10 @@ export default function () {
     }
 
 
-    useEffect(() => { fetchUsers() }, [])
+    useEffect(() => {
+        fetchUsers()
+        fetchGallery()
+    }, [])
 
     if (notFound == false) return <center className='loading noicon'>
         <img src="/images/monitor/monitor_red.png" alt="monitor" height={100} />
@@ -84,7 +103,7 @@ export default function () {
                         style={{ backgroundImage: `url("${user.banner}")` }}
                     />
                     <div className="top">
-                        <img src={user.profile} alt="profile" className={`profile ${ Date.now() - user.lastonline < 600000 ? 'online' : '' }`} />
+                        <img src={user.profile} alt="profile" className={`profile ${Date.now() - user.lastonline < 600000 ? 'online' : ''}`} />
                         <div className="info">
                             <span className="displayname">{user.displayname}</span>
                             <span className="username">@{user.username}</span>
@@ -118,12 +137,25 @@ export default function () {
                 </div>
             </section>
 
-            <section className="posts">
-                {(user.posts != null) && user.posts.map((post, index) => (
-                    <MinimalPost post={post} key={index} clickable={true} />
-                ))}
-                <h2 className="header">All posts ({user?.posts.length})</h2>
-            </section>
+            <aside>
+                <ScrollerButtons
+                    basicStyling={false}
+                    items={{
+                        "Posts": <section className="posts">
+                            {(user.posts != null) && user.posts.map((post, index) => (
+                                <MinimalPost post={post} key={index} clickable={true} />
+                            ))}
+                            <h2 className="header">All posts ({user?.posts.length})</h2>
+                        </section>,
+                        "Gallery": <section className="gallery">
+                            {userGallery && userGallery.map(item => (
+                                <GalleryResource resource={item} key={item.id} />
+                            ))}
+                            <h2 className="header">Gallery ({userGallery && userGallery.length})</h2>
+                        </section>
+                    }}
+                />
+            </aside>
         </article>
     </main> : <center className='loading' />
 }

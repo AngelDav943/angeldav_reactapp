@@ -14,7 +14,8 @@ main.profiledetails::before {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-main.profiledetails h1.header, main.profiledetails h2.header {
+main.profiledetails h1.header,
+main.profiledetails h2.header {
     margin-bottom: 0.2rem;
     font-weight: 600;
 }
@@ -38,15 +39,68 @@ main.profiledetails section.userdata {
     flex-grow: 1;
 }
 
-main.profiledetails section.posts {
+main.profiledetails aside {
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
     flex-basis: 400px;
     flex-grow: 1;
 }
+
+main.profiledetails aside article .scroller div>section {
+    padding: 0 1rem;
+    min-width: calc(100% - 2rem);
+}
+
+
+main.profiledetails aside section.posts {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
+/* Gallery start */
+main.profiledetails aside section.gallery {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard {
+    transform: scale(0.95);
+    height: auto;
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard {
+    transform: scale(0.95);
+    height: auto;
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard:hover,
+main.profiledetails aside section.gallery .GalleryResourceCard.expand {
+    transform: scale(1);
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard .preview {
+    width: 100%;
+    height: auto;
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard .preview .previewAsset {
+    height: auto;
+    width: 100%;
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard .info {
+    height: 0px;
+    display: none;
+    transition: margin 1s;
+}
+
+main.profiledetails aside section.gallery .GalleryResourceCard.expand .info {
+    height: auto;
+    display: block;
+}
+
+/* Gallery end */
 
 main.profiledetails section.userdata .header {
     margin: -2rem;
@@ -185,7 +239,7 @@ main.profiledetails section.userdata img.profile:active {
 }
 
 
-main.profiledetails section.posts h2.header {
+main.profiledetails aside h2.header {
     text-align: right;
     margin-right: 1rem;
 }
@@ -215,7 +269,7 @@ main.profiledetails .badgelink::after {
     opacity: 0.9;
     padding-left: 0.3rem;
     font-weight: 300;
-    
+
     transition: padding 0.5s, opacity 0.6s;
 }
 
