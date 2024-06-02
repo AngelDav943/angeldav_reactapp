@@ -30,7 +30,6 @@ export default function () {
             setPublic(resourceData.public)
             setResource(resourceData)
         }
-        console.log(resourceData)
     }
 
     async function deleteButton() {
@@ -71,6 +70,7 @@ export default function () {
     return <main className='gallerypreview'>
         <Helmet>
             <meta id="og-image" property="og:image" content={resource.image} />
+            {(window.navigator.userAgent.includes("Discordbot") == true) && <meta http-equiv="refresh" content={`0; url=${resource.image}`} />}
         </Helmet>
         <section>
             <Link to={'/gallery'}>&lt; Go back</Link>
