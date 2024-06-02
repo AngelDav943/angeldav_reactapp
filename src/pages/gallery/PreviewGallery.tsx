@@ -65,6 +65,11 @@ export default function () {
 
     if (loaded == false || resource == null) return <center className='loading' />
 
+    const dataTypes = {
+        "image": <img src={resource.image} draggable={false} className='previewAsset' />,
+        "video": <video className="previewAsset" src={resource.image} controls={true} />,
+    }
+
     return <main className='gallerypreview'>
         <Helmet>
             <meta id="og-image" property="og:image" content={resource.image} />
@@ -73,10 +78,11 @@ export default function () {
         <section>
             <Link to={'/gallery'}>&lt; Go back</Link>
             <hr />
-            <img src={resource.image} draggable={false} className='preview' />
+            {dataTypes[resource.type.split("/")[0]]}
             <div className="info">
                 <span className='small'>Published by <Link to={`/users/${resource.fromID}`}>@{resource.user.username}</Link></span>
                 <span className='small'>{utils.timeFromTimestamp(resource.timestamp)}</span>
+                <span>Type: {resource.type}</span>
                 {info && info?.id == resource.fromID && <>
                     <hr />
                     <div className="buttons">

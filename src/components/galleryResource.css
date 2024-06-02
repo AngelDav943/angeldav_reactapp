@@ -15,7 +15,7 @@
     justify-items: end;
 }
 
-.GalleryResourceCard .preview img.preview {
+.GalleryResourceCard .preview .previewAsset {
     height: 200px;
     grid-column: 1;
     grid-row: 1;

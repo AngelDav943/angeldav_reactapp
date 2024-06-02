@@ -70,7 +70,7 @@ export default function () {
 
     useEffect(() => { fetchUsers() }, [])
 
-    if (notFound == false) return <center className='loading'>
+    if (notFound == false) return <center className='loading noicon'>
         <img src="/images/monitor/monitor_red.png" alt="monitor" height={100} />
         <span>404: User not found.</span>
     </center>
@@ -125,7 +125,5 @@ export default function () {
                 <h2 className="header">All posts ({user?.posts.length})</h2>
             </section>
         </article>
-    </main> : <center className='loading'>
-        <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-    </center>
+    </main> : <center className='loading' />
 }

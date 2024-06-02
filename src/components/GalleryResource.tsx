@@ -57,6 +57,11 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
         cardRef.current.classList.toggle('expand')
     }
 
+    const dataTypes = {
+        "image": <img src={resource.image} draggable={false} className='previewAsset' />,
+        "video": <video className="previewAsset" src={resource.image} controls={true} />,
+    }
+
     return (
         <div className='GalleryResourceCard' ref={cardRef}>
             <div className="top">
@@ -64,7 +69,7 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
                 <span>{utils.timeFromTimestamp(resource.timestamp, true)}</span>
             </div>
             <div className="preview">
-                <img src={resource.image} draggable={false} className='preview' />
+                {dataTypes[resource.type.split("/")[0]]}
                 <img src="/images/info.png" className='config' draggable={false} onClick={() => expandToggle()} />
             </div>
             <div className="info">

@@ -8,7 +8,6 @@ main.statistics {
 
 main.statistics .likeDistribution {
     display: flex;
-    flex-wrap: wrap;
 }
 
 main.statistics .likeDistribution .item {
@@ -32,7 +31,7 @@ main.statistics .likeDistribution .item .banner {
     background-color: var(--bgcolor);
     z-index: 0;
     filter: blur(3px);
-    
+
     position: relative;
     top: -2rem;
     left: -2rem;
@@ -81,6 +80,10 @@ main.statistics .likeDistribution .item .data img {
 }
 
 @media screen and (max-width: 701px) {
+    main.statistics .likeDistribution {
+        flex-wrap: wrap;
+    }
+
     main.statistics .likeDistribution .item {
         width: 100%;
         overflow: hidden;

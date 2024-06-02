@@ -8,7 +8,7 @@ main.gallerypreview section {
     padding: 1rem;
 }
 
-main.gallerypreview section img.preview {
+main.gallerypreview section .previewAsset {
     width: 100%;
 }
 
