@@ -30,6 +30,7 @@ export default function () {
                     <NavLink to={"/"}>Home</NavLink>
                     <NavLink to={"/users"}>Users</NavLink>
                     <NavLink to={"/posts"}>Posts</NavLink>
+                    <NavLink to={"/gallery"}>Gallery</NavLink>
                 </nav>
                 <div className="side">
                     {info == null ? (

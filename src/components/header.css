@@ -138,7 +138,7 @@ header section.popup a:hover {
     color: var(--onBackground);
 }
 
-@media screen and (max-width: 501px) {
+@media screen and (max-width: 531px) {
     :root {
         --headerSize: 3.5rem;
     }
