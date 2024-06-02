@@ -11,7 +11,7 @@
 .GalleryResourceCard .preview {
     height: 200px;
     display: grid;
-    align-items: end;
+    align-items: start;
     justify-items: end;
 }
 
@@ -20,6 +20,10 @@
     grid-column: 1;
     grid-row: 1;
 }
+
+.GalleryResourceCard .preview .previewAsset {}
+.GalleryResourceCard .preview video::-webkit-media-controls-timeline { }
+.GalleryResourceCard .preview video::-webkit-media-controls-played-progress { background-color: #ff5733; }
 
 .GalleryResourceCard .preview img.config {
     cursor: pointer;
@@ -82,7 +86,8 @@
     opacity: 0.5;
 }
 
-.GalleryResourceCard:hover, .GalleryResourceCard.expand {
+.GalleryResourceCard:hover,
+.GalleryResourceCard.expand {
     transform: scale(1.05);
     position: relative;
 }
@@ -104,7 +109,7 @@
     gap: .5rem;
 }
 
-.GalleryResourceCard .info .buttons > * {
+.GalleryResourceCard .info .buttons>* {
     /* flex-grow: 1; */
     /* width: 100%; */
 }
