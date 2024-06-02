@@ -1,0 +1,27 @@
+main.gallerypreview {
+
+}
+
+main.gallerypreview section {
+    margin: auto;
+    max-width: 700px;
+    padding: 1rem;
+}
+
+main.gallerypreview section img.preview {
+    width: 100%;
+}
+
+main.gallerypreview section .info {
+    margin-top: .5rem;
+}
+
+main.gallerypreview section .info span {
+    display: block;
+}
+
+main.gallerypreview section .buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

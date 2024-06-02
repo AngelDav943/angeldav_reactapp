@@ -77,11 +77,6 @@
     display: block;
 }
 
-.GalleryResourceCard .info hr {
-    border: none;
-    border-bottom: 1px solid var(--outline);
-}
-
 .GalleryResourceCard .info span.small {
     font-size: 0.8rem;
     opacity: 0.5;

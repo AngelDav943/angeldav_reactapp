@@ -42,7 +42,8 @@ h1 {
     font-weight: 600;
 }
 
-center.loading, main.center {
+center.loading,
+main.center {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,11 +56,16 @@ center.loading img {
     animation: imageBounce 3s infinite ease-in-out;
 }
 
+hr {
+    border: none;
+    border-bottom: 1px solid var(--outline);
+}
+
 @keyframes imageBounce {
     0% {
         transform: rotate(2deg);
     }
-    
+
     50% {
         transform: rotate(-2deg) scale(1.05);
     }

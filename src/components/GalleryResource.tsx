@@ -70,6 +70,7 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
             <div className="info">
                 <span className='small'>Published by <Link to={`/users/${resource.fromID}`}>@{resource.user.username}</Link></span>
                 <span className='small'>{utils.timeFromTimestamp(resource.timestamp)}</span>
+                <span><Link to={`/gallery/${resource.timestamp}0a${resource.id}`}>Preview</Link></span>
                 {info && info?.id == resource.fromID && <>
                     <hr />
                     <div className="buttons">

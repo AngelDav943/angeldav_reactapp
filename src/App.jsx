@@ -31,6 +31,7 @@ import MemoryGame from './pages/games/memory/MemoryGame'
 import ChatSocketTest from './pages/tests/ChatSocketTest'
 import GalleryVault from './pages/gallery/Vault'
 import PublicGallery from './pages/gallery/PublicGallery'
+import PreviewGallery from './pages/gallery/PreviewGallery'
 
 function App() {
 	const location = useLocation();
@@ -92,6 +93,7 @@ function App() {
 			</Route>
 
 			<Route path='/gallery'>
+				<Route path=':ResourceID' element={<PreviewGallery />} />
 				<Route path='vault' element={<GalleryVault/>} />
 				<Route index element={<PublicGallery/>} />
 			</Route>
