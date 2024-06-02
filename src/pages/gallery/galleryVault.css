@@ -59,9 +59,8 @@ main.gallerypage.vault .upload input[type='file'] {
 }
 
 main.gallerypage.vault .uploadNav {
-    margin-top: .5rem;
+    margin-top: 1rem;
     padding: 0.5rem 1rem;
-    width: calc(100% + 2rem);
     border-radius: .3rem;
 
     display: flex;

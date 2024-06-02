@@ -47,10 +47,16 @@ export default function () {
         }
     }
 
-    const uploadProfile = async () => {
+    const uploadFile = async () => {
         if (uploadImageRef.current == null) return;
         const files = uploadImageRef.current.files;
         if (files == null || files[0] == null) return;
+
+        if (String(files[0].type).includes("image/gif")) {
+            setBlobData(files[0])
+            setFileName(files[0].name)
+            return;
+        }
 
 
         var reader = new FileReader();
@@ -85,7 +91,8 @@ export default function () {
                     if (blob == null) return;
                     setBlobData(blob)
                     setFileName(files[0].name)
-                }, "image/jpeg")
+                }, "image/jpeg");
+
 
                 // setPreview(dataURL)
             }
@@ -141,7 +148,7 @@ export default function () {
                         <span className='small'>or click to upload</span>
                     </div> : <span>{fileName}</span>}
                 </div>
-                <input type="file" ref={uploadImageRef} onChange={() => uploadProfile()} />
+                <input type="file" ref={uploadImageRef} onChange={() => uploadFile()} />
             </label>
             {blobData != null && (
                 <div className="uploadNav">
