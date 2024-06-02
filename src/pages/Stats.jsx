@@ -25,7 +25,7 @@ export default function () {
         fetchStatistics()
     }, [])
 
-    if (webStats == null) return <center className='loading'>
+    if (webStats == null) return <center className='loading noicon'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
         <p>Loading website's statistics</p>
     </center>

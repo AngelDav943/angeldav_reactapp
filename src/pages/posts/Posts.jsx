@@ -31,7 +31,5 @@ export default function () {
             ))}
             {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
         </div>
-    </main> : <center className='loading'>
-        <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-    </center>
+    </main> : <center className='loading' />
 }

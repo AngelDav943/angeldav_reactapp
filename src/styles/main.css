@@ -51,8 +51,27 @@ main.center {
     min-height: calc(100dvh - var(--headerSize));
 }
 
-center.loading img {
-    height: 6rem;
+
+center.loading::after {
+    content: '';
+    background: url('/loading_monitor.gif');
+    background-size: 6rem 6rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* height: 6rem; */
+    position: fixed;
+    width: 100%;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    animation: imageBounce 3s infinite ease-in-out;
+}
+center.loading.noicon::after {
+    content: none;
+    animation: none;
+}
+
+center.loading.noicon img {
     animation: imageBounce 3s infinite ease-in-out;
 }
 

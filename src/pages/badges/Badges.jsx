@@ -70,7 +70,5 @@ export default function () {
                 </div>
             })}
         </div>
-    </main> : <center className='loading'>
-        <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-    </center>
+    </main> : <center className='loading' />
 }

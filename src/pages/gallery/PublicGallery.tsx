@@ -69,9 +69,7 @@ export default function () {
         fetchResources()
     }, [])
 
-    if (loaded == false) return <center className='loading'>
-        <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-    </center>
+    if (loaded == false) return <center className='loading' />
 
     return <main className='gallerypage'>
         <section>

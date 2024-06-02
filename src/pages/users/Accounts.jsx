@@ -29,7 +29,5 @@ export default function () {
                 <UserTile user={user} key={index} extra={`"${user.status}"`}/>
             ))}
         </div>
-    </main> : <center className='loading'>
-        <img src="/loading_monitor.gif" alt="loading gif" height={100} />
-    </center>
+    </main> : <center className='loading' />
 }

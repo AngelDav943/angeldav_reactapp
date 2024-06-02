@@ -12,7 +12,7 @@ export default function () {
     const { info, forceLogin, setError, setModal, fetchWeb } = useInfo();
     if (info == null) return forceLogin();
 
-    if (info?.permissions.admin == 0) return <center className="loading">
+    if (info?.permissions.admin == 0) return <center className="loading noicon">
         <img src="/images/monitor/monitor_red.png" alt="monitor" />
         <span>You don't have enough permissions to access this page.</span>
     </center>

@@ -107,9 +107,7 @@ function App() {
 
 			<Route path='/*' element={<NotFound />} />
 		</Routes>
-	) : <center className='loading'>
-		<img src="/loading_monitor.gif" alt="loading gif" height={100} />
-	</center>
+	) : <center className='loading' />
 }
 
 export default App

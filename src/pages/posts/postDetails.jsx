@@ -55,7 +55,7 @@ export default function () {
         fetchPost() 
     }, [params.postID])
 
-    if (notFound == false) return <center className='loading'>
+    if (notFound == false) return <center className='loading noicon'>
         <img src="/images/monitor/monitor_red.png" alt="monitor" height={100} />
         <h1><Bouncy>Post not found</Bouncy></h1>
         <span>Couldn't get post '{params["postID"]}'</span>
@@ -75,7 +75,7 @@ export default function () {
                 <MinimalPost post={comment} key={index} clickable={true} />
             ))}
         </div>
-    </main> : <center className='loading'>
+    </main> : <center className='loading noicon'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
         <span>Loading post details..</span>
     </center>
