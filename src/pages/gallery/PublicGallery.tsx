@@ -75,8 +75,10 @@ export default function () {
         <section>
             {info && (
                 <Link to={'/gallery/vault'} className='vault'>
-                    <img src="/images/folder.png" />
-                    Open vault
+                    <div className="container">
+                        <img src="/images/folder.png" />
+                        <span>Open vault</span>
+                    </div>
                 </Link>
             )}
             <div className="cards">

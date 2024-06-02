@@ -15,16 +15,35 @@ main.gallerypage section .cards {
 }
 
 main.gallerypage section a.vault {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+    display: block;
     font-size: 1.5rem;
-    padding: 1rem;
     color: var(--onBackground);
     outline: 3px dashed #ff8a02;
     border-radius: .3rem;
+    perspective: 900px;
 
-    transition: background-color .4s, outline .3s;
+    box-shadow: 0px -20px 40px -20px black inset;
+    transition: outline .3s;
+}
+
+main.gallerypage section a.vault .container {
+    background-color: var(--background);
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+
+    transform-origin: top;
+    transition: background-color .4s, transform .4s;
+}
+
+main.gallerypage section a.vault:hover .container {
+    transform: rotateX(-35deg);
+    background-color: #ff8a02;
 }
 
 main.gallerypage section a.vault img {
@@ -32,8 +51,8 @@ main.gallerypage section a.vault img {
 }
 
 main.gallerypage section a.vault:hover {
-    outline-color: transparent;
-    background-color: #ff8a02;
+    /* outline-color: transparent; */
+    outline-style: solid;
     color: var(--darkOnBackground);
 }
 

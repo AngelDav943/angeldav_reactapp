@@ -14,6 +14,8 @@ main.gallerypreview section img.preview {
 
 main.gallerypreview section .info {
     margin-top: .5rem;
+    padding: .75rem 1rem;
+    border: 1px solid var(--outline);
 }
 
 main.gallerypreview section .info span {
