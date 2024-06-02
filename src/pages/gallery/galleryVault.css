@@ -1,0 +1,73 @@
+main.gallerypage.vault section {
+    /* padding-top: 0; */
+}
+
+main.gallerypage.vault .upload {
+    margin-top: 1rem;
+    display: grid;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--outline);
+    padding: 1rem;
+    width: calc(100% + 2rem);
+    outline: 3px dashed var(--outline);
+    border-radius: .3rem;
+}
+
+main.gallerypage.vault .upload:has(input:active) {
+    outline-color: orange;
+    color: orange;
+}
+
+main.gallerypage.vault .upload .multispan > span {
+    display: block;
+}
+main.gallerypage.vault .upload .multispan span.small {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+main.gallerypage.vault .upload .display {
+    margin:-1rem;
+    padding:1rem;
+    border-radius: .3rem;
+
+    background-color: var(--background);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    
+}
+
+main.gallerypage.vault .upload .display img {
+    height: 5rem;
+}
+
+main.gallerypage.vault .upload input[type='file'] {
+    outline: none;
+    cursor: pointer;
+    margin: -1rem;
+    color: transparent;
+    background-color: transparent;
+    grid-column: 1;
+    grid-row: 1;
+    /* display: none; */
+}
+
+main.gallerypage.vault .uploadNav {
+    margin-top: .5rem;
+    padding: 0.5rem 1rem;
+    width: calc(100% + 2rem);
+    border-radius: .3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    outline: 1px solid var(--outline);
+}

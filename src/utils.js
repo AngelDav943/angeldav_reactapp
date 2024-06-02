@@ -82,7 +82,7 @@ export default {
 
         var timeStampCon = time.day + '/' + time.month + '/' + time.year;
         if (hidetime != true) timeStampCon += " " + time.hours + ':' + time.minutes
-
+        
         return timeStampCon;
     },
 

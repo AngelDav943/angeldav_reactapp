@@ -1,0 +1,45 @@
+main.gallerypage {
+
+}
+
+main.gallerypage section {
+    margin: auto;
+    max-width: 700px;
+    padding: 1rem;
+}
+
+main.gallerypage section .cards {
+    display: flex;
+    flex-wrap: wrap;
+    
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+main.gallerypage section a.vault {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    color: var(--onBackground);
+    outline: 3px dashed #ff8a02;
+    border-radius: .3rem;
+    
+    transition: background-color .4s, outline .3s;
+}
+
+main.gallerypage section a.vault img {
+    height: 3rem;
+}
+
+main.gallerypage section a.vault:hover {
+    outline-color: transparent;
+    background-color: #ff8a02;
+    color: var(--darkOnBackground);
+}
+
+main.gallerypage section a.vault:hover img {
+    filter: contrast(0) brightness(255);
+    transition: filter 1s;
+}

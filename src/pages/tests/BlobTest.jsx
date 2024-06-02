@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useInfo } from '../../context/useInfo';
 
 export default function () {
@@ -10,25 +10,25 @@ export default function () {
     <span>You don't have enough permissions to access this page.</span>
   </center>
 
+  const uploadImageRef = useRef();
+
   const [blobData, setBlobData] = useState(null)
 
   const createBadge = async () => {
-
     const response = await fetchWeb('/gallery/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'image/jpeg'
       },
       data: blobData
-    }, false, true)
-
-    console.log("sent data:", blobData)
-    console.log("response:", response)
-    if (response["msg"] != null) return setError("The given image is too large")
+    }, false)
   }
 
   const uploadProfile = async () => {
-    const files = document.getElementById("uploadImage").files;
+    if (uploadImageRef.current == null) return;
+    const files = uploadImageRef.current.files;
+    console.log("files:", files)
+
     if (files == null || files[0] == null) return;
 
     console.log("original:", files[0].size)
@@ -84,7 +84,7 @@ export default function () {
     <hr />
     <label>
       image
-      <input type="file" id="uploadImage" onChange={(e) => uploadProfile(e)} />
+      <input type="file" ref={uploadImageRef} onChange={(e) => uploadProfile(e)} />
     </label>
 
     <input type="submit" value="Upload" onClick={() => createBadge()} />

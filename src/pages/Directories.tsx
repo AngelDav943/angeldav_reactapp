@@ -19,6 +19,9 @@ export default function () {
 			<DirLink to="/projects/games" />
 			<DirLink to="/projects/models" />
 
+			<DirLink to="/gallery" />
+			<DirLink to="/gallery/vault" />
+
 			<DirLink to="/posts" />
 			<DirLink to="/posts/create" />
 

@@ -67,8 +67,7 @@ export function InfoProvider({ children }) {
         fetchWeb: async (path = "/", init = null, isJSON = true, developmentMode = false) => {
             init = init || { method: "GET", headers: null, data: null }
 
-            const apiURL = developmentMode == true ? 'http://127.0.0.1:8787' : 'https://datatest.angelddcs.workers.dev'
-            console.log(apiURL)
+            const apiURL = (import.meta.env.DEV == true && developmentMode == true) ? 'http://127.0.0.1:8787' : 'https://datatest.angelddcs.workers.dev'
             const { method, headers, data } = init;
 
             var fetchMethod = String(method).toUpperCase();
