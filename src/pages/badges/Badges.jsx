@@ -25,10 +25,8 @@ export default function () {
         if (isNaN(userID) == false) {
             const userData = await fetchWeb(`/users?id=${userID}`);
             setUser(userData)
-            console.log(userData)
         }
-
-
+        
         if (response["msg"] == undefined) {
             setLoaded(true)
             setBadges(response)

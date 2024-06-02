@@ -38,7 +38,6 @@ export default function () {
 
         if (info == null) return
         const data = await fetchWeb(`/users/follow?id=${userID}`)
-        console.log("response:", data)
         if (data && data["followers"]) setFollowers(data.followers);
     }
 

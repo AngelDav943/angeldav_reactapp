@@ -1,6 +1,4 @@
-main.gallerypage {
-
-}
+main.gallerypage {}
 
 main.gallerypage section {
     margin: auto;
@@ -11,7 +9,7 @@ main.gallerypage section {
 main.gallerypage section .cards {
     display: flex;
     flex-wrap: wrap;
-    
+
     margin-top: 1rem;
     gap: 1rem;
 }
@@ -25,7 +23,7 @@ main.gallerypage section a.vault {
     color: var(--onBackground);
     outline: 3px dashed #ff8a02;
     border-radius: .3rem;
-    
+
     transition: background-color .4s, outline .3s;
 }
 
@@ -42,4 +40,51 @@ main.gallerypage section a.vault:hover {
 main.gallerypage section a.vault:hover img {
     filter: contrast(0) brightness(255);
     transition: filter 1s;
+}
+
+@media screen and (max-width: 501px) {
+
+    main.gallerypage section .cards {
+        gap: 0 !important;
+    }
+
+    main.gallerypage section .cards {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+
+    main.gallerypage section .cards .GalleryResourceCard {
+        transform: scale(0.95);
+        height: auto;
+    }
+
+    main.gallerypage section .cards .GalleryResourceCard:hover,
+    main.gallerypage section .cards .GalleryResourceCard.expand {
+        transform: scale(1);
+    }
+
+    main.gallerypage section .cards .GalleryResourceCard .preview {
+        width: 100%;
+        height: auto;
+    }
+
+    main.gallerypage section .cards .GalleryResourceCard .preview img.preview {
+        height: auto;
+        width: 100%;
+    }
+
+    main.gallerypage section .cards .GalleryResourceCard .info {
+        height: 0px;
+        display: none;
+        transition: margin 1s;
+    }
+
+    main.gallerypage section .cards .GalleryResourceCard.expand .info {
+        height: 100%;
+        display: block;
+    }
 }

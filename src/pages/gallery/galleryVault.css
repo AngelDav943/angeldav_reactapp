@@ -9,7 +9,6 @@ main.gallerypage.vault .upload {
     font-weight: 500;
     color: var(--outline);
     padding: 1rem;
-    width: calc(100% + 2rem);
     outline: 3px dashed var(--outline);
     border-radius: .3rem;
 }
