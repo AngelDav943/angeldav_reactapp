@@ -53,13 +53,12 @@ export default function () {
         const files = uploadImageRef.current.files;
         if (files == null || files[0] == null) return;
 
-        if (String(files[0].type).includes("image/gif")) {
+        if (String(files[0].type).includes("image/gif") || String(files[0].type).includes("video")) {
             setBlobData(files[0])
             setFileName(files[0].name)
             setFileType(files[0].type)
             return;
         }
-
 
         var reader = new FileReader();
         reader.onload = function (e) {
