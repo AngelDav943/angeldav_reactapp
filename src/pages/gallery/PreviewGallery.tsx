@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from 'react'
+import React, { Children, useEffect, useRef, useState } from 'react'
 import { useInfo } from '../../context/useInfo'
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -10,12 +10,14 @@ import './galleryPreview.css'
 import { galleryResourceData } from '../../components/GalleryResource';
 
 export default function () {
-    const { info, fetchWeb, setError } = useInfo();
+    const { info, fetchWeb, setModal } = useInfo();
     const params = useParams();
 
     const navigate = useNavigate();
 
     const [isPublic, setPublic] = useState<boolean>(true);
+    const [label, setLabel] = useState<string>("");
+
     const [loaded, setLoaded] = useState<boolean>(false);
     const [resource, setResource] = useState<galleryResourceData | null>(null);
 
@@ -28,11 +30,12 @@ export default function () {
         if (resourceData) {
             setLoaded(true)
             setPublic(resourceData.public)
+            setLabel(resourceData.label)
             setResource(resourceData)
         }
     }
 
-    async function deleteButton() {
+    async function onDelete() {
         if (resource == null) return;
 
         const data = await fetchWeb('/gallery/remove', {
@@ -43,10 +46,55 @@ export default function () {
         if (data != null && data["success"] == true) navigate('/gallery')
     }
 
+    async function deleteButton() {
+        if (resource == null) return;
+        setModal(<>
+            <p>Are you sure you want to delete this image?</p>
+            <div className="buttons">
+                <input
+                    type="button" value="Cancel"
+                    onClick={() => setModal(null)}
+                />
+                <input
+                    type="submit" value="Confirm"
+                    onClick={() => {
+                        setModal(null);
+                        onDelete();
+                    }}
+                />
+            </div>
+        </>)
+    }
+
+    const inputRef = useRef<any>();
+    async function labelButton() {
+        if (resource == null) return;
+
+        setModal(<>
+            <p>Change resource label</p>
+            <input ref={inputRef} type="text" placeholder="Label" defaultValue={label} />
+            <div className="buttons">
+                <input
+                    type="button" value="Cancel"
+                    onClick={() => setModal(null)}
+                />
+                <input
+                    type="submit" value="Confirm"
+                    onClick={() => {
+                        if (inputRef.current == null) return;
+                        setModal(null);
+                        setLabel(inputRef.current.value);
+                        onUpdate(resource.id, { label: inputRef.current.value });
+                    }}
+                />
+            </div>
+        </>)
+    }
+
     async function onUpdate(id, updatedData) {
         const data = await fetchWeb('/gallery/update', {
             method: 'PATCH',
-            data: { id: id, public: updatedData.isPublic }
+            data: { id: id, public: updatedData.isPublic, label: updatedData.label }
         })
     }
 
@@ -66,20 +114,21 @@ export default function () {
     if (loaded == false || resource == null) return <center className='loading' />
 
     const dataTypes = {
-        "image": <img src={resource.image} draggable={false} className='previewAsset' />,
-        "video": <video className="previewAsset" src={resource.image} controls={true} />,
+        "image": <img src={resource.data} draggable={false} className='previewAsset' />,
+        "video": <video className="previewAsset" src={resource.data} controls={true} />,
     }
 
     return <main className='gallerypreview'>
         <Helmet>
-            <meta id="og-image" property="og:image" content={resource.image} />
-            {(window.navigator.userAgent.includes("Discordbot") == true) && <meta http-equiv="refresh" content={`0; url=${resource.image}`} />}
+            <meta id="og-image" property="og:image" content={resource.data} />
+            {(window.navigator.userAgent.includes("Discordbot") == true) && <meta http-equiv="refresh" content={`0; url=${resource.data}`} />}
         </Helmet>
         <section>
             <Link to={'/gallery'}>&lt; Go back</Link>
             <hr />
             {dataTypes[resource.type.split("/")[0]]}
             <div className="info">
+                {label && <h2>"{label}"</h2>}
                 <span className='small'>Published by <Link to={`/users/${resource.fromID}`}>@{resource.user.username}</Link></span>
                 <span className='small'>{utils.timeFromTimestamp(resource.timestamp)}</span>
                 <span>Type: {resource.type}</span>
@@ -87,6 +136,7 @@ export default function () {
                     <hr />
                     <div className="buttons">
                         <button type='submit' onClick={() => deleteButton()}>Delete</button>
+                        <button type='submit' onClick={() => labelButton()}>Change label</button>
                         <label>
                             <input type="checkbox" checked={isPublic} onChange={() => publicToggle()} />
                             public

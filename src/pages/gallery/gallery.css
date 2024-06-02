@@ -91,7 +91,7 @@ main.gallerypage section a.vault:hover img {
         height: auto;
     }
 
-    main.gallerypage section .cards .GalleryResourceCard .preview img.preview {
+    main.gallerypage section .cards .GalleryResourceCard .preview .previewAsset {
         height: auto;
         width: 100%;
     }

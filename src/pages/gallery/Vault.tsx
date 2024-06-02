@@ -26,6 +26,7 @@ export default function () {
     }
 
     const [fileName, setFileName] = useState<string>("")
+    const [fileLabel, setLabel] = useState<string>("")
     const [blobData, setBlobData] = useState<Blob | null>(null)
     const [fileType, setFileType] = useState<string>("image/jpeg")
     const uploadResource = async () => {
@@ -36,7 +37,8 @@ export default function () {
             method: 'POST',
             headers: {
                 'Content-Type': fileType,
-                'public': publicState
+                'public': publicState, 
+                'label': String(fileLabel)
             },
             data: blobData
         }, false)
@@ -56,6 +58,7 @@ export default function () {
         if (String(files[0].type).includes("image/gif") || String(files[0].type).includes("video")) {
             setBlobData(files[0])
             setFileName(files[0].name)
+            setLabel(files[0].name)
             setFileType(files[0].type)
             return;
         }
@@ -126,8 +129,9 @@ export default function () {
     async function onResourceUpdate(id, updatedData) {
         const data = await fetchWeb('/gallery/update', {
             method: 'PATCH',
-            data: { id: id, public: updatedData.isPublic }
+            data: { id: id, public: updatedData.isPublic, label: updatedData.label }
         })
+        console.log("uploaded:")
     }
 
     useEffect(() => {
@@ -153,6 +157,7 @@ export default function () {
             {blobData != null && (
                 <div className="uploadNav">
                     <button onClick={() => { setBlobData(null); setFileName("") }}>Clear</button>
+                    <input type="text" placeholder="Label" onChange={e => setLabel(e.target.value)} value={fileLabel} />
                     <label>
                         Public
                         <input type="checkbox" ref={checkboxPublicRef} defaultChecked />

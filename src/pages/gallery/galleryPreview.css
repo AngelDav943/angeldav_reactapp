@@ -12,6 +12,11 @@ main.gallerypreview section .previewAsset {
     width: 100%;
 }
 
+main.gallerypreview section .info h2 {
+    margin: 0;
+    margin-bottom: .75rem;
+}
+
 main.gallerypreview section .info {
     margin-top: .5rem;
     padding: .75rem 1rem;

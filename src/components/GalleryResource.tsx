@@ -10,7 +10,8 @@ export interface galleryResourceData {
     fromID: number;
     user: any;
     timestamp: number;
-    image: string;
+    data: string;
+    label: string;
     type: string;
     public: boolean;
 }
@@ -18,13 +19,15 @@ export interface galleryResourceData {
 interface resourceProps {
     resource: galleryResourceData;
     onDelete?: (id: number) => void;
-    onUpdate?: (id: number, data: { isPublic: boolean }) => void;
+    onUpdate?: (id: number, data: { isPublic?: boolean, label?: string }) => void;
 }
 
 export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () => { } }: resourceProps) {
     const { info, setModal } = useInfo();
     const cardRef = useRef<any>();
-    const [isPublic, setPublic] = useState(resource.public)
+
+    const [label, setLabel] = useState<string>(resource.label)
+    const [isPublic, setPublic] = useState<boolean>(resource.public)
 
     function deleteButton() {
         setModal(<>
@@ -45,6 +48,31 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
         </>)
     }
 
+    const inputRef = useRef<any>();
+    async function labelButton() {
+        if (resource == null) return;
+
+        setModal(<>
+            <p>Change resource label</p>
+            <input ref={inputRef} type="text" placeholder="Label" defaultValue={label} />
+            <div className="buttons">
+                <input
+                    type="button" value="Cancel"
+                    onClick={() => setModal(null)}
+                />
+                <input
+                    type="submit" value="Confirm"
+                    onClick={() => {
+                        if (inputRef.current == null) return;
+                        setModal(null);
+                        setLabel(inputRef.current.value);
+                        onUpdate(resource.id, { label: inputRef.current.value });
+                    }}
+                />
+            </div>
+        </>)
+    }
+
     function publicToggle() {
         setPublic(current => {
             onUpdate(resource.id, { isPublic: !current })
@@ -58,9 +86,27 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
     }
 
     const dataTypes = {
-        "image": <img src={resource.image} draggable={false} className='previewAsset' />,
-        "video": <video className="previewAsset" src={resource.image} controls={true} />,
+        "image": <img src={resource.data} draggable={false} className='previewAsset' />,
+        "video": <video className="previewAsset" src={resource.data} controls={true} />,
     }
+
+    function editModal() {
+        setModal(<>
+            <p>Edit resource</p>
+            {dataTypes[resource.type.split("/")[0]]}
+            <hr />
+            <label>
+                <input type="checkbox" checked={isPublic} onChange={() => publicToggle()} />
+                Public
+            </label>
+            <br />
+            <button type='submit' onClick={() => deleteButton()}>Delete</button>
+            <br />
+            <button type='submit' onClick={() => labelButton()}>Edit label</button>
+            <br />
+        </>)
+    }
+
 
     return (
         <div className='GalleryResourceCard' ref={cardRef}>
@@ -73,17 +119,14 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
                 <img src="/images/info.png" className='config' draggable={false} onClick={() => expandToggle()} />
             </div>
             <div className="info">
+                {resource.label && <span>"{resource.label}"</span>}
                 <span className='small'>Published by <Link to={`/users/${resource.fromID}`}>@{resource.user.username}</Link></span>
                 <span className='small'>{utils.timeFromTimestamp(resource.timestamp)}</span>
                 <span><Link to={`/gallery/${resource.timestamp}0a${resource.id}`}>Preview</Link></span>
                 {info && info?.id == resource.fromID && <>
                     <hr />
                     <div className="buttons">
-                        <button type='submit' onClick={() => deleteButton()}>Delete</button>
-                        <label>
-                            <input type="checkbox" checked={isPublic} onChange={() => publicToggle()} />
-                            public
-                        </label>
+                        <button type='submit' onClick={() => editModal()}>Edit</button>
                     </div>
                 </>}
             </div>
