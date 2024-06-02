@@ -48,7 +48,7 @@ main.center {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100dvh - var(--headerSize) - 1px - 2rem - var(--headerSize));
+    min-height: calc(100dvh - var(--headerSize));
 }
 
 center.loading img {
@@ -59,6 +59,23 @@ center.loading img {
 hr {
     border: none;
     border-bottom: 1px solid var(--outline);
+}
+
+#root > main {
+    animation: mainAppear 1s ease-in-out;
+}
+
+@keyframes mainAppear {
+    0% {
+        transform-origin: top;
+        filter: blur(10px);
+        opacity: 0;
+    }
+    
+    100% {
+        transform-origin: top;
+        opacity: 1;
+    }
 }
 
 @keyframes imageBounce {

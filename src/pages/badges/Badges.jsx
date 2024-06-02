@@ -35,7 +35,7 @@ export default function () {
 
     useEffect(() => { fetchBadges() }, [])
 
-    return badgesLoaded ? <article className="badges">
+    return badgesLoaded ? <main className="badges">
         {targetUser && <div className="profilepreview">
             <div
                 className="banner"
@@ -70,7 +70,7 @@ export default function () {
                 </div>
             })}
         </div>
-    </article> : <center className='loading'>
+    </main> : <center className='loading'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
     </center>
 }

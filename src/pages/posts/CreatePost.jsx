@@ -85,7 +85,7 @@ export default function () {
         console.log(dataTransfer)
     }*/
 
-    return <article className="createpost">
+    return <main className="createpost">
         <div className="editor">
             <form onSubmit={handleSubmit}>
                 <br />
@@ -110,5 +110,5 @@ export default function () {
                 </section>
             </form>
         </div>
-    </article>
+    </main>
 }

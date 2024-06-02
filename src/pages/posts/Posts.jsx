@@ -24,14 +24,14 @@ export default function () {
         fetchPosts()
     }, [])
 
-    return postsLoaded ? <article className="posts">
+    return postsLoaded ? <main className="posts">
         <div className="items">
             {posts.map((post, index) => (
                 <Post post={post} key={index} clickable={true}/>
             ))}
             {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
         </div>
-    </article> : <center className='loading'>
+    </main> : <center className='loading'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
     </center>
 }

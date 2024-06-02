@@ -1,4 +1,4 @@
-article.badges {
+main.badges {
     margin-top: -1rem;
     padding-top: 1rem;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
@@ -6,13 +6,13 @@ article.badges {
     background-size: 10rem;
 }
 
-article.badges .items {
+main.badges .items {
     max-width: 600px;
     margin: auto;
     padding: 0 2rem;
 }
 
-article.badges .badge {
+main.badges .badge {
     margin-top: 0.5rem;
     color: var(--outline);
     padding: 0.5rem;
@@ -24,40 +24,40 @@ article.badges .badge {
     border-left-width: 10px;
 }
 
-article.badges .badge.obtained {
+main.badges .badge.obtained {
     color: var(--onBackground);
     border-color: var(--primary);
 }
 
-article.badges .badge .info {
+main.badges .badge .info {
     display: inline-block;
     height: 100%;
     flex-grow: 1;
     flex-basis: 150px;
 }
 
-article.badges .badge .info span {
+main.badges .badge .info span {
     display: block;
 }
 
-article.badges .badge .info span.name {
+main.badges .badge .info span.name {
     font-size: 1.2rem;
 }
 
-article.badges .badge .info span.description {
+main.badges .badge .info span.description {
     opacity: 0.9;
 }
 
-article.badges .badge img {
+main.badges .badge img {
     opacity: 0.8;
 }
 
-article.badges .badge.obtained img {
+main.badges .badge.obtained img {
     opacity: 1;
 }
 
 
-article.badges .profilepreview {
+main.badges .profilepreview {
     padding-top: 2rem;
     padding-bottom: 4rem;
 
@@ -68,7 +68,7 @@ article.badges .profilepreview {
     color: var(--darkOnBackground);
 }
 
-article.badges .profilepreview .banner {
+main.badges .profilepreview .banner {
     background-color: var(--darkBackground);
     filter: blur(3px);
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
@@ -89,7 +89,7 @@ article.badges .profilepreview .banner {
     height: calc(100% + 6rem);
 }
 
-article.badges .profilepreview .top {
+main.badges .profilepreview .top {
     z-index: 1;
     grid-column: 1;
     grid-row: 1;
@@ -104,22 +104,22 @@ article.badges .profilepreview .top {
     width: 100%;
 }
 
-article.badges .profilepreview .top img {
+main.badges .profilepreview .top img {
     max-height: 64px;
     max-width: 64px;
     border-radius: 0.1rem;
 }
 
-article.badges .profilepreview .top .info span {
+main.badges .profilepreview .top .info span {
     display: block;
 }
 
-article.badges .profilepreview .top .info span.displayname {
+main.badges .profilepreview .top .info span.displayname {
     margin: 0;
     font-size: 1.3rem;
 }
 
-article.badges .profilepreview .top .info span.username {
+main.badges .profilepreview .top .info span.username {
     margin: 0;
     font-size: 1rem;
     opacity: 0.7;

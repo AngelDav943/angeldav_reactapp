@@ -1,11 +1,11 @@
-article.createpost {
+main.createpost {
     background: #086fb0 url("/images/blueprint_tiles.png");
     background-size: 3rem;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
     margin-top: -1rem;
 }
 
-article.createpost .editor {
+main.createpost .editor {
     margin-top: -1rem;
     padding: 1rem 1rem;
 
@@ -15,12 +15,12 @@ article.createpost .editor {
     margin: auto;
 }
 
-article.createpost .editor form {
+main.createpost .editor form {
     display: flex;
     flex-wrap: wrap;
 }
 
-article.createpost .editor form section#inputs {
+main.createpost .editor form section#inputs {
     flex-grow: 1;
     margin-top: 1rem;
 
@@ -28,32 +28,32 @@ article.createpost .editor form section#inputs {
     flex-direction: column;
 }
 
-article.createpost .editor form textarea, article.createpost .editor input[type="submit"] {
+main.createpost .editor form textarea, main.createpost .editor input[type="submit"] {
     width: calc(100% - 2rem);
 }
 
-article.createpost .editor input[type="submit"] {
+main.createpost .editor input[type="submit"] {
     width: 100%;
 } 
 
-article.createpost form section#inputs textarea {
+main.createpost form section#inputs textarea {
     min-height: 10rem;
     flex-grow: 1;
     height: calc(100% - 2rem);
     resize: none;
 }
 
-article.createpost form .post {
+main.createpost form .post {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-article.createpost form .post section.body {
+main.createpost form .post section.body {
     flex-grow: 1;
 }
 
-article.createpost .row {
+main.createpost .row {
     border-radius: 0.25rem;
     background-color: var(--background);
     display: flex;

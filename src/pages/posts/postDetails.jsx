@@ -61,7 +61,7 @@ export default function () {
         <span>Couldn't get post '{params["postID"]}'</span>
     </center>
 
-    return postLoaded ? <article className="posts">
+    return postLoaded ? <main className="posts">
         <div className="items reverse">
             {post.parent && <Post post={post.parent} clickable={true}/>}
             {post && <Post post={post} />}
@@ -75,7 +75,7 @@ export default function () {
                 <MinimalPost post={comment} key={index} clickable={true} />
             ))}
         </div>
-    </article> : <center className='loading'>
+    </main> : <center className='loading'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
         <span>Loading post details..</span>
     </center>

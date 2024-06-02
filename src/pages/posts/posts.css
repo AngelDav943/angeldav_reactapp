@@ -1,10 +1,10 @@
-article.posts {
+main.posts {
     margin-top: -1rem;
     padding-top: 1rem;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
 }
 
-article.posts::before {
+main.posts::before {
     image-rendering: pixelated;
     top: 0;
     content: "";
@@ -23,37 +23,37 @@ article.posts::before {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2));
 }
 
-article.posts .items {
+main.posts .items {
     max-width: 740px;
     margin: auto;
     display: flex;
     flex-direction: column-reverse;
 }
 
-article.posts .items a.post {
+main.posts .items a.post {
     color: var(--onBackground);
 }
 
-article.posts .items.reverse {
+main.posts .items.reverse {
     flex-direction: column;
 }
 
-article.posts div.comments {
+main.posts div.comments {
     padding: 0 1rem;
 }
 
-article.posts div.comments .inputs {
+main.posts div.comments .inputs {
     display: flex;
 }
 
-article.posts div.comments input[type="text"] {
+main.posts div.comments input[type="text"] {
     width: 100%;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     outline: none;
 }
 
-article.posts div.comments .inputs input[type="submit"] {
+main.posts div.comments .inputs input[type="submit"] {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 20%;

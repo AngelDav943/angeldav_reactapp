@@ -23,13 +23,13 @@ export default function () {
 
     useEffect(() => { fetchUsers() }, [])
 
-    return usersLoaded ? <article className="users">
+    return usersLoaded ? <main className="users">
         <div className="items">
             {users.map((user, index) => (
                 <UserTile user={user} key={index} extra={`"${user.status}"`}/>
             ))}
         </div>
-    </article> : <center className='loading'>
+    </main> : <center className='loading'>
         <img src="/loading_monitor.gif" alt="loading gif" height={100} />
     </center>
 }

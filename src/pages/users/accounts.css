@@ -1,4 +1,4 @@
-article.users {
+main.users {
     margin-top: -1rem;
     padding-top: 1rem;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
@@ -7,7 +7,7 @@ article.users {
     background-size: 10rem;
 }
 
-article.users::before {
+main.users::before {
     image-rendering: pixelated;
     top: 0;
     content: "";
@@ -23,7 +23,7 @@ article.users::before {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
-article.users .items {
+main.users .items {
     max-width: 600px;
     margin: auto;
 }
