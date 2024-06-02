@@ -27,6 +27,7 @@ export default function () {
 
     const [fileName, setFileName] = useState<string>("")
     const [blobData, setBlobData] = useState<Blob | null>(null)
+    const [fileType, setFileType] = useState<string>("image/jpeg")
     const uploadResource = async () => {
         let publicState = 1;
         if (checkboxPublicRef.current != null) publicState = checkboxPublicRef.current.checked ? 1 : 0;
@@ -34,7 +35,7 @@ export default function () {
         const response = await fetchWeb('/gallery/create', {
             method: 'POST',
             headers: {
-                'Content-Type': 'image/jpeg',
+                'Content-Type': fileType,
                 'public': publicState
             },
             data: blobData
@@ -55,6 +56,7 @@ export default function () {
         if (String(files[0].type).includes("image/gif")) {
             setBlobData(files[0])
             setFileName(files[0].name)
+            setFileType(files[0].type)
             return;
         }
 
@@ -89,6 +91,7 @@ export default function () {
 
                 canvas.toBlob(blob => {
                     if (blob == null) return;
+                    setFileType("image/jpeg")
                     setBlobData(blob)
                     setFileName(files[0].name)
                 }, "image/jpeg");
