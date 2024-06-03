@@ -22,6 +22,7 @@ export default function ({
     autoPlay = false,
     style = {}
 }: videoProps) {
+    const playerRef = useRef<any>();
     const videoRef = useRef<any>();
 
     const [hasEnded, setEnded] = useState<boolean>(false);
@@ -50,10 +51,14 @@ export default function ({
     }
 
     function fullScreen(event) {
-        if (videoRef.current == null) return;
-        const video = videoRef.current;
+        if (playerRef.current == null) return;
+        const player = playerRef.current;
         event.preventDefault();
-        video.requestFullscreen();
+        if (!document.fullscreenElement) {
+            player.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
     }
 
     const [timePercentage, setTimePercentage] = useState<number>(0);
@@ -78,25 +83,13 @@ export default function ({
 
     }
 
-    const [changingVolume, setChangingVolume] = useState<boolean>(false);
-    function changeVolume(event, override: boolean | undefined = false) {
-        if (changingVolume == false && override == false) return;
-        const rect = event.target.getBoundingClientRect();
-        const relativeY = Math.abs((event.clientY - rect.top.toFixed()) - rect.height);
-        const percentage = relativeY / rect.height
-        setVolume(current => {
-            if (Math.abs(percentage - current) > 0.5 && override == false) return current
-            return Math.min(1, Math.max(0, percentage))
-        });
-    }
-
     useEffect(() => {
         if (videoRef.current == null) return;
         const video = videoRef.current;
         video.volume = currentVolume
     }, [currentVolume])
 
-    return <div className={`customVideoPlayer ${className}`} style={style}>
+    return <div className={`customVideoPlayer ${className}`} ref={playerRef} style={style}>
         <video
             ref={videoRef}
             src={src}
@@ -123,16 +116,12 @@ export default function ({
             <div className="volumeContainer">
                 <img className='button' src={`/images/sound_${currentVolume <= 0.01 ? 'off' : 'on'}.png`} onClick={event => mute(event)} draggable={false} />
                 <div className="slider">
-                    <div
-                        className="bar"
-                        onClick={event => changeVolume(event, true)}
-                        onMouseDown={e => setChangingVolume(true)}
-                        onMouseUp={e => setChangingVolume(false)}
-                        onMouseMove={event => changeVolume(event)}
-                        onMouseLeave={e => setChangingVolume(false)}
-                    >
-                        <div className="inner" style={{ height: `${currentVolume * 100}%` }} />
-                    </div>
+                    <input
+                        type="range"
+                        onChange={e => setVolume(parseInt(e.target.value) / 100)}
+                        style={{ "--targetHeight": `${currentVolume * 100}%` } as React.CSSProperties}
+                        value={currentVolume * 100}
+                    />
                 </div>
             </div>
             <img className='button' src={`/images/fullscreen.png`} onClick={event => fullScreen(event)} draggable={false} />
