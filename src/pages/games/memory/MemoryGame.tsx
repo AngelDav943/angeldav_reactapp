@@ -107,7 +107,8 @@ export default function () {
 
     return (
         <main className='GAME_memory'>
-            <p>Game status: <b>{connectionStatus}</b></p>
+            <br />
+            <span>Game status: <b>{connectionStatus}</b></span>
             <p className="gameinfo">
                 <span className='points'>Points: {points}</span>
                 <span className='fails' >Fails: {fails}</span>

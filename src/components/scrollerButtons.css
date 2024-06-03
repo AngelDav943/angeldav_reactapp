@@ -1,3 +1,7 @@
+article.scrollerButtons {
+    height: 100%;
+}
+
 article.scrollerButtons.reverse {
     display: flex;
     flex-direction: column-reverse;
@@ -43,6 +47,7 @@ article.scrollerButtons div.scroller {
     scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    height: 100%;
 }
 
 article.scrollerButtons div.scroller .empty {
