@@ -9,6 +9,7 @@ interface videoProps {
     muted?: boolean;
     loop?: boolean;
     autoPlay?: boolean;
+    style?: React.CSSProperties;
 }
 
 export default function ({
@@ -19,7 +20,7 @@ export default function ({
     muted = false,
     loop = false,
     autoPlay = false,
-
+    style = {}
 }: videoProps) {
     const videoRef = useRef<any>();
 
@@ -95,7 +96,7 @@ export default function ({
         video.volume = currentVolume
     }, [currentVolume])
 
-    return <div className={`customVideoPlayer ${className}`}>
+    return <div className={`customVideoPlayer ${className}`} style={style}>
         <video
             ref={videoRef}
             src={src}

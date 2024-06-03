@@ -97,6 +97,8 @@ main.gallerypage section a.vault:hover img {
     }
 
     main.gallerypage section .cards .GalleryResourceCard .info {
+        zoom: 1.5;
+        /* font-size: 1.5rem; */
         height: 0px;
         display: none;
         transition: margin 1s;

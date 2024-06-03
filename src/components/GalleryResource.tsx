@@ -88,13 +88,15 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
 
     const dataTypes = {
         "image": <img src={resource.data} draggable={false} className='previewAsset' />,
-        "video": <VideoPlayer className='previewAsset' src={resource.data} simpleControls={true} />,
+        "video": <VideoPlayer className='previewAsset' src={resource.data} simpleControls={true} style={{width:'100%'}}/>,
     }
 
     function editModal() {
         setModal(<>
             <p>Edit resource</p>
-            {dataTypes[resource.type.split("/")[0]]}
+            <div style={{width:"100%"}}>
+                {dataTypes[resource.type.split("/")[0]]}
+            </div>
             <hr />
             <label>
                 <input type="checkbox" checked={isPublic} onChange={() => publicToggle()} />
