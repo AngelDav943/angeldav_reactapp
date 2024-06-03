@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 
 import './galleryPreview.css'
 import { galleryResourceData } from '../../components/GalleryResource';
+import VideoPlayer from '../../components/VideoPlayer';
 
 export default function () {
     const { info, fetchWeb, setModal } = useInfo();
@@ -115,7 +116,7 @@ export default function () {
 
     const dataTypes = {
         "image": <img src={resource.data} draggable={false} className='previewAsset' />,
-        "video": <video className="previewAsset" src={resource.data} controls={true} />,
+        "video": <VideoPlayer className='previewAsset' src={resource.data} controls={true} />,
     }
 
     return <main className='gallerypreview'>

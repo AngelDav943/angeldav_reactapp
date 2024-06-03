@@ -4,6 +4,7 @@ import utils from '../utils';
 import { Link } from 'react-router-dom';
 
 import { useInfo } from '../context/useInfo';
+import VideoPlayer from './VideoPlayer';
 
 export interface galleryResourceData {
     id: number;
@@ -87,7 +88,7 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
 
     const dataTypes = {
         "image": <img src={resource.data} draggable={false} className='previewAsset' />,
-        "video": <video className="previewAsset" src={resource.data} controls={true} />,
+        "video": <VideoPlayer className='previewAsset' src={resource.data} simpleControls={true} />,
     }
 
     function editModal() {
@@ -106,7 +107,6 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
             <br />
         </>)
     }
-
 
     return (
         <div className='GalleryResourceCard' ref={cardRef}>

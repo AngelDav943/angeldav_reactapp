@@ -20,10 +20,25 @@
     grid-column: 1;
     grid-row: 1;
 }
+/*
+.GalleryResourceCard .preview video {}
 
-.GalleryResourceCard .preview .previewAsset {}
-.GalleryResourceCard .preview video::-webkit-media-controls-timeline { }
-.GalleryResourceCard .preview video::-webkit-media-controls-played-progress { background-color: #ff5733; }
+.GalleryResourceCard .preview video::-webkit-media-controls-play-button {
+    background-color: #ff5733;
+    border-radius: 50%;
+    padding: 8px;
+    color: white;
+}
+
+.GalleryResourceCard .preview video::-webkit-media-controls-timeline {
+    background-color: orange;
+}
+
+.GalleryResourceCard .preview video::-webkit-media-controls-played-progress {
+    height: 1rem;
+    background-color: #ff5733;
+}
+*/
 
 .GalleryResourceCard .preview img.config {
     cursor: pointer;
