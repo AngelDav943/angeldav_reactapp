@@ -79,7 +79,9 @@ export default function ({
         if (isNaN(video.duration) == true) return;
 
         console.log(video.currentTime, video.duration)
-        video.currentTime = 5
+        var cTime = video.currentTime;
+        console.log(cTime)
+        video.currentTime = 3
 
     }
 
@@ -92,13 +94,14 @@ export default function ({
     return <div className={`customVideoPlayer ${className}`} ref={playerRef} style={style}>
         <video
             ref={videoRef}
-            src={src}
-            // onClick={(event) => play(event)}
             muted={muted}
             loop={loop}
+            playsInline={true}
             autoPlay={autoPlay}
             onTimeUpdate={event => onTimeUpdate(event)}
-        />
+        >
+            <source src={src} type='video/mp4' />
+        </video>
         {controls && <div className="controls">
             <img className='button' src={`/images/${hasEnded == false ? (isPlaying ? 'pause' : 'play') : 'repeat'}.png`} onClick={event => play(event)} draggable={false} />
 
