@@ -32,7 +32,7 @@ export default function () {
             {
                 (info && info?.permissions.post != 0) &&
                 <Link to='/posts/create' className="create">
-                    <img src="images/paperpencil.png" alt="" />
+                    <img src="images/dashboard/edit_posts.png" alt="" />
                     Create post
                 </Link>
             }

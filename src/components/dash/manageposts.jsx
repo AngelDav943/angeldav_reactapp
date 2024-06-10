@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import './manageposts.css'
 import MinimalPost from "../MinimalPost";
+import utils from "../../utils";
 
 export default function () {
     const { info, forceLogin, fetchWeb, setModal } = useInfo();
@@ -45,7 +46,7 @@ export default function () {
         const post = posts[postIndex]
 
         setModal(<>
-            <p>Are you sure you want to delete your post '{post.body}'?</p>
+            <p>Are you sure you want to delete your post you made on the {utils.timeFromTimestamp(post.timestamp, true)}?</p>
             <div className="buttons">
                 <input type="button" value="Cancel" onClick={() => setModal(null)} />
                 <input type="submit" value="Confirm" onClick={() => removePost(post.id)} />

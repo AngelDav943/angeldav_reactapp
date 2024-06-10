@@ -7,6 +7,7 @@ import './admin.css'
 import InviteTile from "../InviteTile";
 import Post from "../post";
 import MinimalPost from "../MinimalPost";
+import utils from "../../utils";
 
 export default function () {
     const { info, forceLogin, setError, setModal, fetchWeb } = useInfo();
@@ -132,7 +133,7 @@ export default function () {
         const post = posts[postIndex]
 
         setModal(<>
-            <p>Are you sure you want to delete {post.user.username}'s post '{post.body}'?</p>
+            <p>Are you sure you want to delete {post.user.username}'s post made on the {utils.timeFromTimestamp(post.timestamp, true)}?</p>
             <div className="buttons">
                 <input type="button" value="Cancel" onClick={() => setModal(null)} />
                 <input type="submit" value="Confirm" onClick={() => removePost(post.id)} />

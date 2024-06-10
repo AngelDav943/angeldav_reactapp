@@ -15,15 +15,15 @@ export default function () {
     const { info, forceLogin, logout, setModal } = useInfo();
     if (info == null) return forceLogin();
 
-    const [currentPage, setPage] = useState("Home")
+    const [currentPage, setPage] = useState("home")
     var pages = {
-        "Home": <Dash_home />,
-        "Invites": <Dash_invites />,
-        "Avatar creator": <Avatarcreator />,
+        "home": <Dash_home />,
+        "invites": <Dash_invites />,
+        "avatar_editor": <Avatarcreator />,
     }
 
-    if (info?.permissions["post"] != 0) pages["Manage posts"] = <Manageposts />
-    if (info?.permissions["admin"] != 0) pages["Admin"] = <AdminPage />
+    if (info?.permissions["post"] != 0) pages["edit_posts"] = <Manageposts />
+    if (info?.permissions["admin"] != 0) pages["admin"] = <AdminPage />
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -34,9 +34,21 @@ export default function () {
                     <button className="sidebar" onClick={() => { setSidebarOpen(!sidebarOpen) }}>
                         Close sidebar
                     </button>
-                    {Object.keys(pages).map(page => (
-                        <input className={currentPage == page ? "selected" : ""} type="button" key={page} onClick={() => { setPage(page); setSidebarOpen(false) }} value={page} />
-                    ))}
+                    {Object.keys(pages).map(page => {
+                        let displayName = page.replace(/_/g," ");
+                        displayName = displayName[0].toLocaleUpperCase() + displayName.slice(1)
+
+                        return (
+                            <button
+                                className={`page ${currentPage == page ? "selected" : ""}`}
+                                key={page}
+                                onClick={() => { setPage(page); setSidebarOpen(false) }}
+                            >
+                                <img draggable={false} src={`images/dashboard/${page}.png`} alt="" />
+                                {displayName}
+                            </button>
+                        )
+                    })}
                 </div>
                 <input type="submit" value="Log out" onClick={logout} />
             </aside>

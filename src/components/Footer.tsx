@@ -13,11 +13,10 @@ export default function () {
 				<Link to="/statistics" >Statistics</Link>
 				<Link to="https://github.com/AngelDav943" >Github</Link>
 			</div>
-			<span>Last updated: June 3rd 2024</span>
+			<span>Last updated: June 10th 2024</span>
 		</div>
 		<div className="row">
 			<p className="icon" >Angel's website</p>
-			<p>2024</p>
 		</div>
 	</footer>
 }
