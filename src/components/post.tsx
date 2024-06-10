@@ -5,6 +5,7 @@ import utils from '../utils';
 import { useState } from 'react';
 import { useInfo } from '../context/useInfo';
 import { Link, useNavigate } from 'react-router-dom';
+import ReactiveMarkdown from './ReactiveMarkdown';
 
 export default function ({ post, clickable }: { post: any, clickable: boolean }) {
     const { info, webStats, fetchWeb } = useInfo();
@@ -42,6 +43,9 @@ export default function ({ post, clickable }: { post: any, clickable: boolean })
                 onClick={() => bodyClick()}
                 dangerouslySetInnerHTML={{ __html: utils.parseMarkdown(post.body) }}
             />
+            {/* <div id="content">
+                <ReactiveMarkdown text={post.body || ""} />
+            </div> */}
         </section>
         <span className="info">
             <div className="likes">

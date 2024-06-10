@@ -10,6 +10,7 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    width: fit-content;
 }
 
 .customVideoPlayer * {
@@ -21,6 +22,7 @@
 }
 
 .customVideoPlayer video {
+    width: 100%;
     max-width: 100vw;
     max-height: 100vh;
 

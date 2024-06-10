@@ -27,9 +27,15 @@ export default function () {
     return postsLoaded ? <main className="posts">
         <div className="items">
             {posts.map((post, index) => (
-                <Post post={post} key={index} clickable={true}/>
+                <Post post={post} key={index} clickable={true} />
             ))}
-            {(info && info?.permissions.post != 0) && <Link to='/posts/create' className="submit">Create post</Link>}
+            {
+                (info && info?.permissions.post != 0) &&
+                <Link to='/posts/create' className="create">
+                    <img src="images/paperpencil.png" alt="" />
+                    Create post
+                </Link>
+            }
         </div>
     </main> : <center className='loading' />
 }

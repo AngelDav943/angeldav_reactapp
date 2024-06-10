@@ -23,6 +23,31 @@ main.posts::before {
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2));
 }
 
+main.posts a.create {
+    margin: 1rem;
+    margin-bottom: 0;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: flex;
+    gap: .5rem;
+    color: var(--onBackground);
+
+    border: 2px solid var(--outline);
+    border-radius: .5rem;
+
+    align-items: center;
+}
+
+main.posts a.create:hover {
+    background-color: var(--outline);
+    border-color: transparent;
+}
+
+main.posts a.create img {
+    height: 4rem;
+}
+
 main.posts .items {
     max-width: 740px;
     margin: auto;

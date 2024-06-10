@@ -61,6 +61,10 @@ main.gallerypage section a.vault:hover img {
     transition: filter 1s;
 }
 
+body:has(main.gallerypage) .modal img.previewAsset {
+    width: 100%;
+}
+
 @media screen and (max-width: 501px) {
 
     main.gallerypage section .cards {
