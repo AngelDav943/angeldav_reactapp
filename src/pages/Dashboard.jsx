@@ -35,7 +35,7 @@ export default function () {
                         Close sidebar
                     </button>
                     {Object.keys(pages).map(page => {
-                        let displayName = page.replace(/_/g," ");
+                        let displayName = page.replace(/_/g, " ");
                         displayName = displayName[0].toLocaleUpperCase() + displayName.slice(1)
 
                         return (
@@ -45,7 +45,9 @@ export default function () {
                                 onClick={() => { setPage(page); setSidebarOpen(false) }}
                             >
                                 <img draggable={false} src={`images/dashboard/${page}.png`} alt="" />
-                                {displayName}
+                                <span>
+                                    {displayName}
+                                </span>
                             </button>
                         )
                     })}

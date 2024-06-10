@@ -27,13 +27,19 @@ main.dashboard aside {
     position: inherit;
 
     width: 100%;
-    max-width: 185px;
+    max-width: 4rem;
     background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     text-align: right;
+
+    transition: max-width .5s;
+}
+
+main.dashboard aside:hover {
+    max-width: 185px;
 }
 
 main.dashboard section.dash aside input {
@@ -50,6 +56,18 @@ main.dashboard section.dash aside button.page {
     font-size: 1.1rem;
     padding: .5rem .8rem;
     border-radius: 0;
+    overflow: hidden;
+}
+
+main.dashboard section.dash aside button.page span {
+    width: 100%;
+    min-width: 10rem;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+main.dashboard section.dash aside:hover button.page span {
+    opacity: 1;
 }
 
 main.dashboard section.dash aside button.page img, main.dashboard section.dash aside input img {
@@ -81,9 +99,17 @@ main.dashboard button.sidebar {
         display: none;
     }
 
+    main.dashboard aside:hover {
+        max-width: none;
+    }
+
     main.dashboard aside input {
         font-size: 1.4rem;
         border-bottom: 1px solid var(--outline);
+    }
+
+    main.dashboard section.dash aside button.page span {
+        opacity: 1;
     }
 
     main.dashboard aside input[type="submit"] {
