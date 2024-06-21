@@ -83,7 +83,7 @@ export default function () {
             )}
             <div className="cards">
                 {resources.map((item: galleryResourceData) => (
-                    <GalleryResource key={item.id} resource={item} onDelete={onResourceDelete} onUpdate={onResourceUpdate} />
+                    <GalleryResource key={item.id} resource={item} onDelete={onResourceDelete} onUpdate={onResourceUpdate} isTile={true}/>
                 ))}
             </div>
         </section>

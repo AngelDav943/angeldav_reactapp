@@ -1,5 +1,8 @@
 import React, { useRef, useState } from 'react'
-import './galleryResource.css'
+
+import './galleryResourceCard.css'
+import './galleryResourceTile.css'
+
 import utils from '../utils';
 import { Link } from 'react-router-dom';
 
@@ -19,11 +22,12 @@ export interface galleryResourceData {
 
 interface resourceProps {
     resource: galleryResourceData;
+    isTile?: boolean;
     onDelete?: (id: number) => void;
     onUpdate?: (id: number, data: { isPublic?: boolean, label?: string }) => void;
 }
 
-export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () => { } }: resourceProps) {
+export function GalleryResource({ resource, isTile = false, onDelete = () => { }, onUpdate = () => { } }: resourceProps) {
     const { info, setModal } = useInfo();
     const cardRef = useRef<any>();
 
@@ -111,7 +115,7 @@ export function GalleryResource({ resource, onDelete = () => { }, onUpdate = () 
     }
 
     return (
-        <div className='GalleryResourceCard' ref={cardRef}>
+        <div className={`GalleryResource${isTile ? 'Tile' : 'Card'}`} ref={cardRef}>
             <div className="top">
                 <span>@{resource.user.username}</span>
                 <span>{utils.timeFromTimestamp(resource.timestamp, true)}</span>

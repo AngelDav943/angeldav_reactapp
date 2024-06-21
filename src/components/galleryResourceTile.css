@@ -1,0 +1,90 @@
+.GalleryResourceTile {
+    width: 100%;
+    /* height: 200px; */
+    border: 1px solid var(--outline);
+    overflow: hidden;
+    background-color: var(--background);
+
+    display: grid;
+    justify-items: center;
+}
+
+.GalleryResourceTile .preview {
+    width: 100%;
+    min-width: 300px;
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+
+.GalleryResourceTile .preview .previewAsset {
+    width: 300px;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.GalleryResourceTile .preview img.config {
+    display: none;
+}
+
+.GalleryResourceTile .top {
+    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 1rem);
+    background: var(--primary) linear-gradient(90deg, var(--primary), var(--dark-primary));
+    color: white;
+    font-size: 0.9rem;
+    height: 1.8rem;
+    padding: 0 0.5rem;
+}
+
+.GalleryResourceTile .info {
+    width: 100%;
+    width: calc(100% - 1rem);
+    padding: 0.5rem;
+    border-left: 1px solid var(--outline);
+    /* border-top: none; */
+    background-color: var(--background);
+    
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.GalleryResourceTile .info span {
+    display: block;
+}
+
+.GalleryResourceTile .info span.small {
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
+.GalleryResourceTile button {
+    padding: 0.4em 0.8rem;
+}
+
+.GalleryResourceTile .info .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: .5rem;
+}
+
+@media screen and (max-width: 551px) {
+    .GalleryResourceTile .top {
+        grid-column-end: 1;
+    }
+
+    .GalleryResourceTile .info {
+        grid-column: 1;
+        grid-row: 3;
+    }
+}
