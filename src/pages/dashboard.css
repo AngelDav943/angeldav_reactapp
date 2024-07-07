@@ -5,73 +5,181 @@ main.dashboard {
 }
 
 main.dashboard section.dash {
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row; */
 
     width: 100%;
     max-width: 800px;
-    height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
+    min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
 
     margin: auto;
 
     background-color: var(--background);
 }
 
-main.dashboard aside button.selected {
-    background-color: var(--primary);
-    color: var(--onBackground);
-}
-
-main.dashboard aside {
+main.dashboard aside, main.dashboard button.sidebar {
     background: var(--backgroundimg);
     position: inherit;
 
     width: 100%;
-    max-width: 4rem;
-    background-color: rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height: 4.5rem;
+
+    background-color: rgba(0, 0, 0, 0.3);
 
     text-align: right;
 
     transition: max-width .5s;
+
+    display: grid;
+    align-items: end;
 }
 
-main.dashboard aside:hover {
-    max-width: 185px;
-}
-
-main.dashboard section.dash aside input {
+main.dashboard button.sidebar {
+    box-shadow: none;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    display: none;
+    text-align: left;
     border-radius: 0;
 }
 
-main.dashboard section.dash aside button.page {
-    text-align: start;
+main.dashboard button.sidebar img {
+    height: 3rem;
+}
+
+main.dashboard button.sidebar:active {
+    outline: none;
+}
+
+main.dashboard aside::before {
+    content: '';
+    grid-column: 1;
+    grid-row: 1;
     width: 100%;
+    height: 1rem;
+    background-color: var(--background);
+}
+
+main.dashboard aside .top {
+    padding-top: 1rem;
+    grid-column: 1;
+    grid-row: 1;
     display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: .5rem;
-    font-size: 1.1rem;
-    padding: .5rem .8rem;
-    border-radius: 0;
-    overflow: hidden;
-}
-
-main.dashboard section.dash aside button.page span {
+    flex-direction: row;
+    align-items: flex-end;
     width: 100%;
-    min-width: 10rem;
-    opacity: 0;
-    transition: opacity .2s;
 }
 
-main.dashboard section.dash aside:hover button.page span {
+main.dashboard aside .top::after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 1rem;
+    flex-grow: 1;
+}
+
+main.dashboard aside button:hover { 
+    box-shadow: none;
+}
+
+main.dashboard aside button.page.selected span, main.dashboard aside button.page:hover span {
+    transition: opacity .2s, width 1s;
+    display: block;
+    width: fit-content;
+    max-width: none;
     opacity: 1;
 }
 
+main.dashboard aside button.page.selected::before, main.dashboard aside button.page.selected::after {
+    content: '';
+}
+
+main.dashboard aside button.page::before, main.dashboard aside button.page::after {
+    width: 1rem;
+    height: 100%;
+    padding: .5rem 0;
+
+    background-color: var(--background);
+    filter: brightness(0.7);
+}
+
+main.dashboard aside button.page::before {
+    margin-right: .5rem;
+    margin-left: -1rem;
+    border-bottom-right-radius: var(--buttonradius);
+}
+
+main.dashboard aside button.page::after {
+    margin-left: .5rem;
+    margin-right: -1rem;
+    border-bottom-left-radius: var(--buttonradius);
+}
+
+main.dashboard aside button.page.selected::after, main.dashboard aside button.page:hover::after {    
+    margin-left: 1.4rem;
+}
+
+main.dashboard aside button.page:active {
+    outline: none;
+}
+
+main.dashboard aside button.page.selected {
+    padding: .5rem 0;
+    padding-bottom: 0;
+    margin: 0 1rem;
+
+    height: auto;
+    
+    border-top-left-radius: var(--buttonradius);
+    border-top-right-radius: var(--buttonradius);
+    --buttonbg: var(--background);
+}
+
+main.dashboard aside button.page.selected, main.dashboard aside button.page:hover {
+    filter: none;
+}
+
+main.dashboard aside button.page {
+    --buttonbg: transparent;
+    height: 1rem;
+    backdrop-filter:brightness(0.7);
+    --buttonradius: 1rem;
+
+    background-color: var(--buttonbg);
+    color: var(--onBackground);
+
+    text-align: start;
+    
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+
+    font-size: 2.5rem;
+    padding: .5rem 1rem;
+    padding-bottom: .25rem;
+    border-radius: 0;
+
+
+    /* margin: 0 1rem; */
+}
+
+main.dashboard aside button.page span {
+    width: auto;
+    height: 1em;
+    padding-bottom: .9em;
+    font-size: .4em;
+
+    overflow-wrap: normal;
+    overflow: hidden;
+    max-width: 0px;
+    opacity: 0;
+    transition: opacity .2s, width 1s, max-width 1s;
+}
+
 main.dashboard section.dash aside button.page img, main.dashboard section.dash aside input img {
-    height: 2.5rem;
+    height: 1em;
+    padding: 0 .5rem;
+    padding-bottom: .2rem;
+    padding-top: 0;
 }
 
 main.dashboard section.dash section.page {
@@ -80,11 +188,11 @@ main.dashboard section.dash section.page {
     overflow-y: auto;
 }
 
-main.dashboard button.sidebar {
-    display: none;
+main.dashboard section.dash section.page {
+    padding-top: 1rem;
 }
 
-@media screen and (max-width: 551px) {
+@media screen and (max-width: 789px) {
 
     main.dashboard button.sidebar {
         display: block;
@@ -99,26 +207,68 @@ main.dashboard button.sidebar {
         display: none;
     }
 
-    main.dashboard aside:hover {
-        max-width: none;
-    }
-
-    main.dashboard aside input {
-        font-size: 1.4rem;
-        border-bottom: 1px solid var(--outline);
-    }
-
     main.dashboard section.dash aside button.page span {
         opacity: 1;
+        padding-bottom: 1.2em;
     }
 
-    main.dashboard aside input[type="submit"] {
-        position: fixed;
-        bottom: 0;
+    main.dashboard section.dash aside button.page img {
+        padding: .5rem;
+        padding-top: 0;
     }
 
     main.dashboard aside.open {
-        display: flex;
+        display: grid;
         z-index: 2;
+        align-items: flex-start;
     }
+
+    main.dashboard aside.open .top {
+        /* background-color: red; */
+        gap: .5rem;
+        padding-top: 1rem;
+
+        flex-direction: column;
+        align-items: flex-start;
+        /* width: 100%; */
+        /* height: 100%; */
+    }
+
+    main.dashboard aside.open button.page {
+        width: calc(100% - 1rem);
+        height: auto;
+        gap: .2rem;
+        
+        padding: 0.5rem 1rem;
+        padding-bottom: 0;
+        margin: 0;
+
+        border-radius: 0;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+
+        transition: font-size .4s .2s;
+    }
+
+    main.dashboard aside.open button.page.selected, main.dashboard aside.open button.page:hover {
+        font-size: 4rem;
+
+        transition: font-size .3s .2s;
+    }
+
+    main.dashboard aside.open button.page.selected {
+        --buttonbg: var(--primary);
+    }
+
+    main.dashboard aside button.page::before, main.dashboard aside button.page::after {
+        display: none;
+    }
+    
+    main.dashboard aside.open button.page span {
+        display: block;
+        width: fit-content;
+        max-width: none;
+        opacity: 1;
+    }
+    
 }

@@ -168,26 +168,26 @@ export default function () {
         {dataLoaded && permissions["userID"] == currentUserID ? <>
 
             <h3>Permissions</h3>
-            <div className="permissions">
+            <article className="permissions">
                 {permissions && Object.keys(permissions).map(key => {
                     if (key != "userID") return <article key={key} onClick={() => openPermissionModal(key)}>
                         <span>{key}</span>
                         <span>{permissions[key]}</span>
                     </article>
                 })}
-            </div>
+            </article>
             <h3>Invites</h3>
-            <div className="invites">
+            <article className="invites">
                 {invites && invites.map((item, index) => (
                     <InviteTile key={index} info={item} clickText={item.enabled == 0 ? "Enable" : "Disable"} onClick={toggleInvite} />
                 ))}
-            </div>
+            </article>
             <h3>Posts</h3>
-            <div className="posts">
+            <article className="posts">
                 {posts && posts.map((post, index) => (
                     <MinimalPost key={index} post={post} extrabutton={<button onClick={() => openPostDeletionModal(index)}>Remove</button>}/>
                 ))}
-            </div>
+            </article>
         </> : <center>
             <img src="/loading_monitor.gif" alt="loading gif" height={100} />
         </center>

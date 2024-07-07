@@ -32,7 +32,7 @@ export default function () {
             <aside className={sidebarOpen ? "open" : ""}>
                 <div className="top">
                     <button className="sidebar" onClick={() => { setSidebarOpen(!sidebarOpen) }}>
-                        Close sidebar
+                        <img src="images/menu.png" alt="menu" />
                     </button>
                     {Object.keys(pages).map(page => {
                         let displayName = page.replace(/_/g, " ");
@@ -52,11 +52,11 @@ export default function () {
                         )
                     })}
                 </div>
-                <input type="submit" value="Log out" onClick={logout} />
+                {/* <input type="submit" value="Log out" onClick={logout} /> */}
             </aside>
             <section className="page">
                 <button className="sidebar" onClick={() => { setSidebarOpen(!sidebarOpen) }}>
-                    Open sidebar
+                    <img src="images/menu.png" alt="menu" />
                 </button>
                 {pages[currentPage]}
             </section>
