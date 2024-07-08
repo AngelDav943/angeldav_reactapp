@@ -4,7 +4,7 @@ import { useInfo } from "../../context/useInfo";
 import './home.css'
 
 export default function () {
-    const { info, getData, fetchWeb, addNotification } = useInfo();
+    const { info, updateUserdata, fetchWeb, addNotification } = useInfo();
 
     const [bannerImage, setBanner] = useState(info?.banner || "none");
     const [profileImage, setProfile] = useState(info?.profile);
@@ -95,7 +95,8 @@ export default function () {
             data: modifiedData
         })
 
-        getData();
+        console.log("resp:", response)
+        updateUserdata(response);
     }
 
     const changeMode = () => {

@@ -264,6 +264,7 @@ main.dashboard section.dash section.page {
     }
     
     main.dashboard aside.open button.page span {
+        transform: none;
         display: block;
         width: fit-content;
         max-width: none;

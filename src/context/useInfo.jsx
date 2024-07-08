@@ -110,12 +110,26 @@ export function InfoProvider({ children }) {
             return null;
         },
 
+        updateUserdata: (userData) => {
+            const savedUserData = utils.parseStringJSON(localStorage.getItem("userdata"));
+
+            const updatedUserdata = {
+                ...savedUserData,
+                ...userData,
+                banner: savedUserData.banner,
+                profile: savedUserData.profile,
+                lastupdated: Date.now()
+            }
+
+            localStorage.setItem("userdata", JSON.stringify(updatedUserdata))
+            setInfo(updatedUserdata);
+        },
+
         getData: async () => {
             const savedWebStats = utils.parseStringJSON(localStorage.getItem("webstatistics"));
             let loadedCachedStats = false;
 
-            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000*4)) {
-                console.log("hello?", savedWebStats)
+            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000*3)) {
                 setWebStats(savedWebStats)
             } else {
                 const webStatistics = await exportUtils.fetchWeb('/stats?simple=true')
@@ -129,7 +143,7 @@ export function InfoProvider({ children }) {
             const savedToken = localStorage.getItem("uid")
 
             const savedUserData = utils.parseStringJSON(localStorage.getItem("userdata"));
-            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < 3600000) {
+            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < (3600000*4)) {
                 setInfo(savedUserData)
                 setLoaded(true)
                 return
