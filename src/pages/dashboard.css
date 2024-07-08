@@ -5,15 +5,10 @@ main.dashboard {
 }
 
 main.dashboard section.dash {
-    /* display: flex; */
-    /* flex-direction: row; */
-
     width: 100%;
     max-width: 800px;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px);
-
     margin: auto;
-
     background-color: var(--background);
 }
 
@@ -82,11 +77,13 @@ main.dashboard aside button:hover {
 }
 
 main.dashboard aside button.page.selected span, main.dashboard aside button.page:hover span {
-    transition: opacity .2s, width 1s;
     display: block;
-    width: fit-content;
-    max-width: none;
+    max-width: 100%;
     opacity: 1;
+
+    transform: scaleX(1);
+
+    transition: opacity .2s, transform .5s, max-width 0s;
 }
 
 main.dashboard aside button.page.selected::before, main.dashboard aside button.page.selected::after {
@@ -158,7 +155,6 @@ main.dashboard aside button.page {
     padding-bottom: .25rem;
     border-radius: 0;
 
-
     /* margin: 0 1rem; */
 }
 
@@ -168,11 +164,14 @@ main.dashboard aside button.page span {
     padding-bottom: .9em;
     font-size: .4em;
 
+    transform: scaleX(0);
+    transform-origin: left;
+    max-width: 0px;
+
     overflow-wrap: normal;
     overflow: hidden;
-    max-width: 0px;
     opacity: 0;
-    transition: opacity .2s, width 1s, max-width 1s;
+    transition: opacity .2s, transform .25s, max-width 0s .5s;
 }
 
 main.dashboard section.dash aside button.page img, main.dashboard section.dash aside input img {

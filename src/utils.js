@@ -102,5 +102,15 @@ export default {
             
         // console.log(html)
         return html
+    },
+
+    parseStringJSON(string) {
+        try {
+            const jsonData = JSON.parse(string)
+            if (jsonData) return jsonData
+        } catch (error) {
+
+        }
+        return undefined
     }
 }

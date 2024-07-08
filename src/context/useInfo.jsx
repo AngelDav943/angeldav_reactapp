@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 
 import '../styles/modals.css'
 import Notification from "../components/Notification";
+import utils from "../utils";
 
 const infoContext = createContext()
 
@@ -110,10 +111,31 @@ export function InfoProvider({ children }) {
         },
 
         getData: async () => {
-            const webStatistics = await exportUtils.fetchWeb('/stats?simple=true')
-            setWebStats(webStatistics)
+            const savedWebStats = utils.parseStringJSON(localStorage.getItem("webstatistics"));
+            let loadedCachedStats = false;
+
+            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000*4)) {
+                console.log("hello?", savedWebStats)
+                setWebStats(savedWebStats)
+            } else {
+                const webStatistics = await exportUtils.fetchWeb('/stats?simple=true')
+                localStorage.setItem("webstatistics", JSON.stringify({
+                    ...webStatistics,
+                    lastupdated: Date.now()
+                }))
+                setWebStats(webStatistics)
+            }
 
             const savedToken = localStorage.getItem("uid")
+
+            const savedUserData = utils.parseStringJSON(localStorage.getItem("userdata"));
+            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < 3600000) {
+                setInfo(savedUserData)
+                setLoaded(true)
+                return
+            }
+
+
             if (savedToken == null) {
                 setLoaded(true)
                 return false;
@@ -123,6 +145,10 @@ export function InfoProvider({ children }) {
             if (userData["token"]) {
                 setInfo(userData)
                 setLoaded(true)
+                localStorage.setItem("userdata", JSON.stringify({
+                    ...userData,
+                    lastupdated: Date.now()
+                }))
             } else {
                 setLoaded(true)
                 return false;
