@@ -129,7 +129,7 @@ export function InfoProvider({ children }) {
             const savedWebStats = utils.parseStringJSON(localStorage.getItem("webstatistics"));
             let loadedCachedStats = false;
 
-            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000*3)) {
+            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000*3) && Object.keys(savedWebStats) > 2) {
                 setWebStats(savedWebStats)
             } else {
                 const webStatistics = await exportUtils.fetchWeb('/stats?simple=true')
@@ -143,7 +143,7 @@ export function InfoProvider({ children }) {
             const savedToken = localStorage.getItem("uid")
 
             const savedUserData = utils.parseStringJSON(localStorage.getItem("userdata"));
-            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < (3600000*4)) {
+            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < (3600000*4) && Object.keys(savedUserData) > 2) {
                 setInfo(savedUserData)
                 setLoaded(true)
                 return
