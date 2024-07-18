@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
 import './home.css'
 import { Link } from 'react-router-dom';
 
 import Bouncy from '../components/Bouncy';
 import ScrollerButtons from '../components/ScrollerButtons';
 
-export default function () {
+export default function Home() {
 
     const scrollerItems = {
         "Welcome": (

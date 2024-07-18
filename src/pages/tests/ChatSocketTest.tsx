@@ -8,7 +8,7 @@ import utils from '../../utils';
 
 export default function () {
     const { info } = useInfo();
-    const [socketUrl, setSocketUrl] = useState('ws://datatest.angelddcs.workers.dev/websockets/tests/chat');
+    const [socketUrl, setSocketUrl] = useState('ws://apiweb.angeld.workers.dev/websockets/tests/chat');
     const [messageHistory, setMessageHistory] = useState<any[]>([]);
 
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(

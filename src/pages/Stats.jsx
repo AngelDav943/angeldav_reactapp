@@ -51,11 +51,11 @@ export default function () {
                     <div
                         className="banner"
                         style={{
-                            backgroundImage: `url("https://datatest.angelddcs.workers.dev/users/banner?id=${id}")`,
+                            backgroundImage: `url("https://apiweb.angeld.workers.dev/users/banner?id=${id}")`,
                         }}
                     />
                     <div className="data">
-                        <img src={`https://datatest.angelddcs.workers.dev/users/profile?id=${id}`} alt="" />
+                        <img src={`https://apiweb.angeld.workers.dev/users/profile?id=${id}`} alt="" />
                         <div className='stats'>
                             <span className='percentage'>{Math.round(percentage)}%</span>
                             <span className='distribution'>({distribution})</span>

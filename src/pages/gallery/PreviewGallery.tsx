@@ -4,7 +4,7 @@ import { useInfo } from '../../context/useInfo'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import utils from '../../utils';
 
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 
 import './galleryPreview.css'
 import { galleryResourceData } from '../../components/GalleryResource';
@@ -120,10 +120,10 @@ export default function () {
     }
 
     return <main className='gallerypreview'>
-        <Helmet>
+        {/* <Helmet>
             <meta id="og-image" property="og:image" content={resource.data} />
             {(window.navigator.userAgent.includes("Discordbot") == true) && <meta http-equiv="refresh" content={`0; url=${resource.data}`} />}
-        </Helmet>
+        </Helmet> */}
         <section>
             <Link to={'/gallery'}>&lt; Go back</Link>
             <hr />

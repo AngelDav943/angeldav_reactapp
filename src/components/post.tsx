@@ -7,7 +7,7 @@ import { useInfo } from '../context/useInfo';
 import { Link, useNavigate } from 'react-router-dom';
 import ReactiveMarkdown from './ReactiveMarkdown';
 
-export default function ({ post, clickable }: { post: any, clickable: boolean }) {
+export default function ({ post, clickable, postBody = null }: { post: any, clickable: boolean, postBody: React.JSX.Element | null }) {
     const { info, webStats, fetchWeb } = useInfo();
     const navigate = useNavigate();
 
@@ -38,11 +38,11 @@ export default function ({ post, clickable }: { post: any, clickable: boolean })
             <Link className="user" to={`/users/${post.fromID}`}>
                 <img src={post.user.profile} alt="profile" />
             </Link>
-            <div
+            {postBody == null ? <div
                 id='content'
                 onClick={() => bodyClick()}
                 dangerouslySetInnerHTML={{ __html: utils.parseMarkdown(post.body) }}
-            />
+            /> : postBody}
             {/* <div id="content">
                 <ReactiveMarkdown text={post.body || ""} />
             </div> */}
@@ -59,7 +59,7 @@ export default function ({ post, clickable }: { post: any, clickable: boolean })
                 <div className="users">
                     {likes.map((userID, index) => {
                         if (index > 5) return;
-                        return <img key={index} className='userpreview' src={`https://datatest.angelddcs.workers.dev/users/profile?id=${userID}`} alt={userID} />
+                        return <img key={index} className='userpreview' src={`https://apiweb.angeld.workers.dev/users/profile?id=${userID}`} alt={userID} />
                     })}
                 </div>
             </div>

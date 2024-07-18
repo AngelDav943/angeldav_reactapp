@@ -16,7 +16,7 @@ export default function () {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users/create', {
+        var fetchedData = await fetch('https://apiweb.angeld.workers.dev/users/create', {
             method: 'POST',
             headers: {
                 "Access-Control-Allow-Origin": "*",

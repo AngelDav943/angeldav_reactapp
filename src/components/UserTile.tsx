@@ -8,11 +8,11 @@ export default function ({ user, extra }: { user: any, extra: string }) {
         <div className="account">
             <div
                 className="banner"
-                style={{ backgroundImage: `url("https://datatest.angelddcs.workers.dev/users/banner?id=${user.id}")` }}
+                style={{ backgroundImage: `url("https://apiweb.angeld.workers.dev/users/banner?id=${user.id}")` }}
             />
             <div className="top">
                 <img
-                    src={`https://datatest.angelddcs.workers.dev/users/profile?id=${user.id}`}
+                    src={`https://apiweb.angeld.workers.dev/users/profile?id=${user.id}`}
                     alt="profile"
                     className={`profile ${Date.now() - user.lastonline < 600000 ? 'online' : ''}`}
                 />

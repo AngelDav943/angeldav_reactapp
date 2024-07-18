@@ -19,7 +19,7 @@ export default function () {
     const [invites, setInvites] = useState(null);
 
     async function fetchInvites() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
+        var fetchedData = await fetch('https://apiweb.angeld.workers.dev/invites', {
             method: 'GET',
             headers: { "token": info?.token },
         })
@@ -32,7 +32,7 @@ export default function () {
     }
 
     async function createInvite() {
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
+        var fetchedData = await fetch('https://apiweb.angeld.workers.dev/invites', {
             method: 'POST',
             headers: { "token": info?.token },
         })
@@ -41,7 +41,7 @@ export default function () {
 
     async function removeInvite(inviteID) {
         console.log("inv id:", inviteID, "info:", info?.token)
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/invites', {
+        var fetchedData = await fetch('https://apiweb.angeld.workers.dev/invites', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', ...corsHeaders },
             body: JSON.stringify({ "id": inviteID, "token": info?.token })

@@ -12,7 +12,7 @@ export const useInfo = () => {
 }
 
 async function fetchLogin(data) {
-    var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/users', {
+    var fetchedData = await fetch('https://apiweb.angeld.workers.dev/users', {
         method: 'POST',
         headers: {
             "Access-Control-Allow-Origin": "*",
@@ -68,7 +68,7 @@ export function InfoProvider({ children }) {
         fetchWeb: async (path = "/", init = null, isJSON = true, developmentMode = false) => {
             init = init || { method: "GET", headers: null, data: null }
 
-            const apiURL = (import.meta.env.DEV == true && developmentMode == true) ? 'http://127.0.0.1:8787' : 'https://datatest.angelddcs.workers.dev'
+            const apiURL = (import.meta.env.DEV == true && developmentMode == true) ? 'http://127.0.0.1:8787' : 'https://apiweb.angeld.workers.dev'
             const { method, headers, data } = init;
 
             var fetchMethod = String(method).toUpperCase();

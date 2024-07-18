@@ -11,16 +11,16 @@ import Footer from './components/Footer.tsx'
 import './styles/main.css'
 import './styles/basic.css'
 import './styles/inputs.css'
-import { HelmetProvider } from 'react-helmet-async'
+// import { HelmetProvider } from 'react-helmet-async'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <InfoProvider>
       <BrowserRouter>
         <Header />
-        <HelmetProvider>
+        {/* <HelmetProvider>
+        </HelmetProvider> */}
           <App />
-        </HelmetProvider>
         <Footer />
       </BrowserRouter>
     </InfoProvider>
