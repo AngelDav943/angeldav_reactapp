@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { useInfo } from './context/useInfo'
+import { RequireAuth, useInfo } from './context/useInfo'
 import { useEffect } from 'react'
 
 import NotFound from './pages/NotFound'
@@ -32,6 +32,7 @@ import ChatSocketTest from './pages/tests/ChatSocketTest'
 import GalleryVault from './pages/gallery/Vault'
 import PublicGallery from './pages/gallery/PublicGallery'
 import PreviewGallery from './pages/gallery/PreviewGallery'
+import Login from './pages/Login'
 
 function App() {
 	const location = useLocation();
@@ -56,9 +57,14 @@ function App() {
 		<Routes>
 			<Route path='/' element={<Home />} />
 
-			<Route path='/login' element={<Dashboard />} />
+			<Route path='/login' element={<Login />} />
 			<Route path='/signin' element={<SigningIn />} />
-			<Route path='/dashboard' element={<Dashboard />} />
+			<Route path='/dashboard' element={
+				<RequireAuth>
+					<Dashboard />
+				</RequireAuth>
+			} />
+
 			<Route path='/users'>
 				<Route index element={<Accounts />} />
 				<Route path=':ID' element={<ProfileDetails />} />
@@ -66,7 +72,11 @@ function App() {
 
 			<Route path='/posts'>
 				<Route index element={<Posts />} />
-				<Route path='create' element={<CreatePost />} />
+				<Route path='create' element={
+					<RequireAuth>
+						<CreatePost />
+					</RequireAuth>
+				} />
 				<Route path=':postID' element={<PostDetails />} />
 			</Route>
 
@@ -77,7 +87,11 @@ function App() {
 			</Route>
 
 			<Route path='/create'>
-				<Route path='badge' element={<CreateBadge />} />
+				<Route path='badge' element={
+					<RequireAuth>
+						<CreateBadge />
+					</RequireAuth>
+				} />
 			</Route>
 
 			<Route path='/badges'>
@@ -88,14 +102,18 @@ function App() {
 			<Route path='/tests'>
 				<Route path='markdown' element={<MarkdownTest />} />
 				<Route path='websocket' element={<WebsocketTest />} />
-				<Route path='blob' element={<BlobTest />} />
+				<Route path='blob' element={
+					<RequireAuth>
+						<BlobTest />
+					</RequireAuth>
+				} />
 				{/* <Route path='chat' element={<ChatSocketTest />} /> */}
 			</Route>
 
 			<Route path='/gallery'>
 				<Route path=':ResourceID' element={<PreviewGallery />} />
-				<Route path='vault' element={<GalleryVault/>} />
-				<Route index element={<PublicGallery/>} />
+				<Route path='vault' element={<GalleryVault />} />
+				<Route index element={<PublicGallery />} />
 			</Route>
 
 			<Route path='/games'>

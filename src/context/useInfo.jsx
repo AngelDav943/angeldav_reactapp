@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import '../styles/modals.css'
 import Notification from "../components/Notification";
 import utils from "../utils";
+import { Navigate, useLocation } from "react-router-dom";
 
 const infoContext = createContext()
 
@@ -129,7 +130,7 @@ export function InfoProvider({ children }) {
             const savedWebStats = utils.parseStringJSON(localStorage.getItem("webstatistics"));
             let loadedCachedStats = false;
 
-            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000*3) && Object.keys(savedWebStats) > 2) {
+            if (savedWebStats && (Date.now() - (savedWebStats.lastupdated || 0)) < (3600000 * 3) && Object.keys(savedWebStats) > 2) {
                 setWebStats(savedWebStats)
             } else {
                 const webStatistics = await exportUtils.fetchWeb('/stats?simple=true')
@@ -143,10 +144,10 @@ export function InfoProvider({ children }) {
             const savedToken = localStorage.getItem("uid")
 
             const savedUserData = utils.parseStringJSON(localStorage.getItem("userdata"));
-            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < (3600000*4) && Object.keys(savedUserData) > 2) {
+            if (savedUserData && (Date.now() - (savedUserData.lastupdated || 0)) < (3600000 * 4) && Object.keys(savedUserData) > 2) {
                 setInfo(savedUserData)
                 setLoaded(true)
-                return
+                return savedUserData;
             }
 
 
@@ -231,10 +232,8 @@ export function InfoProvider({ children }) {
         }
     }, [notifications])
 
-    const forceLogin = () => <Login />
-
     return (
-        <infoContext.Provider value={{ info, webStats: simpleStatistics, loaded, ...exportUtils, forceLogin, setModal }}>
+        <infoContext.Provider value={{ info, webStats: simpleStatistics, loaded, ...exportUtils, setModal }}>
             {children}
             {error && <span className="error">{error}</span>}
             <div className="notifications">
@@ -255,4 +254,11 @@ export function InfoProvider({ children }) {
             </div>}
         </infoContext.Provider>
     )
+}
+
+export function RequireAuth({ children }) {
+    const { info } = useInfo();
+    const location = useLocation();
+
+    return info != null ? children : <Navigate to="/login" replace state={location.pathname} />
 }

@@ -13,8 +13,7 @@ var corsHeaders = {
 }
 
 export default function () {
-    const { loaded, info, forceLogin } = useInfo();
-    if (info == null) return forceLogin();
+    const { loaded, info } = useInfo();
 
     const [invites, setInvites] = useState(null);
 
