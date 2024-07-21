@@ -110,7 +110,7 @@ header .side span.coins::before {
 }
 
 header section.popup {
-    position: fixed;
+    position: absolute;
     right: 0;
     top: calc(var(--headerSize) + var(--headerPadding));
     width: 10rem;
@@ -156,6 +156,10 @@ header section.popup a:hover {
 
     header .left a.submit {
         width: calc(100% - 1.6rem);
+    }
+
+    #root:has(header.open) {
+        perspective: none;
     }
 
     header.open {

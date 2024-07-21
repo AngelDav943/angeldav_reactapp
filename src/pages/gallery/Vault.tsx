@@ -144,7 +144,7 @@ export default function () {
         <section>
             <Link to={'/gallery'}>&lt; Go back</Link>
             <p>Here you can check all your uploaded images</p>
-            <label className="upload">
+            <label className="upload overlapper">
                 <div className="display">
                     <img src="/images/document.png" draggable={false} alt="" />
                     {fileName == "" ? <div className='multispan'>

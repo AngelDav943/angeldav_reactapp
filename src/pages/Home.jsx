@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Bouncy from '../components/Bouncy';
 import ScrollerButtons from '../components/ScrollerButtons';
 
+import SectionParallax from '../components/SectionParallax';
+
 export default function Home() {
 
     const scrollerItems = {
@@ -48,8 +50,7 @@ export default function Home() {
     }
 
     return <main className="home basic">
-        <section className="item reverse gradient">
-            <img src="/images/city_pencil.png" alt="city" />
+        <SectionParallax className='item gradient'>
             <article className="info" style={{ maxWidth: "400px" }}>
                 <p>
                     Welcome to this website, made by <Bouncy>AngelDav943</Bouncy>.
@@ -57,7 +58,29 @@ export default function Home() {
                     I know lua, javascript, C#, some python, C++, dart (flutter) and some 3D modelling.
                 </p>
             </article>
-        </section>
+            <div
+                className='overlapper'
+                style={{
+                    perspective: '1px',
+                    perspectiveOrigin: 'right'
+                }}
+            >
+                <img
+                    src="/images/parallax/fg_city.png"
+                    alt="city"
+                    style={{
+                        transform: 'translate3d(-100px, 0px, -0.5px) scale(3.5)'
+                    }}
+                />
+                <img
+                    src="/images/parallax/bg_city.png"
+                    alt="city"
+                    style={{
+                        transform: 'translate3d(-90%, 250%, -10px) scale(30)'
+                    }}
+                />
+            </div>
+        </SectionParallax>
         <ScrollerButtons items={scrollerItems} />
         <section className="blueprint">
             <div className="row">
@@ -65,5 +88,5 @@ export default function Home() {
                 <img src="/images/turret_drawing_front.png" alt="turret front" />
             </div>
         </section>
-    </main>
+    </main >
 }

@@ -36,7 +36,7 @@ export default function () {
     useEffect(() => { fetchBadges() }, [])
 
     return badgesLoaded ? <main className="badges">
-        {targetUser && <div className="profilepreview">
+        {targetUser && <div className="profilepreview overlapper">
             <div
                 className="banner"
                 style={{ backgroundImage: `url("${targetUser.banner}")` }}

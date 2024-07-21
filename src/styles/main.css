@@ -29,10 +29,12 @@ body {
 }
 
 #root {
-    min-height: 100dvh;
+    height: 100dvh;
+    overflow-x: hidden;
 }
 
 main {
+    transform-style: preserve-3d;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px - 8rem);
     /* 8rem = footer */
 }
@@ -96,6 +98,15 @@ hr {
     opacity: 0;
 
     animation: mainAppear .7s ease-in-out;
+}
+
+.overlapper {
+    display: grid;
+}
+
+.overlapper > * {
+    grid-column: 1;
+    grid-row: 1;
 }
 
 @keyframes mainAppear {

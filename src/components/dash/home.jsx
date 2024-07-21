@@ -108,7 +108,7 @@ export default function () {
     return <article className="dashhome">
 
         <section className="item">
-            <div className="profilepreview">
+            <div className="profilepreview overlapper">
                 <div
                     className="banner"
                     style={{ backgroundImage: `url("${bannerImage}")` }}

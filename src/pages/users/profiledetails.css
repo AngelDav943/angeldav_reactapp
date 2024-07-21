@@ -108,7 +108,6 @@ main.profiledetails section.userdata .header {
     margin-bottom: 0rem;
     padding-bottom: 4rem;
 
-    display: grid;
     overflow: hidden;
 }
 
@@ -116,8 +115,6 @@ main.profiledetails section.userdata .header .banner {
     filter: blur(3px);
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 
-    grid-column: 1;
-    grid-row: 1;
     z-index: 0;
     margin: -2rem;
 
@@ -134,8 +131,6 @@ main.profiledetails section.userdata .header .banner {
 
 main.profiledetails section.userdata .top {
     z-index: 1;
-    grid-column: 1;
-    grid-row: 1;
 
     margin: -2rem;
     padding: 2rem;
