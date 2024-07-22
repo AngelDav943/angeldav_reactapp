@@ -44,6 +44,11 @@ main.basic section.white, .basicmain section.white {
     color: #1d1f20;
 }
 
+main.basic section.primary, .basicmain section.primary {
+    background-color: var(--primary);
+    color: var(--darkOnBackground);
+}
+
 main.basic section.gray, .basicmain section.gray {
     background-color: #dddcdd;
     color: #1d1f20;

@@ -6,6 +6,9 @@ footer {
 	height: 5.5rem;
 	overflow: hidden;
 	/* border-top: solid 1px var(--outline); */
+	
+    position: sticky;
+    top: 100%;
 }
 
 footer .links {

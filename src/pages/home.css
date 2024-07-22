@@ -3,7 +3,7 @@ main.home {
     /* color: #1d1f20; */
 }
 
-main.home .item.gradient {
+main.home .gradient {
     background: linear-gradient(transparent, var(--transparent-primary));
     padding-bottom: 2.5rem;
 }
