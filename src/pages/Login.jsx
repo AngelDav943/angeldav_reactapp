@@ -2,10 +2,13 @@ import './login.css'
 
 import { useInfo } from "../context/useInfo"
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function () {
     const { info, login, getData } = useInfo();
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const [username, setUser] = useState();
     const [password, setPass] = useState();
@@ -19,7 +22,9 @@ export default function () {
 
         if (loginData["error"]) setError(loginData.error);
 
-        if (loginData["success"] == true) getData()
+        if (loginData["success"] == true) {
+            if (await getData() && location.state) navigate(location.state)
+        }
     }
 
     return <main className="login">

@@ -97,7 +97,7 @@ export default function () {
     return usersLoaded ? <main className="profiledetails">
         <article className="central">
             <section className="userdata">
-                <div className="header">
+                <div className="header overlapper">
                     <div
                         className="banner"
                         style={{ backgroundImage: `url("${user.banner}")` }}

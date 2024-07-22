@@ -1,0 +1,12 @@
+main section.parallax {
+    transform-style: preserve-3d;
+    perspective: 2px;
+}
+
+#root:has(section.parallax) {
+    perspective: 2px;
+}
+
+main section.parallax * {
+    transform-style: preserve-3d;
+}

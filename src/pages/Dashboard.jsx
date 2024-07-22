@@ -12,8 +12,7 @@ import Avatarcreator from "../components/dash/avatarcreator";
 import Manageposts from "../components/dash/manageposts";
 
 export default function () {
-    const { info, forceLogin, logout, setModal } = useInfo();
-    if (info == null) return forceLogin();
+    const { info, logout, setModal } = useInfo();
 
     const [currentPage, setPage] = useState("home")
     var pages = {

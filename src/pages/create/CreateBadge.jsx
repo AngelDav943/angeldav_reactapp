@@ -3,8 +3,7 @@ import './badge.css'
 import { useInfo } from '../../context/useInfo';
 
 export default function () {
-    const { info, forceLogin, fetchWeb, setError } = useInfo();
-    if (info == null) return forceLogin();
+    const { info, fetchWeb, setError } = useInfo();
 
     if (info?.permissions.admin == 0) return <center className="loading noicon">
         <img src="/images/monitor/monitor_red.png" alt="monitor" />

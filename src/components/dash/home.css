@@ -37,7 +37,6 @@ article.dashhome section.item .profilepreview {
     margin-left: -3rem;
     padding: 2rem;
 
-    display: grid;
     overflow: hidden;
 
     width: 100%;
@@ -47,8 +46,6 @@ article.dashhome section.item .profilepreview .banner {
     filter: blur(3px);
     mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 
-    grid-column: 1;
-    grid-row: 1;
     z-index: 0;
     margin: -2rem;
 
@@ -65,8 +62,6 @@ article.dashhome section.item .profilepreview .banner {
 
 article.dashhome section.item .profilepreview .top {
     z-index: 1;
-    grid-column: 1;
-    grid-row: 1;
     
     padding: 2rem;
     display: flex;

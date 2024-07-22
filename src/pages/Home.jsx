@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Bouncy from '../components/Bouncy';
 import ScrollerButtons from '../components/ScrollerButtons';
 
+import SectionParallax from '../components/SectionParallax';
+
 export default function Home() {
 
     const scrollerItems = {
@@ -48,12 +50,70 @@ export default function Home() {
     }
 
     return <main className="home basic">
-        <section className="item reverse gradient">
-            <img src="/images/city_pencil.png" alt="city" />
-            <article className="info" style={{ maxWidth: "400px" }}>
+        <SectionParallax className='item gradient overlapper'>
+            <div className="overlapper" style={{
+                justifyContent: 'center',
+                alignItems: 'start',
+                paddingTop: '7rem',
+                flexGrow: 1
+            }}>
+                <article
+                    className="info"
+                    style={{
+                        maxWidth: '90vw',
+                        color: 'var(--primary)',
+                        fontWeight: 600,
+                        margin: 'auto',
+                        marginTop: '-4rem'
+                    }}
+                >
+                    <center>
+                        <p>Welcome to this website, made by <Bouncy>AngelDav943</Bouncy>.</p>
+                    </center>
+                </article>
+                <div
+                    className='overlapper'
+                    style={{
+                        height: '60vh',
+                        width: '100vw',
+                        perspective: '10px',
+                        perspectiveOrigin: 'right',
+                        justifyItems: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <img
+                        src="/images/parallax/fg_city.png"
+                        alt="city"
+                        style={{
+                            transformOrigin: 'bottom',
+                            maxWidth: 'none',
+                            width: '100vmin',
+                            position: 'absolute',
+                            transform: 'translate3d(-5%, 60vh, -0.5px) scale(1.8)'
+                        }}
+                    />
+                    <img
+                        src="/images/parallax/middleground_city.png"
+                        alt="city"
+                        style={{
+                            transformOrigin: 'top',
+                            transform: 'translate3d(0%, 50%, -1px) scale(5)'
+                        }}
+                    />
+                    <img
+                        src="/images/parallax/bg_city.png"
+                        alt="city"
+                        style={{
+                            transform: 'translate3d(0%, 80%, -3px) scale(8)'
+                        }}
+                    />
+                </div>
+            </div>
+        </SectionParallax>
+        <section className='primary'>
+            <article className="info">
                 <p>
-                    Welcome to this website, made by <Bouncy>AngelDav943</Bouncy>.
-                    <br />
                     I know lua, javascript, C#, some python, C++, dart (flutter) and some 3D modelling.
                 </p>
             </article>
@@ -65,5 +125,5 @@ export default function Home() {
                 <img src="/images/turret_drawing_front.png" alt="turret front" />
             </div>
         </section>
-    </main>
+    </main >
 }

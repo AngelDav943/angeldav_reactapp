@@ -8,8 +8,7 @@ import MinimalPost from "../MinimalPost";
 import utils from "../../utils";
 
 export default function () {
-    const { info, forceLogin, fetchWeb, setModal } = useInfo();
-    if (info == null) return forceLogin();
+    const { info, fetchWeb, setModal } = useInfo();
 
     if (info?.permissions.post == 0) return <center className="loading noicon">
         <img src="/images/monitor/monitor_red.png" alt="monitor" />

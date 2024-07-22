@@ -1,10 +1,5 @@
-main.gallerypage.vault section {
-    /* padding-top: 0; */
-}
-
 main.gallerypage.vault .upload {
     margin-top: 1rem;
-    display: grid;
     font-size: 2rem;
     font-weight: 500;
     color: var(--outline);
@@ -37,8 +32,6 @@ main.gallerypage.vault .upload .display {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    grid-column: 1;
-    grid-row: 1;
     z-index: 1;
     
 }
@@ -53,8 +46,6 @@ main.gallerypage.vault .upload input[type='file'] {
     margin: -1rem;
     color: transparent;
     background-color: transparent;
-    grid-column: 1;
-    grid-row: 1;
     /* display: none; */
 }
 

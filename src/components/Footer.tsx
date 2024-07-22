@@ -13,7 +13,7 @@ export default function () {
 				<Link to="/statistics" >Statistics</Link>
 				<Link to="https://github.com/AngelDav943" >Github</Link>
 			</div>
-			<span>Last updated: July 7th 2024</span>
+			<span>Last updated: July 22th 2024</span>
 		</div>
 		<div className="row">
 			<p className="icon" >Angel's website</p>

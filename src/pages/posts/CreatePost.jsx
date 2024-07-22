@@ -9,9 +9,8 @@ import Post from "../../components/post";
 import utils from "../../utils";
 
 export default function () {
-    const { info, forceLogin, setError, setModal } = useInfo();
+    const { info, setError, setModal } = useInfo();
     const navigate = useNavigate();
-    if (info == null) return forceLogin();
 
     if (info?.permissions.post == 0) return <center className="loading noicon">
         <img src="/images/monitor/monitor_red.png" alt="monitor" />

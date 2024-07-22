@@ -91,7 +91,7 @@ export default function ({
         video.volume = currentVolume
     }, [currentVolume])
 
-    return <div className={`customVideoPlayer ${className}`} ref={playerRef} style={style}>
+    return <div className={`customVideoPlayer overlapper ${className}`} ref={playerRef} style={style}>
         <video
             ref={videoRef}
             muted={muted}
@@ -116,7 +116,7 @@ export default function ({
 
                 </> : <div className='timeline' />
             }
-            <div className="volumeContainer">
+            <div className="volumeContainer overlapper">
                 <img className='button' src={`/images/sound_${currentVolume <= 0.01 ? 'off' : 'on'}.png`} onClick={event => mute(event)} draggable={false} />
                 <div className="slider">
                     <input
