@@ -13,7 +13,7 @@ export default function () {
     const navigate = useNavigate();
     if (info == null) return forceLogin();
 
-    if (info?.permissions.post == 0) return <center className="loading">
+    if (info?.permissions.post == 0) return <center className="loading noicon">
         <img src="/images/monitor/monitor_red.png" alt="monitor" />
         <span>You don't have enough permissions to access this page.</span>
     </center>
@@ -21,9 +21,12 @@ export default function () {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
 
+    const [cursorPosition, setCursorPosition] = useState(0);
+    const [selectionCursor, setSelectionCursor] = useState(-1);
+
     const handleSubmit = async e => {
         e.preventDefault();
-        var fetchedData = await fetch('https://datatest.angelddcs.workers.dev/posts', {
+        var fetchedData = await fetch('https://apiweb.angeld.workers.dev/posts', {
             method: 'POST',
             headers: { "token": info?.token, "Content-Type": "application/json" },
             body: JSON.stringify({ "body": body })
@@ -37,7 +40,42 @@ export default function () {
         navigate('/posts');
     }
 
-    const onPasteBody = async e => {
+    const updateCursor = e => {
+
+        function updateCursorPosition(position) {
+            const clampedPosition = Math.max(0, Math.min(2, e.target.innerHTML.length))
+            // console.log(e.target.innerHTML.length)
+            // if (e.target.childNodes == null || e.target.childNodes[0] == null || isNaN(position)) return
+
+            const range = document.createRange();
+            range.setStart(e.target.childNodes[0], clampedPosition);
+            range.collapse(true);
+
+            let sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+
+
+        if (e.key && e.key.includes("Shift") && selectionCursor != -1) {
+            setSelectionCursor(-1)
+        }
+
+        if (e.type == "click" || (e.code && e.code.includes("Arrow"))) {
+            const currentPosition = utils.getCaretCharacterOffsetWithin(e.target);
+            setCursorPosition(() => {
+                updateCursorPosition(currentPosition)
+                return currentPosition
+            });
+        }
+
+
+
+        // console.log("node", e)
+        // return
+    }
+
+    /*const onPasteBody = async e => {
         e.preventDefault();
         var dataTransfer = e;
         const currentTarget = e.currentTarget;
@@ -83,38 +121,92 @@ export default function () {
         }
 
         console.log(dataTransfer)
+    }*/
 
-        currentTarget.innerHTML += "<div>"+dataTransfer.getData("text/plain").replace(/</g, "⟨").replace(/>/g, "⟩")+"</div>"
-    }
-
-    return <article className="createpost">
+    return <main className="createpost">
         <div className="editor">
             <form onSubmit={handleSubmit}>
                 <br />
-                <article className="post">
-                    <span className='top'>
-                        <span className='username'>@{info?.username}</span>
-                        {utils.timeFromTimestamp(Date.now())}
-                    </span>
-                    <section className="body">
-                        <section className="user">
-                            <img src={info?.profile} alt="profile" />
-                            <div className="info">
-                                <span className='title'>{title}</span>
-                            </div>
-                        </section>
-                        <p contentEditable={true}
-                            onInput={(e) => { setBody(e.target.innerText) }}
-                            onPaste={(e) => onPasteBody(e)}
-                            onDrop={(e) => onPasteBody(e)}
+                <Post
+                    post={{
+                        commentCount: 0,
+                        body: "",
+                        timestamp: Date.now(),
+                        user: info,
+                        fromID: info?.id,
+                        likes: []
+                    }}
+                    clickable={false}
+                    postBody={
+                        <p
+                            style={{
+                                outline: 'none',
+                                minWidth: 10,
+                            }}
+                            contentEditable={true}
+                            onClick={updateCursor}
+                            onKeyUp={updateCursor}
+                            onKeyDown={(e) => {
+                                return
+                                if (e.key.includes("Shift") && selectionCursor == -1) {
+                                    console.log(e)
+                                    const currentPosition = utils.getCaretCharacterOffsetWithin(e.target);
+                                    setSelectionCursor(currentPosition)
+                                    console.log("currPos:", currentPosition)
+                                }
+                            }}
+                            onInput={(e) => {
+                                if (e.nativeEvent == null) return;
+
+                                const inputType = String(e.nativeEvent.inputType)
+                                if (inputType.includes("deleteContent")) {
+                                    console.log(e.nativeEvent.inputType)
+
+                                    let position = cursorPosition
+
+                                    if (inputType.includes("Backward")) {
+                                        position = cursorPosition - 1
+                                    }
+
+                                    setTitle(current => {
+                                        let newCurrent = String(current).split("")
+                                        newCurrent.splice(position, 1)
+                                        console.log("test", newCurrent.join(""))
+                                        return newCurrent.join('')
+                                    })
+                                    setCursorPosition(position)
+
+                                    return
+                                }
+
+                                let data = e.nativeEvent.data
+                                if (inputType.includes('insertParagraph')) {
+                                    data = "\n"
+                                }
+
+                                if (data == null) return
+
+                                let newTitle = title.split('')
+                                newTitle.splice(cursorPosition, 0, data)
+                                // console.log("new",newTitle)
+
+                                setTitle(newTitle.join(''));
+                                setCursorPosition(current => current + 1)
+                            }}
+                            dangerouslySetInnerHTML={{ __html: utils.parseMarkdown(title) }}
+                            content="test"
                         />
-                    </section>
-                </article>
-                <br />
-                <div className="row">
-                    <input type="submit" value="Submit" />
-                </div>
+                    }
+                />
+                {/* <section id="inputs">
+                    <textarea name="" id="" cols="30" onChange={(e) => { setBody(e.target.value) }} />
+                    <br />
+                    <div className="row">
+                        <input type="submit" value="Submit" />
+                        <Link className="button" to={'/posts/60'}>?</Link>
+                    </div>
+                </section> */}
             </form>
         </div>
-    </article>
+    </main>
 }
