@@ -82,17 +82,44 @@ export default function Home() {
                         alignItems: 'center',
                     }}
                 >
-                    <img
-                        src="/images/parallax/fg_city.png"
-                        alt="city"
+                    <div
+                        className='overlapper'
                         style={{
-                            transformOrigin: 'bottom',
-                            maxWidth: 'none',
-                            width: '100vmin',
-                            position: 'absolute',
-                            transform: 'translate3d(-5%, 60vh, -0.5px) scale(1.8)'
+                            width: '100%',
+                            justifyItems: 'start'
                         }}
-                    />
+                    >
+                        <img
+                            src="/images/parallax/foreground_right_city.png"
+                            alt="city"
+                            style={{
+                                transformOrigin: 'bottom',
+                                width: '350px',
+                                maxWidth: 'none',
+                                position: 'absolute',
+                                transform: 'translate3d(-100%, 15vh, -0.5px) scale(1.8)'
+                            }}
+                        />
+                    </div>
+                    <div
+                        className='overlapper'
+                        style={{
+                            width: '100%',
+                            justifyItems: 'end'
+                        }}
+                    >
+                        <img
+                            src="/images/parallax/foreground_left_city.png"
+                            alt="city"
+                            style={{
+                                transformOrigin: 'bottom',
+                                width: '250px',
+                                maxWidth: 'none',
+                                position: 'absolute',
+                                transform: 'translate3d(100%, 15vh, -0.5px) scale(1.8)'
+                            }}
+                        />
+                    </div>
                     <img
                         src="/images/parallax/middleground_city.png"
                         alt="city"
