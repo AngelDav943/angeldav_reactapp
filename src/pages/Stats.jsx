@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useInfo } from '../context/useInfo';
-import './stats.css'
 import Post from '../components/post';
 import UserTile from '../components/UserTile';
 import { Link } from 'react-router-dom';
@@ -31,6 +30,7 @@ export default function () {
     </center>
 
     return <main className="statistics">
+        <link rel="stylesheet" href="/styles/pages/stats.css" />
         <h2>Basic website statistics</h2>
         <hr />
         <h3>User statistics</h3>

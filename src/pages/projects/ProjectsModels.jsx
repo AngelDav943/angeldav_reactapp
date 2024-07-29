@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-// import './projects_games.css'
 import ScrollerButtons from '../../components/ScrollerButtons'
 import Bouncy from '../../components/Bouncy'
 

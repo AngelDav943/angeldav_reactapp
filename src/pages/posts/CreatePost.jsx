@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import './createpost.css'
 import Post from "../../components/post";
 
 import utils from "../../utils";
@@ -85,6 +84,7 @@ export default function () {
     }*/
 
     return <main className="createpost">
+        <link rel="stylesheet" href="/styles/pages/posts/createpost.css" />
         <div className="editor">
             <form onSubmit={handleSubmit}>
                 <br />

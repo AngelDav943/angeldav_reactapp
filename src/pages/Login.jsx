@@ -1,4 +1,3 @@
-import './login.css'
 
 import { useInfo } from "../context/useInfo"
 import { useState } from 'react';
@@ -28,24 +27,25 @@ export default function () {
     }
 
     return <main className="login">
-	<div className="modal">
-        <h2>Log in</h2>
-        {error && <span className="error">{error}</span>}
-        <form onSubmit={handleSubmit}>
-            <label placeholder="Username">
-                <input error={String(error != null)} type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
-            </label>
-            <br />
-            <label placeholder="Password">
-                <input error={String(error != null)} type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
-            </label>
-            <br />
-            <br />
-            <div className="row">
-                <Link className="button" to={"/signin"}>Create account</Link>
-                <input type="submit" value="Submit" />
-            </div>
-        </form>
-	</div>
+        <link rel="stylesheet" href="/styles/pages/login.css" />
+        <div className="modal">
+            <h2>Log in</h2>
+            {error && <span className="error">{error}</span>}
+            <form onSubmit={handleSubmit}>
+                <label placeholder="Username">
+                    <input error={String(error != null)} type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
+                </label>
+                <br />
+                <label placeholder="Password">
+                    <input error={String(error != null)} type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
+                </label>
+                <br />
+                <br />
+                <div className="row">
+                    <Link className="button" to={"/signin"}>Create account</Link>
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
     </main>
 }

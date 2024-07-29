@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import './profiledetails.css'
 import MinimalPost from "../../components/MinimalPost";
 import utils from "../../utils";
 import ScrollerButtons from "../../components/ScrollerButtons";
@@ -95,6 +94,7 @@ export default function () {
     </center>
 
     return usersLoaded ? <main className="profiledetails">
+        <link rel="stylesheet" href="/styles/pages/users/profiledetails.css" />
         <article className="central">
             <section className="userdata">
                 <div className="header overlapper">

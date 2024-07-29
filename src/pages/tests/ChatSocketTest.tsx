@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-import './chatSocketTest.css'
 import { useInfo } from '../../context/useInfo';
 import MinimalPost from '../../components/MinimalPost';
 import utils from '../../utils';
@@ -27,7 +26,7 @@ export default function () {
     useEffect(() => {
         if (lastJsonMessage != null) {
             console.log(lastJsonMessage)
-            
+
             const html = document.querySelector("html")
             if (html) {
                 if (html.scrollHeight - html.scrollTop < 850) html.scrollTop = html.scrollHeight
@@ -51,6 +50,7 @@ export default function () {
 
     return (
         <main className='TEST_chatsocket'>
+            <link rel="stylesheet" href="/styles/pages/tests/chatSocketTest.css" />
             <code>This websocket test is highly unstable.</code>
             <code><h2>STATUS: {connectionStatus}</h2></code>
             <div className='messages'>

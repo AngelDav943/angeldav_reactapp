@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import './projects.css'
 
 export default function () {
 
     return <main className="projects home basic">
+        <link rel="stylesheet" href="/styles/pages/projects/projects.css" />
         <section>
             <h2>Projects</h2>
         </section>

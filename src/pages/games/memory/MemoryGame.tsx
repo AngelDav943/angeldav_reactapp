@@ -3,7 +3,6 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 import MemoryCard from '../../../components/games/MemoryCard';
 
-import './memoryGame.css'
 import { useInfo } from '../../../context/useInfo';
 
 let selectedCardRef: null | React.MutableRefObject<any> = null;
@@ -107,6 +106,7 @@ export default function () {
 
     return (
         <main className='GAME_memory'>
+            <link rel="stylesheet" href="/styles/pages/games/memoryGame.css" />
             <br />
             <span>Game status: <b>{connectionStatus}</b></span>
             <p className="gameinfo">

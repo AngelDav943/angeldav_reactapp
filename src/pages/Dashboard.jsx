@@ -3,8 +3,6 @@ import { Link } from "react-router-dom"
 import { useInfo } from "../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import './dashboard.css'
-
 import Dash_home from "../components/dash/home";
 import Dash_invites from "../components/dash/invites";
 import AdminPage from "../components/dash/AdminPage";
@@ -27,6 +25,7 @@ export default function () {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return <main className="dashboard">
+        <link rel="stylesheet" href="/styles/pages/dashboard.css" />
         <section className="dash">
             <aside className={sidebarOpen ? "open" : ""}>
                 <div className="top">

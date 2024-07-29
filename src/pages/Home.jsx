@@ -1,4 +1,4 @@
-import './home.css'
+
 import { Link } from 'react-router-dom';
 
 import Bouncy from '../components/Bouncy';
@@ -50,6 +50,7 @@ export default function Home() {
     }
 
     return <main className="home basic">
+        <link rel="stylesheet" href="/styles/pages/home.css" />
         <SectionParallax className='item gradient overlapper'>
             <div className="overlapper" style={{
                 justifyContent: 'center',

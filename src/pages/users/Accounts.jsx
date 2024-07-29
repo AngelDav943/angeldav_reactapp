@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import './accounts.css'
 import UserTile from "../../components/UserTile";
 
 export default function () {
@@ -24,9 +23,10 @@ export default function () {
     useEffect(() => { fetchUsers() }, [])
 
     return usersLoaded ? <main className="users">
+        <link rel="stylesheet" href="/styles/pages/users/accounts.css" />
         <div className="items">
             {users.map((user, index) => (
-                <UserTile user={user} key={index} extra={`"${user.status}"`}/>
+                <UserTile user={user} key={index} extra={`"${user.status}"`} />
             ))}
         </div>
     </main> : <center className='loading' />

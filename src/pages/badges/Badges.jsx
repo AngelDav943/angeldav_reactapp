@@ -3,10 +3,6 @@ import { Link, useParams } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import UserTile from '../../components/UserTile'
-
-import './badges.css'
-
 export default function () {
     const { info, fetchWeb } = useInfo();
     const params = useParams();
@@ -36,6 +32,7 @@ export default function () {
     useEffect(() => { fetchBadges() }, [])
 
     return badgesLoaded ? <main className="badges">
+        <link rel="stylesheet" href="/styles/pages/badges/badges.css" />
         {targetUser && <div className="profilepreview overlapper">
             <div
                 className="banner"

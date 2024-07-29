@@ -4,9 +4,6 @@ import { GalleryResource, galleryResourceData } from '../../components/GalleryRe
 
 import { Link } from 'react-router-dom';
 
-import './gallery.css'
-import './galleryVault.css'
-
 export default function () {
     const { info, fetchWeb, setError } = useInfo();
 
@@ -141,6 +138,8 @@ export default function () {
     if (loaded == false || resources == null) return <center className='loading' />
 
     return <main className='gallerypage vault'>
+        <link rel="stylesheet" href="/styles/pages/gallery/gallery.css" />
+        <link rel="stylesheet" href="/styles/pages/gallery/galleryVault.css" />
         <section>
             <Link to={'/gallery'}>&lt; Go back</Link>
             <p>Here you can check all your uploaded images</p>

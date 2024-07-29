@@ -1,3 +1,5 @@
+
+
 :root {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     --background: white;
@@ -36,7 +38,6 @@ body {
 main {
     transform-style: preserve-3d;
     min-height: calc(100dvh - var(--headerSize) - var(--headerPadding) - 1px - 8rem);
-    /* 8rem = footer */
 }
 
 h1 {
@@ -60,7 +61,7 @@ center.loading::after {
     background-size: 6rem 6rem;
     background-position: center;
     background-repeat: no-repeat;
-    /* height: 6rem; */
+    
     position: fixed;
     width: 100%;
     height: 100dvh;

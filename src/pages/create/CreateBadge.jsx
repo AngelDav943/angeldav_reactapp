@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './badge.css'
 import { useInfo } from '../../context/useInfo';
 
 export default function () {
@@ -57,6 +56,7 @@ export default function () {
     }
 
     return <main className="test basic">
+        <link rel="stylesheet" href="/styles/pages/create/badge.css" />
         <h2>Basic badge creation page</h2>
         <img src={badgeData["image"]} alt="preview image" />
         <p>{badgeData["name"]}</p>

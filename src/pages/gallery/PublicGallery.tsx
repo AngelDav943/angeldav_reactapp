@@ -4,8 +4,6 @@ import { GalleryResource, galleryResourceData } from '../../components/GalleryRe
 
 import { Link } from 'react-router-dom';
 
-import './gallery.css'
-
 export default function () {
     const { info, fetchWeb } = useInfo();
 
@@ -72,6 +70,7 @@ export default function () {
     if (loaded == false) return <center className='loading' />
 
     return <main className='gallerypage'>
+        <link rel="stylesheet" href="/styles/pages/gallery/gallery.css" />
         <section>
             {info && (
                 <Link to={'/gallery/vault'} className='vault'>

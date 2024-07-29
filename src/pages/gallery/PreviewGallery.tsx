@@ -6,7 +6,6 @@ import utils from '../../utils';
 
 // import { Helmet } from 'react-helmet-async';
 
-import './galleryPreview.css'
 import { galleryResourceData } from '../../components/GalleryResource';
 import VideoPlayer from '../../components/VideoPlayer';
 
@@ -120,6 +119,7 @@ export default function () {
     }
 
     return <main className='gallerypreview'>
+        <link rel="stylesheet" href="/styles/pages/gallery/galleryPreview.css" />
         {/* <Helmet>
             <meta id="og-image" property="og:image" content={resource.data} />
             {(window.navigator.userAgent.includes("Discordbot") == true) && <meta http-equiv="refresh" content={`0; url=${resource.data}`} />}

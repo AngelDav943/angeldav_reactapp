@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import './posts.css'
 import Post from "../../components/post";
 
 export default function () {
@@ -25,6 +24,7 @@ export default function () {
     }, [])
 
     return postsLoaded ? <main className="posts">
+        <link rel="stylesheet" href="/styles/pages/posts/posts.css" />
         <div className="items">
             {posts.map((post, index) => (
                 <Post post={post} key={index} clickable={true} />

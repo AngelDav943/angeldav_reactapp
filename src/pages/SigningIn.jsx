@@ -1,5 +1,3 @@
-import './login.css'
-
 import { useInfo } from "../context/useInfo"
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,9 +24,9 @@ export default function () {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "invite":invite,
-                "username":username,
-                "password":password,
+                "invite": invite,
+                "username": username,
+                "password": password,
             })
         })
 
@@ -52,28 +50,29 @@ export default function () {
     }
 
     return <main className="login">
-	<div className="modal">
-        <h2>Create account</h2>
-        {errorMessage && <span className="error">{errorMessage}</span>}
-        <form onSubmit={handleSubmit}>
-            <label placeholder="Username">
-                <input error={String(errorMessage != null)} type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
-            </label>
-            <br />
-            <label placeholder="Password">
-                <input error={String(errorMessage != null)} type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
-            </label>
-            <br />
-            <label placeholder="Invite key">
-                <input error={String(errorMessage != null)} type="text" id="invite" placeholder="Invite key" onChange={e => setInv(e.target.value)} />
-            </label>
-            <br />
-            <br />
-            <div className="row">
-                <Link className="button" to={"/dashboard"}>I have an account</Link>
-                <input type="submit" value="Create Account" />
-            </div>
-        </form>
-	</div>
+        <link rel="stylesheet" href="/styles/pages/login.css" />
+        <div className="modal">
+            <h2>Create account</h2>
+            {errorMessage && <span className="error">{errorMessage}</span>}
+            <form onSubmit={handleSubmit}>
+                <label placeholder="Username">
+                    <input error={String(errorMessage != null)} type="text" id="username" placeholder="Username" onChange={e => setUser(e.target.value)} />
+                </label>
+                <br />
+                <label placeholder="Password">
+                    <input error={String(errorMessage != null)} type="password" id="password" placeholder="Password" onChange={e => setPass(e.target.value)} />
+                </label>
+                <br />
+                <label placeholder="Invite key">
+                    <input error={String(errorMessage != null)} type="text" id="invite" placeholder="Invite key" onChange={e => setInv(e.target.value)} />
+                </label>
+                <br />
+                <br />
+                <div className="row">
+                    <Link className="button" to={"/dashboard"}>I have an account</Link>
+                    <input type="submit" value="Create Account" />
+                </div>
+            </form>
+        </div>
     </main>
 }

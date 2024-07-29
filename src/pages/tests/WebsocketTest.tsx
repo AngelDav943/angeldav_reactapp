@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-import './websocketTest.css'
 import { useInfo } from '../../context/useInfo';
 
 export default function () {
@@ -42,6 +41,7 @@ export default function () {
 
     return (
         <main className='TEST_websocket1'>
+            <link rel="stylesheet" href="/styles/pages/tests/websocketTest.css" />
             <input value={msg} onChange={({ target }) => setMsg(target.value)} />
             <button
                 onClick={handleClickSendMessage}

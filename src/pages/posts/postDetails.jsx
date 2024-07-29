@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom"
 import { useInfo } from "../../context/useInfo"
 import { useEffect, useState } from 'react';
 
-import './posts.css'
 import Post from "../../components/post";
 import MinimalPost from "../../components/MinimalPost";
 import Bouncy from "../../components/Bouncy";
@@ -50,9 +49,9 @@ export default function () {
         }
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         setLoaded(false)
-        fetchPost() 
+        fetchPost()
     }, [params.postID])
 
     if (notFound == false) return <center className='loading noicon'>
@@ -62,8 +61,9 @@ export default function () {
     </center>
 
     return postLoaded ? <main className="posts">
+        <link rel="stylesheet" href="/styles/pages/posts/posts.css" />
         <div className="items reverse">
-            {post.parent && <Post post={post.parent} clickable={true}/>}
+            {post.parent && <Post post={post.parent} clickable={true} />}
             {post && <Post post={post} />}
             <div className="comments">
                 <div className="inputs">

@@ -2,8 +2,6 @@ import React from 'react'
 import { useInfo } from '../context/useInfo'
 import { Link } from "react-router-dom"
 
-import './directories.css'
-
 export default function () {
 
 	function DirLink({to: location}) {
@@ -11,6 +9,7 @@ export default function () {
 	}
 
 	return <main className="directories">
+        <link rel="stylesheet" href="/styles/pages/directories.css" />
 		<section>
 			<p>Website directory</p>
 			<DirLink to="/" />

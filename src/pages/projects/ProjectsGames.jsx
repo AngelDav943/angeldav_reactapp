@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './projects_games.css'
 import ScrollerButtons from '../../components/ScrollerButtons'
 import Bouncy from '../../components/Bouncy'
 
@@ -32,6 +31,7 @@ export default function () {
     }
 
     return <main className='projects games basic center'>
+        <link rel="stylesheet" href="/styles/pages/projects/projects_games.css" />
         <section className="item white">
             <article className='info'>
                 <p>Still a</p>
